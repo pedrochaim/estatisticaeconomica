@@ -1,0 +1,26 @@
+project:
+  type: book
+  output-dir: docs
+  
+book:
+  title: "Estatística Econômica"
+  author: "Pedro Chaim"
+  date: "2025"
+  page-navigation: true
+  navbar: 
+    collapse: true
+  chapters:
+    - index.qmd
+
+callout-appearance: minimal
+
+bibliography: references.bib
+
+format:
+  html: 
+    theme: cosmo
+    code-link: true
+    citations-hover: false
+    footnotes-hover: false
+    crossrefs-hover: false
+number-sections: true

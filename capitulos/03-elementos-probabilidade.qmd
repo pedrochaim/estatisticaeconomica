@@ -1,51 +1,19 @@
 ---
-title: "Elementos de Probabilidade"
-format:
-  revealjs:
-    theme: simple
-    css: styles.css
-    slide-number: false
-    controls: true
-    transition: slide
-    center: false
-    auto-stretch: false
-    width: 1800
-    height: 1000
-    margin: 0.015
-    menu: 
-      side: left
-      width: wide
-      numbers: true
-execute:
-  echo: false
-  warning: false
-  message: false
+title: "Conjuntos e Probabilidade"
+chapter: true
 ---
 
----
+Nesta aula iremos 
 
-## Conteúdo {.scrollable}
+Leituras:
 
-* Espaço de Probabilidades
-* Espaço Amostral
-* Conjuntos
-* Relações entre Conjuntos
-* Operações entre Conjuntos
-* Eventos Disjuntos e Partições
-* Espaço de Eventos
-* Função de Probabilidade
-* Probabilidade Condicional
+  - [@bussab2010estatistica]
+  - [@casella2002statistical] capítulo 1.
 
-Referências:
+## Introdução
 
-* MB10
-* CB01
 
----
-
-## Espaço de Probabilidades {.scrollable}
-
-Um espaço de probabilidades é uma tripla **$(\Omega, \mathcal{F}, P)$**.
+Um espaço de probabilidades é uma tripla **$(\Omega, \mathcal{F}, \Pr)$**.
 
 - O conjunto **$\Omega$** é chamado **espaço amostral**. Os elementos de **$\Omega$ são todos os possíveis resultados individuais de nosso experimento**.
 - O conjunto **$\mathcal{F}$** é a $\sigma$-álgebra de eventos, ou **espaço de eventos**. São os resultados (ou conjunto de resultados) de interesse. O espaço de eventos **$\mathcal F$ é formado por subconjuntos do espaço amostral $\Omega$**. Temos alguns requerimentos sobre a estrutura do conjunto **$\mathcal{F}$**.
@@ -53,32 +21,35 @@ Um espaço de probabilidades é uma tripla **$(\Omega, \mathcal{F}, P)$**.
 
 Uma **variável aleatória** **$X$** é uma função que mapeia os elementos do espaço amostral **$\Omega$** a valores na reta real.
 
----
+## Espaço Amostral
 
-## Espaço Amostral {.scrollable}
-
-O conjunto $\Omega$, composto por todos os possíveis resultados individuais $\omega \in \Omega$ de um experimento é chamado de **espaço amostral** desse experimento.
+::: {.callout-note}
+::: {#def-espaco-amostral}
+**(Espaço Amostral)** O conjunto $\Omega$, composto por todos os possíveis resultados individuais $\omega \in \Omega$ de um experimento é chamado de **espaço amostral** desse experimento.
+:::
+:::
 
 Considere um único lançamento de um dado cúbico. O espaço amostral $\Omega$ é o conjunto que elenca os possíveis resultados individuais obtidos com o lançamento do dado:
 \begin{align*}
   \Omega = \{\unicode{x2680},\unicode{x2681},\unicode{x2682},\unicode{x2683},\unicode{x2684},\unicode{x2685}\}.
 \end{align*}
 
-### Evento
+::: {.callout-note}
+::: {#def-evento}
+**(Evento)** Um **evento $A$ é qualquer subconjunto do espaço amostral $\Omega$**. Ou seja, qualquer coleção de possíveis resultados para o experimento, incluindo o próprio espaço amostral e o conjunto vazio. $A\subset\Omega$.
+:::
+:::
 
-Um **evento $A$ é qualquer subconjunto do espaço amostral $\Omega$**. Ou seja, qualquer coleção de possíveis resultados para o experimento, incluindo o próprio espaço amostral e o conjunto vazio. $A\subset\Omega$.
+Continuando com nosso dado. Vamos definir alguns eventos relacionados ao experimento de lançamento do dado.
 
-Continuando com nosso dado. Vamos definir alguns eventos relacionados ao experimento de (um) lançamento do dado.
-
+- Resultado é igual a dois: $B=\{\unicode{x2681}\}$.
 - Resultado é menor do que três: $X = \{\unicode{x2680}, \unicode{x2681}\}$.
 - Resultado é par: $Y = \{\unicode{x2681}, \unicode{x2683}, \unicode{x2685}\}$.
 - Resultado é menor do que seis: $Z = \{\unicode{x2680},\unicode{x2681},\unicode{x2682},\unicode{x2683},\unicode{x2684}\}$.
 
----
+## Relações e Operações entre Conjuntos
 
-## Conjuntos {.scrollable}
-
-Vamos dar um passo atrás e lembrar a definição e as principais operações entre conjuntos.
+Vamos dar um passo atrás e lembrar a definição e as principais relações e operações entre conjuntos.
 
 Um **conjunto é uma coleção de elementos**. Existem várias formas de definir um conjunto. 
 
@@ -86,17 +57,15 @@ Um **conjunto é uma coleção de elementos**. Existem várias formas de definir
 - **Por enumeração**: $Z = \{2, 4, 6, 8, 10, 12, 14, ...\}$.
 - **Via notação de conjuntos**: $Z = \{ z: z=2n, n \in \mathbb{N}\}$
 
----
+Um conjunto se relaciona com seus elementos por meio da **pertinência**. A relação básica entre conjuntos é a **contenção**. Com base nesse conceito, definimos a relação de **igualdade** entre conjuntos, e então conseguimos definir operações entre conjuntos como **união**, **intersecção**, e **complemento**.
 
-## Relações entre conjuntos {.scrollable}
+### Relações entre conjuntos
 
-Um conjunto se relaciona com seus elementos por meio da **pertinência**. A relação básica entre conjuntos é a **contenção**. Com base nesse conceito, definimos a relação de **igualdade** entre conjuntos, e então conseguimos definir operações operações entre conjuntos como **união**, **intersecção**, e **complemento**.
-
-### Pertinência
+#### Pertinência
 
 A **pertinência** é a relação entre um elemento e um conjunto. Se um elemento $x$ pertence a um certo conjunto $A$ escrevemos $x \in A$. Alternativamente, se esse elemento $x$ não pertencer a $A$ escrevemos $x \notin A$.
 
-### Contenção
+#### Contenção
 
 Dizemos que **$A$ está contido em $B$**, ou, equivalentemente, que $B$ contém $A$, **se todos os elementos de $A$ também forem elementos de $B$**. Escrevemos **$A \subset B$**. Ou seja,
 
@@ -104,13 +73,9 @@ Dizemos que **$A$ está contido em $B$**, ou, equivalentemente, que $B$ contém 
   A \subset B \Longleftrightarrow (x\in A \Longrightarrow x \in B).
 \end{align*}
 
-::: {.callout-note title="Exemplos" icon="false"}
+Por exemplo, se $\Omega = \{\unicode{x2680}, \ldots, \unicode{x2685}\}$ e $X = \{\unicode{x2680}, \unicode{x2681}, \unicode{x2682}\}$, então $X\subset \Omega$.
 
-- Se $\Omega = \{\unicode{x2680}, \ldots, \unicode{x2685}\}$ e $X = \{\unicode{x2680}, \unicode{x2681}, \unicode{x2682}\}$, então $X\subset \Omega$.
-
-:::
-
-::: {.callout-tip title="O conjunto vazio $\emptyset$" icon="false"}
+#### O conjunto vazio
 
 Definimos um **conjunto vazio** como o **único conjunto que não contém nenhum elemento**:
 
@@ -126,9 +91,7 @@ Por suposição, **o conjunto vazio é subconjunto de qualquer outro conjunto**.
 
 Ressaltando que a suposição anterior não quer dizer que o conjunto vazio é elemento de qualquer outro conjunto. Ou seja, não é verdade que sempre $\emptyset \in A$. **O conjunto vazio é elemento de outro conjunto apenas quando aparecer explicitamente listado como elemento**.
 
-:::
-
-### Igualdade
+#### Igualdade
 
 Dizemos que **$A$ é igual a $B$** se tivermos, simultaneamente, que $A$ é contido em $B$ e que $B$ é contido em $A$. Escrevemos $A = B$. Ou seja,
 
@@ -141,32 +104,9 @@ Em outras palavras, temos $A=B$ apenas se tivermos que, simultaneamente,
 - se $x \in A$ então $x \in B$, e
 - se $x \in B$ então $x \in A$.
 
+### Operações entre conjuntos
 
-::: {.callout-note title="Diferença entre $\subset$ e $\subseteq$" icon="false"}
-
-Uma ressalva sobre notação.
-
-:::
-
-::: {.callout-note title="Paradoxo de Russell" icon="false"}
-
-Quase qualquer conjunto pode ser definido, mas temos que tomar um pouco de cuidado ao definir conjuntos com base nos elementos que não fazem parte de tal conjunto.
-
-Tome o conjunto
-
-\begin{align*}
-  A = \{ x: x\notin A\}.
-\end{align*}
-
-Considere um certo elemento $x$, pertencente a $A$. Se $x \in A$, então deve respeitar o predicado $x \notin A$. Portanto concluimos que $x$ não pertence a $A$. Alternativamente, tome $x \notin A$. Mas nesse caso $x$ respeita o predicado e portanto $x \in A$. Perceba que não conseguimos decididir se o elemento $x$ pertence, ou não, a esse conjunto $A$. Essa contradição é conhecida como *Paradoxo de (Bertrand) Russell*.
-
-:::
-
----
-
-## Operações entre Conjuntos {.scrollable}
-
-### União ($\cup$, $\vee$, ou)
+#### União ($\cup$, $\vee$, ou)
 
 A **união** entre $A$ e $B$, denotada **$A \cup B$**, é o conjunto composto por todos os elementos pertencentes a $A$, pertencentes a $B$, ou pertencentes a ambos $A$ e $B$.
 \begin{align*}
@@ -175,13 +115,14 @@ A **união** entre $A$ e $B$, denotada **$A \cup B$**, é o conjunto composto po
 A união é associada ao operador lógico **ou**.
 
 ```{r}
+#| echo: false
 #| fig-width: 10
 #| fig-height: 6
 #| out-width: 90%
 #| fig-align: center
 #| warning: false
 #| message: false
-#| fig-format: svg
+#| fig-format: png
 
 library(ggplot2)
 library(ggforce)
@@ -238,11 +179,12 @@ ggplot() +
   annotate(
     "text",
     x = 5.3, y = 3.8,
-    label = "A~'U'~B",
+    label = "A~'\u222A'~B",
     parse = TRUE,
     color = "#cf5a00",
     size = 7.5,
-    family = "serif"
+    family = "serif",
+    fontface = "italic"
   ) +
 
   coord_fixed(
@@ -257,7 +199,7 @@ ggplot() +
   )
 ```
 
-### Intersecção ($\cap$, $\wedge$, e)
+#### Intersecção ($\cap$, $\wedge$, e)
 
 A **intersecção** entre os conjuntos $A$ e $B$, denotada **$A\cap B$**, é o conjunto dos elementos que pertencem a ambos $A$ e $B$:
 \begin{align*}
@@ -267,6 +209,7 @@ A **intersecção** entre os conjuntos $A$ e $B$, denotada **$A\cap B$**, é o c
 A **intersecção** é relacionada ao operador lógico **e**.
 
 ```{r}
+#| echo: false
 #| fig-width: 10
 #| fig-height: 6
 #| out-width: 90%
@@ -348,7 +291,7 @@ ggplot() +
   )
 ```
 
-### Complementação ($A^c$, não)
+#### Complementação ($A^c$, não)
 
 O **complemento** do conjunto $A$ (com relação a todo o universo $\Omega$) é o conjunto composto por todos os elementos em $\Omega$ que não pertencem ao conjunto $A$.
 
@@ -357,6 +300,7 @@ O **complemento** do conjunto $A$ (com relação a todo o universo $\Omega$) é 
 \end{align*}
 
 ```{r}
+#| echo: false
 #| fig-width: 10
 #| fig-height: 6
 #| out-width: 90%
@@ -425,7 +369,7 @@ ggplot() +
   )
 ```
 
-### Complementação relativa ($\setminus$, subtração)
+#### Complementação relativa ($\setminus$, subtração)
 
 O **complemento relativo** do conjunto $A$ com relação ao conjunto $B$, escrito $A\setminus B$ ou $A-B$ (podemos ler como $A$ menos $B$), é o conjunto de todos os elementos presentes em $A$ mas não presentes em $B$.
 
@@ -434,6 +378,7 @@ O **complemento relativo** do conjunto $A$ com relação ao conjunto $B$, escrit
 \end{align*}
 
 ```{r}
+#| echo: false
 #| fig-width: 10
 #| fig-height: 6
 #| out-width: 90%
@@ -527,7 +472,7 @@ ggplot() +
   )
 ```
 
-### Propriedades básicas das operações entre conjuntos
+#### Propriedades básicas das operações entre conjuntos
 
 Tome três eventos $X$, $Y$, e $Z$, definidos no mesmo espaço amostral $\Omega$.
 
@@ -558,26 +503,26 @@ Tome três eventos $X$, $Y$, e $Z$, definidos no mesmo espaço amostral $\Omega$
     (X \cup Y)^c &= X^c\cap Y^c \\
     (X \cap Y)^c &= X^c\cup Y^c
   \end{align*}
+  
+### Eventos Disjuntos e Partições
 
----
-
-## Eventos Disjuntos e Partições {.scrollable}
-
-::: {.callout-note title="Definição: Eventos disjuntos" icon="false"}
+::: {.callout-note}
+::: {#def-eventos-disjuntos}
 Dizemos que **dois eventos $A$, $B$** são **disjuntos** (ou **mutuamente exclusivos**) se **$A\cap B=\emptyset$**. 
 
 Dizemos que os eventos enumerados na **sequência $A_1, A_2, \dots$** são **disjuntos dois a dois** se **$A_i\cap A_j=\emptyset$** para qualquer $i\neq j$.
 :::
+:::
 
 ```{r}
-#| label: fig-conjuntos-disjuntos
+#| echo: false
 #| fig-width: 10
 #| fig-height: 6
 #| out-width: 90%
 #| fig-align: center
 #| warning: false
 #| message: false
-#| fig-format: svg
+#| fig-format: png
 
 library(ggplot2)
 library(sf)
@@ -737,18 +682,16 @@ ggplot() +
   )
 ```
 
-
-[figura eventos disjuntos]
-
-::: {.callout-note title="Definição: Partição de um conjunto" icon="false"}
+::: {.callout-note}
+::: {#def-particao}
 Seja $A_1, A_2, \dots$ uma sequência de eventos **disjuntos dois a dois** e suponha que **$\cup^\infty_{j=1}A_j=X$**. Dizemos então que a sequência de conjuntos **$A_1, A_2, \dots$ forma uma partição do conjunto $X$**.
 :::
+:::
 
-#### Exemplos de partições
-
-Uma partição finita do espaço amostral $\Omega$
+Uma partição finita do espaço amostral $\Omega$: 
 
 ``` {r}
+#| echo: false
 #| fig-width: 10
 #| fig-height: 6
 #| out-width: 90%
@@ -911,6 +854,7 @@ ggplot() +
 Uma partição infinita do espaço amostral $\Omega$
 
 ```{r}
+#| echo: false
 #| fig-width: 10
 #| fig-height: 6.2
 #| out-width: 90%
@@ -1127,7 +1071,7 @@ ggplot() +
 Dados $A,B\subset\Omega$, sempre conseguimos particionar $A$ ao escrever $A = (A\cap B)\cup (A\cap B^c)$.
 
 ```{r}
-#| label: fig-identidade-a
+#| echo: false
 #| fig-width: 10
 #| fig-height: 6
 #| out-width: 90%
@@ -1276,32 +1220,27 @@ ggplot() +
 ```
 
 
+## Espaço de Eventos
 
----
-
-## Espaço de Eventos {.scrollable}
-
-::: {.callout-note title="Definição: Espaço de eventos" icon="false"}
+::: {.callout-note}
+::: {#def-sigma-algebra}
 O conjunto **$\mathcal{F}$, cujos elementos são subconjuntos de $\Omega$** é chamado $\sigma$-álgebra ou **espaço de eventos** em se:
 
   a. **O conjunto vazio é elemento de $\mathcal{F}$**
   b. **$\mathcal{F}$ é fechado sob complementação**
   c. **$\mathcal{F}$ é fechado sob uniões contáveis**
-
 :::
+::: 
 
-#### Exemplo: Menor $\sigma$-álgebra possível
+Exemplo: Menor $\sigma$-álgebra possível
+Exemplo: Segunda menor $\sigma$-álgebra possível
+Exemplo: Maior $\sigma$-álgebra possível
+Exemplo: Espaço de eventos definido sobre um espaço amostral incontável
 
-#### Exemplo: Segunda menor $\sigma$-álgebra possível
+## Função de Probabilidade
 
-#### Exemplo: Maior $\sigma$-álgebra possível
-
-#### Exemplo: Espaço de eventos definido sobre um espaço amostral incontável
-
----
-
-## Função de Probabilidade {.scrollable}
-
+::: {.callout-note}
+::: {#def-funcao-probabilidade}
 Dados um **espaço amostral $\Omega$** e um associado **espaço de eventos $\mathcal{F}$**, uma **função de probabilidade $\Pr(\cdot)$** é qualquer função com **domínio no espaço de eventos $\mathcal{F}$ e contradomínio nos números reais $\mathbb{R}$** que satisfaz as propriedades (axiomas):
 
 - **A1 (Não-negatividade):** $\Pr(A)\geq 0, \forall A\in \mathcal{F}$. 
@@ -1310,39 +1249,73 @@ Dados um **espaço amostral $\Omega$** e um associado **espaço de eventos $\mat
 \begin{align*}
   \Pr(A \cup B) = \Pr(A) + \Pr(B).
 \end{align*}
-
-### Propriedades elimentares
-
-
-
----
-
-## Probabilidade Condicional e Independência entre Eventos {.scrollable}
-
-### Probabilidade condicional
-
-::: {.callout-note title="Definição: Probabilidade condicional" icon="false"}
-Tome $A$ e $B$ eventos devinidos no espaço amostral $\Omega$. Assuma $\Pr(B)>0$. Então a probabilidade condicional do evento $A$ dada a ocorrência do evento $B$ é
-
-\begin{align*}
-  \Pr(A|B)=\frac{\Pr(A\cap B)}{\Pr(B)}.
-\end{align*}
-
+:::
 :::
 
-::: {.callout-note title="Lei da Probabilidade Total" icon="false"}
-Seja $A_1, A_2, \dots, A_n$ uma partição do espaço amostral $\Omega$, e seja $B$ um evento qualquer. Então podemos escrever
+## Probabilidade Condicional e Independência
+
+### Probabilidade Condicional
+
+::: {.callout-note}
+::: {#def-probabilidade-condicional}
+**(Probabilidade Condicional)** Tome $A$ e $B$ eventos devinidos no espaço amostral $\Omega$. Assuma $\Pr(A)>0$. Então a probabilidade condicional do evento $B$ dada a ocorrência do evento $A$ é
+
+\begin{align*}
+  \Pr(B|A)=\frac{\Pr(B\cap A)}{\Pr(A)}.
+\end{align*}
+:::
+:::
+
+::: {.callout-note}
+::: {#thm-lei-probabilidade-total}
+**(Lei da Probabilidade Total)** Seja $A_1, A_2, \dots, A_n$ uma partição do espaço amostral $\Omega$, e seja $B$ um evento qualquer. Então podemos escrever
 
 \begin{align*}
   \Pr(B) = \Pr(B|A_1)\Pr(A_1)+\Pr(B|A_2)\Pr(A_2)+\cdots+\Pr(B|A_n)\Pr(A_n).
 \end{align*}
+:::
+::: 
+::: {.callout-caution title="Demonstração" collapse="true"}
 
+Vamos demonstrar, passo a passo, o caso em que o espaço amostral $\Omega$ é particionado entre $A$ e $A^c$. Ou seja, queremos mostrar que
+\begin{align*}
+  \Pr(B) = \Pr(B|A)\Pr(A) + \Pr(B|A^c)\Pr(A^c).
+\end{align*}
+
+1.  Começamos particionando o conjunto $B$ por meio da identidade 
+\begin{align*}
+  B = (B\cap A)\cup(B\cap A^c).
+\end{align*}
+
+2.  Aplicamos a função probabilidade $\Pr(\cdot)$ a ambos os lados da igualdade acima. (Perceba que passamos de uma igualdade de conjuntos para uma igualdade numérica.)
+\begin{align*}
+  \Pr(B) = \Pr\left((B\cap A)\cup(B\cap A^c)\right).
+\end{align*}
+
+3.  Pelo axioma da aditividade finita **A3**,
+\begin{align*}
+  \Pr(B) = \Pr(B\cap A)+(B\cap A^c).
+\end{align*}
+
+4.  Manipulando a definição de probabilidade condicional, podemos escrever
+\begin{align*}
+  \Pr(B\cap A) &= \Pr(B|A)\Pr(B), \text{ e} \\
+  \Pr(B\cap A^c) &= \Pr(B|A^c)\Pr(A^c).
+\end{align*}
+
+5. E substituindo obtemos o resultado que procuravamos:
+\begin{align*}
+  \Pr(B) = \Pr(B|A)\Pr(A) + \Pr(B|A^c)\Pr(A^c). \qquad \blacksquare
+\end{align*}
+
+Não é difícil generalizar esse resultado para o caso geral de uma partição com $n$ partes disjuntas.
 :::
 
+### Teorema de Bayes
 
-::: {.callout-note title="Teorema de Bayes" icon="false"}
-
-Tome $A,A^c$ formando uma partição de $\Omega$ e $B$ um evento qualquer. Então
+::: {.callout-note}
+::: {#thm-bayes}
+**(Teorema de Bayes)** Tome $A,A^c$ formando uma partição de $\Omega$ e $B$ um evento qualquer. Então
 \begin{align*}
   \Pr(A|B) = \frac{\Pr(B|A)\Pr(B)}{\Pr(B|A)\Pr(A)+\Pr(B|A^c)\Pr(A^c)}.
 \end{align*}
@@ -1350,23 +1323,16 @@ Tome $A,A^c$ formando uma partição de $\Omega$ e $B$ um evento qualquer. Entã
 Seja $A_1,A_2,\dots,A_n$ uma partição de espaço amostral $\Omega$ e seja $B$ um evento qualquer. Então
 
 \begin{align*}
-  \Pr(A_j|B) = \frac{\Pr(B|A_j)\Pr(A_j)}{\sum^n_{i=1}\Pr(B|A_i)\Pr(A_i)}
+  \Pr(A_j|B) = \frac{\Pr(B|A_j)\Pr(A_j)}{\sum^n_{i=1}\Pr(B|A_i)\Pr(A_i)}.
 \end{align*}
-
+:::
 :::
 
-#### Exemplo: 
 
+::: {#exm-bayes-dautonicos}
 Suponha que 5\% dos homens e 0.25\% das mulheres sejam dautônicos. Uma pessoa escolhida aleatoriamente é dautônica. Qual é probabilidade de que essa pessoa seja homem? (Assuma mesma incidência de homens e mulheres na população.)
-
-::: {.callout-caution collapse="true"}
-## Expand To Learn About Collapse
-
-This is an example of a 'folded' caution callout that can be expanded by the user. You can use `collapse="true"` to collapse it by default or `collapse="false"` to make a collapsible callout that is expanded by default.
 :::
-
-::: {.callout-note title="Solução" collapse="true"}
-
+::: {.callout-caution title="Solução" collapse="true"}
 Defina os seguintes eventos:
 
   - $H$: o indivíduo é homem.
@@ -1401,11 +1367,9 @@ Então escrevemos o teorema de Bayes e substituimos valores
   &=\frac{0.05\times 0.5}{0.05\times 0.5+0.0025\times 0.5}\\
   &=0.952381
 \end{align*}
-
 :::
 
-#### Exemplo:
-
+::: {#exm-bayes-teste}
 Considere o problema de um teste clínico para a presença de uma certa doença.
 
   - Se o indivíduo não estiver infectado, o teste tem probabilidade de 5\% de apontar um falso positivo.
@@ -1413,48 +1377,109 @@ Considere o problema de um teste clínico para a presença de uma certa doença.
   - Acreditamos que, na população, 25\% dos indivíduos estejam infectados.
   
 Um indivíduo realizou o teste e o resultado foi negativo. Qual é a probabilidade desse indivíduo estar infectado pela doença?
+:::
+::: {.callout-caution title="Solução" collapse="true"}
 
-#### Exemplo: Problema dos três prisioneiros
+:::
 
-Três prisioneiros, $A$, $B$, e $C$ estão no corredor da morte. Um deles, já escolhido aleatoriamente, será perdoado. O diretor da prisão conta ao carcereiro quem será perdoado, mas pede que a identidade do prisioneiro perdoado permaneça em segredo.
+::: {#exm-tres-prisioneiros}
+**(Problema dos três prisioneiros)** Três prisioneiros, $A$, $B$, e $C$ estão no corredor da morte. Um deles, já escolhido aleatoriamente, será perdoado. O diretor da prisão conta ao carcereiro quem será perdoado, mas pede que a identidade do prisioneiro perdoado permaneça em segredo.
 
 Mais tarde naquele dia, o prisioneiro $A$ pergunta ao carcereiro quem será perdoado. O carcereiro se recusa a responder. Insistente, o prisioneiro $A$ então pergunta: "entre $B$ e $C$, qual dos dois será executado?". O carcereiro pensa um pouco e responde: "$B$ será executado".
 
   - Raciocínio do prisioneiro $A$: Sei que $B$ será executado, então um entre $A$ e $C$ será perdoado. Minhas chances de sobrevivência são 1/2.
   - Raciocínio do carcereiro: Cada prisioneiro tem probabilidade 1/3 de ser perdoado. Claramente entre $B$ e $C$ um deles será executado. Portanto não dei nenhuma informação adicional ao prisioneiro $A$.
   
-Quem está correto nessa situação?
+Quem está correto nessa situação? 
+:::
+::: {.callout-caution title="Solução" collapse="true"}
 
-#### Exemplo: Problema de Monty-Hall
+Esse exemplo ilustra como probabilidades condicionais podem causar confusão e requerem interpretação cuidadosa do problema em questão.
 
-Em um programa de auditório, três portas $A,B,C$ fechadas lhe são oferecidas. Atrás de apenas uma delas se encontra um prêmio. Você ganha o prêmio se escolher a porta correta.
+Defina os eventos:
+
+- $A$: $A$ será perdoado. É claro do enunciado que $\Pr(A)=1/3$.
+- $B$: $B$ será perdoado. $\Pr(B)=1/3$.
+- $C$: $C$ será perdoado. $\Pr(C)=1/3$.
+- $W$: Carcereiro diz que $B$ será executado. 
+
+Queremos $\Pr(A|W)$:
+
+\begin{align*}
+  \Pr(A|W) = \frac{\Pr(W|A)\Pr(A)}{\Pr(W)}.
+\end{align*}
+
+$\Pr(W|A)$ é a probabilidade de que o carcereiro fale que $B$ vai ser executado, supondo que o prisioneiro perdoado é $A$. Se $A$ for perdoado, o carcereiro pode falar que $B$ ou $C$ vão ser executados. $\Pr(W|A)=1/2$.
+
+Nosso problema é obter a probabilidade incondicional do evento "$W$: o carcereiro diz que $B$ morre". Em quais situações isso pode ocorrer? (Estamos usando o teorema da probabilidade total.)
+
+\begin{align*}
+  W = (W\cap A)\cup(W\cap B)\cup(W\cap C)
+\end{align*}
+
+Em palavras: o carcereiro diz que $B$ morre e $A$ é perdoado $(W\cap A)$, ou o carcereiro diz que $B$ morre e $B$ é perdoado $(W\cap B)$, ou o carcereiro diz que $B$ morre e $C$ é perdoado $(W\cap C)$.
+
+Aplicando a função probabilidade a ambos os lados da igualdade de conjuntos acima, e utilizando o axioma da adiditivade finita **A3**, escrevemos
+
+\begin{align*}
+  \Pr(W) = \Pr(W\cap A)+\Pr(W\cap B)+\Pr(W\cap C)
+\end{align*}
+
+Da definição de probabilidades condicionais, escrevemos
+\begin{align*}
+  \Pr(W) = \Pr(W|A)\Pr(A)+\Pr(W|B)\Pr(B)+\Pr(W|C)\Pr(C)
+\end{align*}
+
+- Primeiro repare que $(W\cap B)=\emptyset$. O carcereiro nunca vai falar que $B$ morre se $B$ for o prisioneiro perdoado, então $\Pr(W|B)=0=\Pr(W\cap B)$. 
+- Se $A$ for o prisioneiro perdoado, então o carcereiro é indiferente em dizer que $B$ ou $C$ vai morrer, então $\Pr(W|A)=1/2$. 
+- Finalmente, se $C$ for o prisioneiro perdoado, então necessariamente o carcereiro dirá a $A$ que $B$ será executado (ou estará dando informação adicional a $A$), então $\Pr(W|C)=1$. 
+
+\begin{align*}
+  \Pr(W) &= \Pr(W|A)\Pr(A) + \Pr(W|B)\Pr(B) + \Pr(W|C)\Pr(C) \\
+  &= \frac{1}{2}\times\frac{1}{3}+0\times\frac{1}{3}+1\times\frac{1}{3} \\
+  &=1/2
+\end{align*}
+
+E finalmente calculamos
+
+\begin{align*}
+  \Pr(A|W) = \frac{\Pr(W|A)\Pr(A)}{\Pr(W)} = \Pr(A) = \frac{1}{3}
+\end{align*}
+
+O erro no raciocínio do prisioneiro $A$ é interpretar $W$ como $B^c$: "$B$ não será o prisioneiro perdoado".
+
+:::
+
+::: {#exm-monty-hall}
+**(Problema de Monty-Hall)** Em um programa de auditório, três portas $A,B,C$ fechadas lhe são oferecidas. Atrás de apenas uma delas se encontra um prêmio. Você ganha o prêmio se escolher a porta correta.
 
 1.  Você escolhe uma entre as portas $A,B,C$.
 2.  Monty, que sabe atrás de qual porta está o prêmio, abre uma das portas que você não escolheu e mostra que o prêmio não estava atrás dessa porta.
 3.  A você, então, é oferecida a oportunidade de trocar a porta escolhida para a outra porta fechada restante.
 
 Você deve trocar? Faz alguma diferença para sua probabilidade de obter o prêmio?
+:::
+::: {.callout-caution title="Solução" collapse="true"}
 
-### Independência entre dois eventos
+:::
 
-::: {.callout-note title="Definição: Independência entre dois eventos" icon="false"}
+### Independência entre eventos
 
-Dizemos que dois eventos $A,B\subset\Omega$ são independentes se
+::: {.callout-note}
+::: {#def-independencia-dois-eventos}
+**(Independência entre dois eventos)** Dizemos que dois eventos $A,B\subset\Omega$ são independentes se
 
 \begin{align*}
   \Pr(A\cap B) = \Pr(A)\Pr(B).
 \end{align*}
-
 :::
-
-
-
-### Independência entre vários eventos
+:::
 
 A definição de independência entre dois eventos é bem direta e fácil de se checar. Quando estamos tratando de uma coleção de eventos, os requerimentos para independência se tornam mais rigorosos.
 
-::: {.callout-note title="Definição: Independência entre uma coleção de eventos" icon="false"}
-  Uma coleção de eventos $A_1, \dots, A_n$ são ditos **(mutuamente) independentes** se, para qualquer subcoleção $A_{i_1}, A_{i_2}, \dots, A_{i_k}$, tivermos
+::: {.callout-note}
+::: {#def-independencia-varios-eventos}
+**(Independência entre vários eventos)** Uma coleção de eventos $A_1, \dots, A_n$ são ditos **(mutuamente) independentes** se, para qualquer subcoleção $A_{i_1}, A_{i_2}, \dots, A_{i_k}$, tivermos
 
 \begin{align*}
   \Pr\left( \cup^k_{j=1} A_{i_j} \right) = \prod_{j=1}^k \Pr(A_{i_j}).
@@ -1469,12 +1494,11 @@ Por exemplo, tome $A,B,C \subset \Omega$. A coleção $A,B,C$ é dita independen
   \Pr(A\cap B\cap C) &= \Pr(A)\Pr(B)\Pr(C).
 \end{align*}
 
-Analogamente, a independência entre uma coleção $A,B,C,D$ com quatro eventos definidos em $\Omega$, requer ${4\choose 2}=6$ condições de independência "dois a dois", ${4\choose 3} = 4$ condições de independência "três a três", e ${4\choose 4}=1$ condição de independência "quatro a quatro".  
-
+Analogamente, a independência entre uma coleção $A,B,C,D$ com quatro eventos definidos em $\Omega$, requer ${4\choose 2}=6$ condições de independência "dois a dois", ${4\choose 3} = 4$ condições de independência "três a três", e ${4\choose 4}=1$ condição de independência "quatro a quatro".
+:::
 :::
 
-#### Exemplo: 
-
+::: {#exm-violacao-independencia-letras}
 Considere o espaço amostral composto pelas $3!$ permutações das letras $a,b,c$, combinadas com as três repetições de cada letra. Ou seja,
 
 \begin{align*}
@@ -1496,6 +1520,6 @@ Ou seja,
 
   - O que podemos afirmar sobre a independência entre $A_1$ e $A_2$?
   - E sobre a independência mútua entre $A_1, A_2$ e $A_3$?
+:::
 
-
-
+## Exercícios

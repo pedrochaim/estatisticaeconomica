@@ -9,18 +9,20 @@ book:
   page-navigation: true
   chapters:
     - index.qmd
-    
-    - part: "Notas de Aula"
+    - part: "Estatística Descritiva"
       chapters:
-        - capitulos/01-introducao.qmd
+        - capitulos/02-estatistica-descritiva.qmd
     
     - part: "Probabilidade"
       chapters: 
         - capitulos/03-elementos-probabilidade.qmd
+        - capitulos/04-variaveis-aleatorias.qmd
+        - capitulos/05-distribuicoes-discretas.qmd
+        - capitulos/06-distribuicoes-continuas.qmd
     
-    - part: "Exercícios"
-      chapters:
-        - exercicios/01-lista-revisao.qmd
+    - part: "Inferência Estatística"
+      
+    - part: "Regressão Linear"
     
     - references.qmd
 
@@ -34,10 +36,9 @@ format:
   html:
     theme: cosmo
     toc: true
-    toc-depth: 2
-    number-depth: 2
+    toc-depth: 4
+    number-depth: 3
     code-link: true
     citations-hover: false
     footnotes-hover: false
     crossrefs-hover: false
-    css: styles.css

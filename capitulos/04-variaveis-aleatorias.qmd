@@ -1,0 +1,621 @@
+---
+title: "Variáveis Aleatórias"
+chapter: true
+---
+
+Leituras:
+
+  - [@bussab2010estatistica]
+  
+## Conceito de Variável Aleatória
+
+::: {.callout-note}
+::: {#def-variavel-aleatoria}
+Uma **variável aleatória é uma função com domínio no espaço amostral e contradomínio real**. Ou seja, $X:\Omega\rightarrow\mathbb{R}$, é uma função que associa, a cada elemento do espaço amostral, um número real.
+:::
+:::
+
+Variáveis aleatórias (as funções em si) serão denotadas por letras maiúsculas, enquanto valores específicos serão denotados por letras minúsculas. Ou seja, a variável $X$ adota valores $x$, a variável $Z$ adota valores $z$.
+
+---
+
+::: {#exm-variavel-aleatoria-dois-dados}
+
+Considere um jogo de azar no qual você lança dois dados cúbicos e recebe como recompensa a soma das faces. 
+
+Nosso experimento é lançar o primeiro dado, lançar o segundo dado, e então anotar as faces. Podemos escrever o espaço amostral desse experimento como
+
+\begin{align*}
+  \Omega = \left\{ \begin{matrix} 
+(\unicode{x2680},\unicode{x2680}), & (\unicode{x2680},\unicode{x2681}), & (\unicode{x2680},\unicode{x2682}), & (\unicode{x2680},\unicode{x2683}), & (\unicode{x2680},\unicode{x2684}), & (\unicode{x2680},\unicode{x2685}), \\
+(\unicode{x2681},\unicode{x2680}), & (\unicode{x2681},\unicode{x2681}), & (\unicode{x2681},\unicode{x2682}), & (\unicode{x2681},\unicode{x2683}), & (\unicode{x2681},\unicode{x2684}), & (\unicode{x2681},\unicode{x2685}), \\
+(\unicode{x2682},\unicode{x2680}), & (\unicode{x2682},\unicode{x2681}), & (\unicode{x2682},\unicode{x2682}), & (\unicode{x2682},\unicode{x2683}), & (\unicode{x2682},\unicode{x2684}), & (\unicode{x2682},\unicode{x2685}), \\
+(\unicode{x2683},\unicode{x2680}), & (\unicode{x2683},\unicode{x2681}), & (\unicode{x2683},\unicode{x2682}), & (\unicode{x2683},\unicode{x2683}), & (\unicode{x2683},\unicode{x2684}), & (\unicode{x2683},\unicode{x2685}), \\
+(\unicode{x2684},\unicode{x2680}), & (\unicode{x2684},\unicode{x2681}), & (\unicode{x2684},\unicode{x2682}), & (\unicode{x2684},\unicode{x2683}), & (\unicode{x2684},\unicode{x2684}), & (\unicode{x2684},\unicode{x2685}), \\
+(\unicode{x2685},\unicode{x2680}), & (\unicode{x2685},\unicode{x2681}), & (\unicode{x2685},\unicode{x2682}), & (\unicode{x2685},\unicode{x2683}), & (\unicode{x2685},\unicode{x2684}), & (\unicode{x2685},\unicode{x2685})
+  \end{matrix}  \right\}.
+\end{align*}
+
+Nossa **variável aleatória** é uma função $X:\Omega\rightarrow\mathbb{R}$ que contabiliza a quantidade de pontos nas faces do primeiro dado, contabiliza a quantidade de pontos nas faces do segundo dado, e soma esses valores. Cada elemento $\omega\in\Omega$ é composto pela dupla $(d_1,d_2)$.
+
+\begin{align*}
+  X(d_1,d_2) = d_1+d_2.
+\end{align*}
+
+Alguns dos valores possíveis para $X$ são
+
+  - $X(\unicode{x2680},\unicode{x2680}) = 2$
+  - $X(\unicode{x2680},\unicode{x2681}) = 3$
+  - $X(\unicode{x2681},\unicode{x2680}) = 3$
+  - ...
+  
+A **imagem** de uma função é o subconjunto do seu contradomínio composto pelos valores possivelmente atingidos pela função. 
+
+No nosso caso,
+
+\begin{align*}
+  X[\Omega]=\{1,2,3,4,5,6,7,8,9,10,11,12\}.
+\end{align*}
+
+Uma pergunta natural é: **qual é a probabilidade de recebermos $\$7$?** Em outras palavras quanto é **$\Pr(X=7)$?**
+
+Como podemos obter $X=7$? Algumas possibilidades são  
+
+\begin{align*}
+  X(\unicode{x2680},\unicode{x2685}) = 7, \quad X(\unicode{x2681},\unicode{x2684})=7, \quad X(\unicode{x2685},\unicode{x2680})=7
+\end{align*}
+
+O conjunto de elementos $\omega\in\Omega$ que são mapeados pela função $X$ ao valor 7 é
+\begin{align*}
+  B = \{(\unicode{x2680},\unicode{x2685}), (\unicode{x2681},\unicode{x2684}),(\unicode{x2682},\unicode{x2683}),(\unicode{x2683},\unicode{x2682}),(\unicode{x2684},\unicode{x2681}),(\unicode{x2685},\unicode{x2680})\}.
+\end{align*}
+
+Então quando falamos "probabilidade de $X=7$", e escrevemos $\Pr(X=7)$, estamos nos referindo à probabilidade do evento $B$.
+
+\begin{align*}
+  \Pr(B) = \frac{n(B)}{n(\Omega)} = \frac{6}{36} = \frac{1}{6} = \Pr(X=7)
+\end{align*}
+
+Chamamos $B$ de imagem inversa de $X=7$, ou pré-imagem de $X=7$. $X^{-1}[\{7\}]=B$.
+
+A expressão $\Pr(X=7)$ é um abuso de notação universalmente adotado. Lembre-se que uma função de probabilidade mapeia elementos do espaço de eventos (subconjuntos do espaço amostral) a valores na reta real. O número $7$ não é um subconjunto do espaço amostral $\Omega$, o número $7$ é um valor $x\in X[\Omega]$ na imagem da variável aleatória $X$. Quando escrevemos $\Pr(X=7)$ queremos dizer $\Pr(B)$, com $B=X^{-1}[\{7\}]$.
+
+:::
+
+---
+
+### Tipos de variáveis aleatórias
+
+  - Uma variável aleatória é dita **discreta**, se adotar valores discretos, enumeráveis, como as faces dos dados no [@exm-variavel-aleatoria-dois-dados], ou os números reais $\mathbb{N}$. 
+  - Alternativamente, uma variável aleatória é dita **contínua** se adotar valores contínuos, não enumeráveis, como um número real ou um vetor multivariado.
+
+Essa distinção é feita porque temos dois tratamentos diferentes para a probabilidade de um resultado individual do experimento. No caso discreto é possível falar diretamente da probabilidade de um valor específico para a v.a., enquanto no caso contínuo existem complicações adicionais e precisamos considerar a probabilidade de um intervalo para os valores adotados pela variável aleatória.
+
+## Variáveis Aleatórias Discretas
+
+É a imagem $X[\Omega]$, os possíveis valores, de uma variável aleatória que deve ser um conjunto enumerável para que essa seja chamada discreta. O espaço amostral $\Omega$, domínio da variável aleatória $X$, pode, sem nenhum problema, ser um conjunto não enumerável. 
+
+---
+
+::: {#exm-variavel-aleatoria-discreta-espaco-amostral-incontavel}
+Considere o experimento de lançar um dardo em um alvo como na figura abaixo. Portanto os elementos $\omega$ do espaço amostral $\Omega$ são coordenadas horizontais e verticais $(x,y)$ associadas ao local onde o dardo atigiu o alvo. Ou seja, $\Omega=A\subset\mathbb{R}^2$.
+
+```{r}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 6.2
+#| out-width: 50%
+#| fig-align: center
+#| warning: false
+#| message: false
+#| fig-format: svg
+
+library(ggplot2)
+
+n <- 12
+raio <- 1
+raio_texto <- 0.78
+horas <- c(12, 1:11)
+
+# Ângulos centrais de cada fatia (12 no topo, depois sentido horário)
+ang_centros <- pi/2 - (0:(n - 1)) * 2*pi/n
+
+# Linhas divisórias entre as fatias
+ang_linhas <- pi/2 + pi/n - (0:(n - 1)) * 2*pi/n
+
+# Contorno do círculo
+circulo <- data.frame(
+  x = raio * cos(seq(0, 2*pi, length.out = 500)),
+  y = raio * sin(seq(0, 2*pi, length.out = 500))
+)
+
+# Linhas radiais
+linhas <- data.frame(
+  x = 0,
+  y = 0,
+  xend = raio * cos(ang_linhas),
+  yend = raio * sin(ang_linhas)
+)
+
+# Números no meio de cada fatia
+rotulos <- data.frame(
+  hora = horas,
+  x = raio_texto * cos(ang_centros),
+  y = raio_texto * sin(ang_centros)
+)
+
+ggplot() +
+  geom_polygon(
+    data = circulo,
+    aes(x, y),
+    fill = "white",
+    color = "black",
+    linewidth = 0.8
+  ) +
+  geom_segment(
+    data = linhas,
+    aes(x = x, y = y, xend = xend, yend = yend),
+    linewidth = 0.8,
+    color = "black"
+  ) +
+  geom_text(
+    data = rotulos,
+    aes(x = x, y = y, label = hora),
+    size = 10,
+    family = "sans",
+    fontface = "bold"
+  ) +
+  coord_equal(
+    xlim = c(-1.05, 1.05),
+    ylim = c(-1.05, 1.05),
+    expand = FALSE,
+    clip = "off"
+  ) +
+  theme_void() +
+  theme(
+    plot.background  = element_rect(fill = "transparent", color = NA),
+    panel.background = element_rect(fill = "transparent", color = NA)
+  )
+```
+
+Nossa variável aleatória aqui é uma função que olha para um certo elemento $(x_0,y_0)$ de $\Omega$, compara com as divisões dos setores do alvo, e atribui a $(x_0,y_0)$ o valor numérico equivalente. 
+
+```{r}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 6.2
+#| out-width: 80%
+#| fig-align: center
+#| warning: false
+#| message: false
+#| fig-format: svg
+
+library(ggplot2)
+library(grid)
+
+n <- 12
+raio <- 1
+raio_texto <- 0.76
+raio_seta  <- 0.55
+horas <- c(12, 1:11)
+
+# Centro do círculo
+cx <- 0
+cy <- 0.55
+
+# Setores com setas
+setores_com_setas <- c(11, 9, 7, 2)
+
+# Ângulos
+ang_centros <- pi/2 - (0:(n - 1)) * 2*pi/n
+ang_linhas  <- pi/2 + pi/n - (0:(n - 1)) * 2*pi/n
+
+# Contorno do círculo
+circulo <- data.frame(
+  x = cx + raio * cos(seq(0, 2*pi, length.out = 500)),
+  y = cy + raio * sin(seq(0, 2*pi, length.out = 500))
+)
+
+# Linhas divisórias
+linhas <- data.frame(
+  x = cx,
+  y = cy,
+  xend = cx + raio * cos(ang_linhas),
+  yend = cy + raio * sin(ang_linhas)
+)
+
+# Números no meio de cada fatia
+rotulos <- data.frame(
+  hora = horas,
+  ang  = ang_centros,
+  x = cx + raio_texto * cos(ang_centros),
+  y = cy + raio_texto * sin(ang_centros)
+)
+
+# Reta numérica
+eixo_y  <- -1.45
+x_ticks <- seq(-1.8, 1.8, length.out = 12)
+
+eixo <- data.frame(
+  valor = 1:12,
+  x = x_ticks,
+  y = eixo_y
+)
+
+# Setas saindo de pontos internos dos setores
+setas <- rotulos[match(setores_com_setas, rotulos$hora), c("hora", "ang")]
+setas$x    <- cx + raio_seta * cos(setas$ang)
+setas$y    <- cy + raio_seta * sin(setas$ang)
+setas$xend <- x_ticks[match(setas$hora, 1:12)]
+setas$yend <- eixo_y + 0.03
+
+ggplot() +
+  geom_polygon(
+    data = circulo,
+    aes(x, y),
+    fill = "white",
+    color = "black",
+    linewidth = 0.7
+  ) +
+  geom_segment(
+    data = linhas,
+    aes(x = x, y = y, xend = xend, yend = yend),
+    linewidth = 0.7,
+    color = "black"
+  ) +
+  geom_text(
+    data = rotulos,
+    aes(x = x, y = y, label = hora),
+    size = 7,
+    family = "sans",
+    fontface = "bold"
+  ) +
+  geom_segment(
+    aes(
+      x = min(x_ticks) - 0.2, y = eixo_y,
+      xend = max(x_ticks) + 0.25, yend = eixo_y
+    ),
+    linewidth = 0.7,
+    color = "black",
+    arrow = arrow(length = unit(0.18, "cm"), type = "closed")
+  ) +
+  geom_segment(
+    data = eixo,
+    aes(x = x, y = y - 0.05, xend = x, yend = y + 0.05),
+    linewidth = 0.7,
+    color = "black"
+  ) +
+  geom_text(
+    data = eixo,
+    aes(x = x, y = y - 0.18, label = valor),
+    size = 5.2,
+    family = "sans"
+  ) +
+  geom_segment(
+    data = setas,
+    aes(x = x, y = y, xend = xend, yend = yend),
+    linewidth = 0.9,
+    color = "black",
+    linetype = "dashed",
+    arrow = arrow(length = unit(0.18, "cm"), type = "closed")
+  ) +
+  geom_point(
+    data = setas,
+    aes(x = x, y = y),
+    size = 2,
+    color = "black"
+  ) +
+  coord_equal(
+    xlim = c(-2.25, 2.25),
+    ylim = c(-1.8, 1.65),
+    expand = FALSE,
+    clip = "off"
+  ) +
+  theme_void() +
+  theme(
+    plot.background  = element_rect(fill = "transparent", color = NA),
+    panel.background = element_rect(fill = "transparent", color = NA)
+  )
+```
+:::
+
+---
+
+### Função massa de probabilidade
+
+::: {.callout-note}
+::: {#def-fmp}
+**(Função Massa de Probabilidade)** A função massa de probabilidade (f.m.p.) de uma variável aleatória discreta $X$ é dada por
+\begin{align*}
+  f_X(x) = \Pr(X=x), \text{ para todo }x\in X[\Omega]
+\end{align*}
+:::
+:::
+
+Os subscritos $\cdot_X$ serão omitido quando não houver ambiguidade.
+
+- O domínio da fmp é a imagem da v.a. $X$ (também chamado suporte da v.a.). É o conjunto $X[\Omega]$. É o eixo horizontal nos gráficos representando a fmp.
+- Os elementos $x\in X[\Omega]$ são mapeados às suas respectivas probabilidades $f(x)=\Pr(X=x)$. É o eixo vertical nos gráficos representando a fmp.
+\begin{align*}
+  f:X[\Omega]\longrightarrow \mathbb R
+\end{align*}
+
+---
+
+::: {#exm-fmp-1}
+
+Contínuando nosso [@exm-variavel-aleatoria-dois-dados] do lançamento dos dados, a função massa de probabilidade da variável aleatória $X(d_1,d_2)=d_1+d_2$ é  
+
+| $x$ | $f(x)=\Pr(X=x)$ |
+|---:|:---|
+| 2  | $1/36$ |
+| 3  | $2/36$ |
+| 4  | $3/36$ |
+| 5  | $4/36$ |
+| 6  | $5/36$ |
+| 7  | $6/36$ |
+| 8  | $5/36$ |
+| 9  | $4/36$ |
+| 10 | $3/36$ |
+| 11 | $2/36$ |
+| 12 | $1/36$ |
+
+Graficamente, temos:
+
+```{r}
+#| echo: false
+#| label: fig-fmp-dois-dados-ggplot
+#| fig-cap: "Função massa de probabilidade de $X=d_1+d_2$."
+#| fig-width: 6.5
+#| fig-height: 4.8
+#| warning: false
+#| message: false
+
+library(ggplot2)
+library(scales)
+
+df <- data.frame(
+  x = 2:12,
+  fx = c(1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1) / 36
+)
+
+ggplot(df, aes(x = x, y = fx)) +
+  geom_linerange(aes(ymin = 0, ymax = fx), linewidth = 0.9, lineend = "round") +
+  geom_point(size = 2.8) +
+  scale_x_continuous(
+    breaks = 2:12,
+    expand = expansion(mult = c(0.02, 0.04))
+  ) +
+  scale_y_continuous(
+    limits = c(0, .2),
+    breaks = seq(0, 0.2, by = 0.05),
+    labels = label_number(accuracy = 0.01),
+    expand = expansion(mult = c(0, 0.02))
+  ) +
+  labs(
+    title = expression(X == d[1] + d[2]),
+    x = "x",
+    y = "Pr(X = x)"
+  ) +
+  theme_classic(base_size = 15, base_family = "serif") +
+  theme(
+    plot.title = element_text(
+      hjust = 0.5,
+      size = 20,
+      margin = margin(b = 10)
+    ),
+    axis.title.x = element_text(
+      size = 16,
+      margin = margin(t = 10)
+    ),
+    axis.title.y = element_text(
+      size = 16,
+      margin = margin(r = 12)
+    ),
+    axis.text = element_text(
+      size = 13,
+      colour = "black"
+    ),
+    axis.line = element_line(linewidth = 0.5),
+    axis.ticks = element_line(linewidth = 0.5),
+    axis.ticks.length = grid::unit(0.18, "cm")
+  )
+```
+
+:::
+
+---
+
+### Função de probabilidade acumulada
+
+
+```{r}
+#| label: fig-pmf-cdf-dois-dados
+#| fig-cap: "Em cinza, $f(x)=\\Pr(X=x)$; em preto, $F(x)=\\Pr(X \\le x)$, para $X=d_1+d_2$."
+#| fig-width: 6.5
+#| fig-height: 4.8
+#| echo: false
+#| warning: false
+#| message: false
+
+library(ggplot2)
+library(scales)
+
+df <- data.frame(
+  x  = 2:12,
+  fx = c(1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1) / 36
+)
+
+df$Fx <- cumsum(df$fx)
+df$x_right <- c(3:12, 12.15)
+
+ggplot(df, aes(x = x)) +
+  # f(x): função massa de probabilidade
+  geom_segment(
+    aes(xend = x, y = 0, yend = fx),
+    linewidth = 0.6,
+    colour = "grey50",
+    linetype = 2
+  ) +
+  geom_point(
+    aes(y = fx),
+    size = 3,
+    colour = "grey50"
+  ) +
+  # F(x): função de distribuição acumulada
+  geom_segment(
+    aes(xend = x_right, y = Fx, yend = Fx),
+    linewidth = 0.8,
+    colour = "black"
+  ) +
+  geom_point(
+    aes(y = Fx),
+    size = 3.4,
+    colour = "black"
+  ) +
+  geom_point(
+    aes(x = x_right, y = Fx),
+    shape = 1,
+    size = 3.4,
+    stroke = 0.8,
+    colour = "black"
+  ) +
+  scale_x_continuous(
+    breaks = 2:12,
+    limits = c(1.6, 12.4),
+    expand = expansion(mult = c(0, 0))
+  ) +
+  scale_y_continuous(
+    limits = c(0, 1.04),
+    breaks = seq(0, 1, by = 0.2),
+    labels = label_number(accuracy = 0.1),
+    expand = expansion(mult = c(0, 0))
+  ) +
+  labs(
+    title = expression(X == d[1] + d[2]),
+    x = "x",
+    y = expression(Pr(X <= x))
+  ) +
+  theme_classic(base_size = 15, base_family = "serif") +
+  theme(
+    plot.title = element_text(
+      hjust = 0.5,
+      size = 20,
+      margin = margin(b = 10)
+    ),
+    axis.title.x = element_text(
+      size = 16,
+      margin = margin(t = 10)
+    ),
+    axis.title.y = element_text(
+      size = 16,
+      margin = margin(r = 12)
+    ),
+    axis.text = element_text(
+      size = 13,
+      colour = "black"
+    ),
+    axis.text.y = element_text(angle = 90, vjust = 0.5),
+    axis.line = element_line(linewidth = 0.5),
+    axis.ticks = element_line(linewidth = 0.5),
+    axis.ticks.length = grid::unit(0.18, "cm")
+  )
+```
+
+[Exemplo distribuicao geométrica]
+
+## Média de uma Variável Aleatória
+
+::: {.callout-note}
+::: {#def-valor-esperado-discreto}
+**(Média de uma variável aleatória discreta)** O valor esperado, ou média, de uma variável aleatória discreta $X$, denotado $E[X]$, ou $\mu_X$, é definido como
+\begin{align*}
+  \sum_{x\in X[\Omega]} x\Pr(X=x).
+\end{align*}
+:::
+:::
+
+A média de uma variável aleatória discreta é a soma de todos os seus possíveis valores, cada um ponderado por sua probabilidade individual. 
+
+No caso do nosso [@exm-variavel-aleatoria-dois-dados] da soma das faces no lançamento de dois dados, podemos calcular a média como na tabela baixo. Nesse caso, $E(X)=7$. 
+
+| $x$ | $\Pr(X = x)$ | $x \Pr(X = x)$ |
+|---:|:-------------:|:---------------:|
+| 2  | $1/36$ | $2/36$  |
+| 3  | $2/36$ | $6/36$  |
+| 4  | $3/36$ | $12/36$ |
+| 5  | $4/36$ | $20/36$ |
+| 6  | $5/36$ | $30/36$ |
+| 7  | $6/36$ | $42/36$ |
+| 8  | $5/36$ | $40/36$ |
+| 9  | $4/36$ | $36/36$ |
+| 10 | $3/36$ | $30/36$ |
+| 11 | $2/36$ | $22/36$ |
+| 12 | $1/36$ | $12/36$ |
+| $\sum$ | $36/36$ | $7$ |
+
+### Propriedades do valor esperado de uma variável aleatória
+
+Sejam $X,Y$ uma variávei aleatórias definidas no mesmo espaço amostral $\Omega$ e $a,b$ números reais. Então as propriedades abaixo são válidas:
+  
+  a. $E(aX) = aE(X)$. *O valor esperado de um múlitiplo escalar da variável original é o múltiplo escalar do valor esperado*.
+  b. $E(X+a) = E(X)+a$. *O valor esperado de uma variável mais uma constante é o valor esperado da variável, mais a constante*.
+  c. $E(aX+b) = aE(X)+b$. *Combinação das propriedade (a) e propriedade (b)*.
+  d. $E(X+Y) = E(X)+E(Y)$. *O valor esperado da soma de duas variáveis aleatórias é a soma dos valores esperados das variáveis (tomados individualmente)*.
+
+Essas propriedades vêm da natureza linear do operador $E[\cdot]$ (é uma soma de diferentes parcelas). É bem direto e fica a cargo do leitor mostrar as propriedades (a),(b), (c). 
+
+### Média de uma função de uma variável aleatória
+
+Nós conseguimos calcular a média de uma função $g(\cdot)$ da variável aleatória $X$ sem conhecer, diretamente, a distribuição de probabilidades de $g(X)$. 
+
+::: {.callout-note}
+::: {#def-valor-esperado-funcao-discreto}
+**(Média de uma função de variável aleatória discreta)** O valor esperado, ou média, de uma função de uma variável aleatória discreta $X$, denotado $E[g(X)]$, é definido como
+\begin{align*}
+  \sum_{x\in X[\Omega]} g(x)\Pr(X=x).
+\end{align*}
+:::
+:::
+
+Esse resultado facilita enormemente o cálculo de momentos da variável. Em especial vai ser importante para calcularmos variância.
+
+Continuando com o [@exm-variavel-aleatoria-dois-dados], defina $Y(X)=(X-7)^2$. Queremos $E(Y)=E[(X-7)^2]$. Primeiro iremos construir a distribuição de probabilidades de $Y$ e calcular a média diretamente como $E(Y)=\sum_y y\Pr(Y=y)$, depois iremos calcular $E(Y)=\sum_x Y(x)\Pr(X=x)$ e ver que os resultados são os mesmos. (Esse resultado não é imediatamente óbvio porque $Y(X)$ não é uma função bijetora!)
+
+Construindo diretamente a variável aleatória $Y(X)=(X-7)^2$:
+
+| $y$ | $\Pr(Y = y)$ | $y \Pr(Y = y)$ |
+|---:|:-------------:|:---------------:|
+| 0  | $6/36$  | $0$      |
+| 1  | $10/36$ | $10/36$  |
+| 4  | $8/36$  | $32/36$  |
+| 9  | $6/36$  | $54/36$  |
+| 16 | $4/36$  | $64/36$  |
+| 25 | $2/36$  | $50/36$  |
+| $\sum$ | $36/36$ | $210/36 = 35/6$ |
+
+Usando as probabilidades originais $\Pr(X=x)$:
+
+| $x$ | $Y(x)=(x-7)^2$ | $\Pr(X=x)$ | $Y(x)\Pr(X=x)$ |
+|---:|---:|:-------------:|:----------------:|
+| 2  | 25 | $1/36$ | $25/36$ |
+| 3  | 16 | $2/36$ | $32/36$ |
+| 4  | 9  | $3/36$ | $27/36$ |
+| 5  | 4  | $4/36$ | $16/36$ |
+| 6  | 1  | $5/36$ | $5/36$ |
+| 7  | 0  | $6/36$ | $0$ |
+| 8  | 1  | $5/36$ | $5/36$ |
+| 9  | 4  | $4/36$ | $16/36$ |
+| 10 | 9  | $3/36$ | $27/36$ |
+| 11 | 16 | $2/36$ | $32/36$ |
+| 12 | 25 | $1/36$ | $25/36$ |
+| $\sum$ |  | $36/36$ | $210/36 = 35/6$ |
+
+
+## Variância de uma Variável Aleatória
+
+
+
+## Variáveis Aleatórias Contínuas
+
+## Variáveis Aleatórias Multidimensionais

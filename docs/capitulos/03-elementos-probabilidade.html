@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.23">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>3&nbsp; Elementos de Probabilidade – Estatística Econômica</title>
+<title>3&nbsp; Conjuntos e Probabilidade – Estatística Econômica</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,7 +17,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
@@ -26,8 +46,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../exercicios/01-lista-revisao.html" rel="next">
-<link href="../capitulos/01-introducao.html" rel="prev">
+<link href="../capitulos/04-variaveis-aleatorias.html" rel="next">
+<link href="../capitulos/02-estatistica-descritiva.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -89,7 +109,7 @@ const typesetMath = (el) => {
 window.Quarto = {
   typesetMath
 };
-</script><link rel="stylesheet" href="styles.css">
+</script>
 </head>
 <body class="nav-sidebar floating quarto-light">
 
@@ -98,7 +118,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../capitulos/03-elementos-probabilidade.html">Probabilidade</a></li><li class="breadcrumb-item"><a href="../capitulos/03-elementos-probabilidade.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Elementos de Probabilidade</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../capitulos/03-elementos-probabilidade.html">Probabilidade</a></li><li class="breadcrumb-item"><a href="../capitulos/03-elementos-probabilidade.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Conjuntos e Probabilidade</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -130,7 +150,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Notas de Aula</span></a>
+ <span class="menu-text">Estatística Descritiva</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -138,8 +158,8 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../capitulos/01-introducao.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">01-introducao.html</span></span></a>
+  <a href="../capitulos/02-estatistica-descritiva.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">02-estatistica-descritiva.html</span></span></a>
   </div>
 </li>
       </ul>
@@ -156,43 +176,52 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../capitulos/03-elementos-probabilidade.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Elementos de Probabilidade</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Conjuntos e Probabilidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/04-variaveis-aleatorias.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Variáveis Aleatórias</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/05-distribuicoes-discretas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">05-distribuicoes-discretas.html</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/06-distribuicoes-continuas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">06-distribuicoes-continuas.html</span></span></a>
   </div>
 </li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Exercícios</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../exercicios/01-lista-revisao.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">01-lista-revisao.html</span></span></a>
-  </div>
-</li>
-      </ul>
-</li>
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Inferência Estatística</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Regressão Linear</span></span>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">references.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">references.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../apendices/notacao.html" class="sidebar-item-text sidebar-link">
@@ -208,23 +237,51 @@ window.Quarto = {
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
+  <ul>
+<li><a href="#introdu%C3%A7%C3%A3o" id="toc-introdução" class="nav-link active" data-scroll-target="#introdu%C3%A7%C3%A3o"><span class="header-section-number">3.1</span> Introdução</a></li>
+  <li><a href="#espa%C3%A7o-amostral" id="toc-espaço-amostral" class="nav-link" data-scroll-target="#espa%C3%A7o-amostral"><span class="header-section-number">3.2</span> Espaço Amostral</a></li>
+  <li>
+<a href="#rela%C3%A7%C3%B5es-e-opera%C3%A7%C3%B5es-entre-conjuntos" id="toc-relações-e-operações-entre-conjuntos" class="nav-link" data-scroll-target="#rela%C3%A7%C3%B5es-e-opera%C3%A7%C3%B5es-entre-conjuntos"><span class="header-section-number">3.3</span> Relações e Operações entre Conjuntos</a>
+  <ul>
+<li>
+<a href="#rela%C3%A7%C3%B5es-entre-conjuntos" id="toc-relações-entre-conjuntos" class="nav-link" data-scroll-target="#rela%C3%A7%C3%B5es-entre-conjuntos"><span class="header-section-number">3.3.1</span> Relações entre conjuntos</a>
   <ul class="collapse">
-<li><a href="#conte%C3%BAdo" id="toc-conteúdo" class="nav-link active" data-scroll-target="#conte%C3%BAdo"><span class="header-section-number">3.1</span> Conteúdo</a></li>
-  <li><a href="#espa%C3%A7o-de-probabilidades" id="toc-espaço-de-probabilidades" class="nav-link" data-scroll-target="#espa%C3%A7o-de-probabilidades"><span class="header-section-number">3.2</span> Espaço de Probabilidades</a></li>
-  <li><a href="#espa%C3%A7o-amostral" id="toc-espaço-amostral" class="nav-link" data-scroll-target="#espa%C3%A7o-amostral"><span class="header-section-number">3.3</span> Espaço Amostral</a></li>
-  <li><a href="#conjuntos" id="toc-conjuntos" class="nav-link" data-scroll-target="#conjuntos"><span class="header-section-number">3.4</span> Conjuntos</a></li>
-  <li><a href="#rela%C3%A7%C3%B5es-entre-conjuntos" id="toc-relações-entre-conjuntos" class="nav-link" data-scroll-target="#rela%C3%A7%C3%B5es-entre-conjuntos"><span class="header-section-number">3.5</span> Relações entre conjuntos</a></li>
-  <li><a href="#opera%C3%A7%C3%B5es-entre-conjuntos" id="toc-operações-entre-conjuntos" class="nav-link" data-scroll-target="#opera%C3%A7%C3%B5es-entre-conjuntos"><span class="header-section-number">3.6</span> Operações entre Conjuntos</a></li>
-  <li><a href="#eventos-disjuntos-e-parti%C3%A7%C3%B5es" id="toc-eventos-disjuntos-e-partições" class="nav-link" data-scroll-target="#eventos-disjuntos-e-parti%C3%A7%C3%B5es"><span class="header-section-number">3.7</span> Eventos Disjuntos e Partições</a></li>
-  <li><a href="#espa%C3%A7o-de-eventos" id="toc-espaço-de-eventos" class="nav-link" data-scroll-target="#espa%C3%A7o-de-eventos"><span class="header-section-number">3.8</span> Espaço de Eventos</a></li>
-  <li><a href="#fun%C3%A7%C3%A3o-de-probabilidade" id="toc-função-de-probabilidade" class="nav-link" data-scroll-target="#fun%C3%A7%C3%A3o-de-probabilidade"><span class="header-section-number">3.9</span> Função de Probabilidade</a></li>
-  <li><a href="#probabilidade-condicional-e-independ%C3%AAncia-entre-eventos" id="toc-probabilidade-condicional-e-independência-entre-eventos" class="nav-link" data-scroll-target="#probabilidade-condicional-e-independ%C3%AAncia-entre-eventos"><span class="header-section-number">3.10</span> Probabilidade Condicional e Independência entre Eventos</a></li>
+<li><a href="#pertin%C3%AAncia" id="toc-pertinência" class="nav-link" data-scroll-target="#pertin%C3%AAncia">Pertinência</a></li>
+  <li><a href="#conten%C3%A7%C3%A3o" id="toc-contenção" class="nav-link" data-scroll-target="#conten%C3%A7%C3%A3o">Contenção</a></li>
+  <li><a href="#o-conjunto-vazio" id="toc-o-conjunto-vazio" class="nav-link" data-scroll-target="#o-conjunto-vazio">O conjunto vazio</a></li>
+  <li><a href="#igualdade" id="toc-igualdade" class="nav-link" data-scroll-target="#igualdade">Igualdade</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#opera%C3%A7%C3%B5es-entre-conjuntos" id="toc-operações-entre-conjuntos" class="nav-link" data-scroll-target="#opera%C3%A7%C3%B5es-entre-conjuntos"><span class="header-section-number">3.3.2</span> Operações entre conjuntos</a>
+  <ul class="collapse">
+<li><a href="#uni%C3%A3o-cup-vee-ou" id="toc-união-cup-vee-ou" class="nav-link" data-scroll-target="#uni%C3%A3o-cup-vee-ou">União (<span class="math inline">\(\cup\)</span>, <span class="math inline">\(\vee\)</span>, ou)</a></li>
+  <li><a href="#intersec%C3%A7%C3%A3o-cap-wedge-e" id="toc-intersecção-cap-wedge-e" class="nav-link" data-scroll-target="#intersec%C3%A7%C3%A3o-cap-wedge-e">Intersecção (<span class="math inline">\(\cap\)</span>, <span class="math inline">\(\wedge\)</span>, e)</a></li>
+  <li><a href="#complementa%C3%A7%C3%A3o-ac-n%C3%A3o" id="toc-complementação-ac-não" class="nav-link" data-scroll-target="#complementa%C3%A7%C3%A3o-ac-n%C3%A3o">Complementação (<span class="math inline">\(A^c\)</span>, não)</a></li>
+  <li><a href="#complementa%C3%A7%C3%A3o-relativa-setminus-subtra%C3%A7%C3%A3o" id="toc-complementação-relativa-setminus-subtração" class="nav-link" data-scroll-target="#complementa%C3%A7%C3%A3o-relativa-setminus-subtra%C3%A7%C3%A3o">Complementação relativa (<span class="math inline">\(\setminus\)</span>, subtração)</a></li>
+  <li><a href="#propriedades-b%C3%A1sicas-das-opera%C3%A7%C3%B5es-entre-conjuntos" id="toc-propriedades-básicas-das-operações-entre-conjuntos" class="nav-link" data-scroll-target="#propriedades-b%C3%A1sicas-das-opera%C3%A7%C3%B5es-entre-conjuntos">Propriedades básicas das operações entre conjuntos</a></li>
+  </ul>
+</li>
+  <li><a href="#eventos-disjuntos-e-parti%C3%A7%C3%B5es" id="toc-eventos-disjuntos-e-partições" class="nav-link" data-scroll-target="#eventos-disjuntos-e-parti%C3%A7%C3%B5es"><span class="header-section-number">3.3.3</span> Eventos Disjuntos e Partições</a></li>
+  </ul>
+</li>
+  <li><a href="#espa%C3%A7o-de-eventos" id="toc-espaço-de-eventos" class="nav-link" data-scroll-target="#espa%C3%A7o-de-eventos"><span class="header-section-number">3.4</span> Espaço de Eventos</a></li>
+  <li><a href="#fun%C3%A7%C3%A3o-de-probabilidade" id="toc-função-de-probabilidade" class="nav-link" data-scroll-target="#fun%C3%A7%C3%A3o-de-probabilidade"><span class="header-section-number">3.5</span> Função de Probabilidade</a></li>
+  <li>
+<a href="#probabilidade-condicional-e-independ%C3%AAncia" id="toc-probabilidade-condicional-e-independência" class="nav-link" data-scroll-target="#probabilidade-condicional-e-independ%C3%AAncia"><span class="header-section-number">3.6</span> Probabilidade Condicional e Independência</a>
+  <ul>
+<li><a href="#probabilidade-condicional" id="toc-probabilidade-condicional" class="nav-link" data-scroll-target="#probabilidade-condicional"><span class="header-section-number">3.6.1</span> Probabilidade Condicional</a></li>
+  <li><a href="#teorema-de-bayes" id="toc-teorema-de-bayes" class="nav-link" data-scroll-target="#teorema-de-bayes"><span class="header-section-number">3.6.2</span> Teorema de Bayes</a></li>
+  <li><a href="#independ%C3%AAncia-entre-eventos" id="toc-independência-entre-eventos" class="nav-link" data-scroll-target="#independ%C3%AAncia-entre-eventos"><span class="header-section-number">3.6.3</span> Independência entre eventos</a></li>
+  </ul>
+</li>
+  <li><a href="#exerc%C3%ADcios" id="toc-exercícios" class="nav-link" data-scroll-target="#exerc%C3%ADcios"><span class="header-section-number">3.7</span> Exercícios</a></li>
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../capitulos/03-elementos-probabilidade.html">Probabilidade</a></li><li class="breadcrumb-item"><a href="../capitulos/03-elementos-probabilidade.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Elementos de Probabilidade</span></a></li></ol></nav><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../capitulos/03-elementos-probabilidade.html">Probabilidade</a></li><li class="breadcrumb-item"><a href="../capitulos/03-elementos-probabilidade.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Conjuntos e Probabilidade</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title">
-<span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Elementos de Probabilidade</span>
+<span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Conjuntos e Probabilidade</span>
 </h1>
 </div>
 
@@ -239,28 +296,16 @@ window.Quarto = {
   
 
 
-</header><hr>
-<section id="conteúdo" class="level2 scrollable" data-number="3.1"><h2 class="scrollable anchored" data-number="3.1" data-anchor-id="conteúdo">
-<span class="header-section-number">3.1</span> Conteúdo</h2>
+</header><p>Nesta aula iremos</p>
+<p>Leituras:</p>
 <ul>
-<li>Espaço de Probabilidades</li>
-<li>Espaço Amostral</li>
-<li>Conjuntos</li>
-<li>Relações entre Conjuntos</li>
-<li>Operações entre Conjuntos</li>
-<li>Eventos Disjuntos e Partições</li>
-<li>Espaço de Eventos</li>
-<li>Função de Probabilidade</li>
-<li>Probabilidade Condicional</li>
+<li><span class="citation" data-cites="bussab2010estatistica">(<a href="#ref-bussab2010estatistica" role="doc-biblioref">Bussab and Morettin 2010</a>)</span></li>
+<li>
+<span class="citation" data-cites="casella2002statistical">(<a href="#ref-casella2002statistical" role="doc-biblioref">Casella and Berger 2002</a>)</span> capítulo 1.</li>
 </ul>
-<p>Referências:</p>
-<ul>
-<li>MB10</li>
-<li>CB01</li>
-</ul>
-<hr></section><section id="espaço-de-probabilidades" class="level2 scrollable" data-number="3.2"><h2 class="scrollable anchored" data-number="3.2" data-anchor-id="espaço-de-probabilidades">
-<span class="header-section-number">3.2</span> Espaço de Probabilidades</h2>
-<p>Um espaço de probabilidades é uma tripla <strong><span class="math inline">\((\Omega, \mathcal{F}, P)\)</span></strong>.</p>
+<section id="introdução" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="introdução">
+<span class="header-section-number">3.1</span> Introdução</h2>
+<p>Um espaço de probabilidades é uma tripla <strong><span class="math inline">\((\Omega, \mathcal{F}, \Pr)\)</span></strong>.</p>
 <ul>
 <li>O conjunto <strong><span class="math inline">\(\Omega\)</span></strong> é chamado <strong>espaço amostral</strong>. Os elementos de <strong><span class="math inline">\(\Omega\)</span> são todos os possíveis resultados individuais de nosso experimento</strong>.</li>
 <li>O conjunto <strong><span class="math inline">\(\mathcal{F}\)</span></strong> é a <span class="math inline">\(\sigma\)</span>-álgebra de eventos, ou <strong>espaço de eventos</strong>. São os resultados (ou conjunto de resultados) de interesse. O espaço de eventos <strong><span class="math inline">\(\mathcal F\)</span> é formado por subconjuntos do espaço amostral <span class="math inline">\(\Omega\)</span></strong>. Temos alguns requerimentos sobre a estrutura do conjunto <strong><span class="math inline">\(\mathcal{F}\)</span></strong>.</li>
@@ -268,23 +313,44 @@ window.Quarto = {
 <strong><span class="math inline">\(\Pr\)</span></strong> é uma <strong>função de probabilidade</strong>, ou distribuição de probabilidade, que <strong>atribui pesos relativos aos elementos de <span class="math inline">\(\mathcal{F}\)</span></strong>.</li>
 </ul>
 <p>Uma <strong>variável aleatória</strong> <strong><span class="math inline">\(X\)</span></strong> é uma função que mapeia os elementos do espaço amostral <strong><span class="math inline">\(\Omega\)</span></strong> a valores na reta real.</p>
-<hr></section><section id="espaço-amostral" class="level2 scrollable" data-number="3.3"><h2 class="scrollable anchored" data-number="3.3" data-anchor-id="espaço-amostral">
-<span class="header-section-number">3.3</span> Espaço Amostral</h2>
-<p>O conjunto <span class="math inline">\(\Omega\)</span>, composto por todos os possíveis resultados individuais <span class="math inline">\(\omega \in \Omega\)</span> de um experimento é chamado de <strong>espaço amostral</strong> desse experimento.</p>
+</section><section id="espaço-amostral" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="espaço-amostral">
+<span class="header-section-number">3.2</span> Espaço Amostral</h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-espaco-amostral" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 3.1</strong></span> <strong>(Espaço Amostral)</strong> O conjunto <span class="math inline">\(\Omega\)</span>, composto por todos os possíveis resultados individuais <span class="math inline">\(\omega \in \Omega\)</span> de um experimento é chamado de <strong>espaço amostral</strong> desse experimento.</p>
+</div>
+</div>
+</div>
+</div>
 <p>Considere um único lançamento de um dado cúbico. O espaço amostral <span class="math inline">\(\Omega\)</span> é o conjunto que elenca os possíveis resultados individuais obtidos com o lançamento do dado: <span class="math display">\[\begin{align*}
   \Omega = \{\unicode{x2680},\unicode{x2681},\unicode{x2682},\unicode{x2683},\unicode{x2684},\unicode{x2685}\}.
 \end{align*}\]</span></p>
-<section id="evento" class="level3"><h3 class="anchored" data-anchor-id="evento">Evento</h3>
-<p>Um <strong>evento <span class="math inline">\(A\)</span> é qualquer subconjunto do espaço amostral <span class="math inline">\(\Omega\)</span></strong>. Ou seja, qualquer coleção de possíveis resultados para o experimento, incluindo o próprio espaço amostral e o conjunto vazio. <span class="math inline">\(A\subset\Omega\)</span>.</p>
-<p>Continuando com nosso dado. Vamos definir alguns eventos relacionados ao experimento de (um) lançamento do dado.</p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-evento" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 3.2</strong></span> <strong>(Evento)</strong> Um <strong>evento <span class="math inline">\(A\)</span> é qualquer subconjunto do espaço amostral <span class="math inline">\(\Omega\)</span></strong>. Ou seja, qualquer coleção de possíveis resultados para o experimento, incluindo o próprio espaço amostral e o conjunto vazio. <span class="math inline">\(A\subset\Omega\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<p>Continuando com nosso dado. Vamos definir alguns eventos relacionados ao experimento de lançamento do dado.</p>
 <ul>
+<li>Resultado é igual a dois: <span class="math inline">\(B=\{\unicode{x2681}\}\)</span>.</li>
 <li>Resultado é menor do que três: <span class="math inline">\(X = \{\unicode{x2680}, \unicode{x2681}\}\)</span>.</li>
 <li>Resultado é par: <span class="math inline">\(Y = \{\unicode{x2681}, \unicode{x2683}, \unicode{x2685}\}\)</span>.</li>
 <li>Resultado é menor do que seis: <span class="math inline">\(Z = \{\unicode{x2680},\unicode{x2681},\unicode{x2682},\unicode{x2683},\unicode{x2684}\}\)</span>.</li>
-</ul>
-<hr></section></section><section id="conjuntos" class="level2 scrollable" data-number="3.4"><h2 class="scrollable anchored" data-number="3.4" data-anchor-id="conjuntos">
-<span class="header-section-number">3.4</span> Conjuntos</h2>
-<p>Vamos dar um passo atrás e lembrar a definição e as principais operações entre conjuntos.</p>
+</ul></section><section id="relações-e-operações-entre-conjuntos" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="relações-e-operações-entre-conjuntos">
+<span class="header-section-number">3.3</span> Relações e Operações entre Conjuntos</h2>
+<p>Vamos dar um passo atrás e lembrar a definição e as principais relações e operações entre conjuntos.</p>
 <p>Um <strong>conjunto é uma coleção de elementos</strong>. Existem várias formas de definir um conjunto.</p>
 <ul>
 <li>
@@ -295,41 +361,18 @@ window.Quarto = {
 <strong>Via notação de conjuntos</strong>: <span class="math inline">\(Z = \{ z: z=2n, n \in \mathbb{N}\}\)</span>
 </li>
 </ul>
-<hr></section><section id="relações-entre-conjuntos" class="level2 scrollable" data-number="3.5"><h2 class="scrollable anchored" data-number="3.5" data-anchor-id="relações-entre-conjuntos">
-<span class="header-section-number">3.5</span> Relações entre conjuntos</h2>
-<p>Um conjunto se relaciona com seus elementos por meio da <strong>pertinência</strong>. A relação básica entre conjuntos é a <strong>contenção</strong>. Com base nesse conceito, definimos a relação de <strong>igualdade</strong> entre conjuntos, e então conseguimos definir operações operações entre conjuntos como <strong>união</strong>, <strong>intersecção</strong>, e <strong>complemento</strong>.</p>
-<section id="pertinência" class="level3"><h3 class="anchored" data-anchor-id="pertinência">Pertinência</h3>
+<p>Um conjunto se relaciona com seus elementos por meio da <strong>pertinência</strong>. A relação básica entre conjuntos é a <strong>contenção</strong>. Com base nesse conceito, definimos a relação de <strong>igualdade</strong> entre conjuntos, e então conseguimos definir operações entre conjuntos como <strong>união</strong>, <strong>intersecção</strong>, e <strong>complemento</strong>.</p>
+<section id="relações-entre-conjuntos" class="level3" data-number="3.3.1"><h3 data-number="3.3.1" class="anchored" data-anchor-id="relações-entre-conjuntos">
+<span class="header-section-number">3.3.1</span> Relações entre conjuntos</h3>
+<section id="pertinência" class="level4"><h4 class="anchored" data-anchor-id="pertinência">Pertinência</h4>
 <p>A <strong>pertinência</strong> é a relação entre um elemento e um conjunto. Se um elemento <span class="math inline">\(x\)</span> pertence a um certo conjunto <span class="math inline">\(A\)</span> escrevemos <span class="math inline">\(x \in A\)</span>. Alternativamente, se esse elemento <span class="math inline">\(x\)</span> não pertencer a <span class="math inline">\(A\)</span> escrevemos <span class="math inline">\(x \notin A\)</span>.</p>
-</section><section id="contenção" class="level3"><h3 class="anchored" data-anchor-id="contenção">Contenção</h3>
+</section><section id="contenção" class="level4"><h4 class="anchored" data-anchor-id="contenção">Contenção</h4>
 <p>Dizemos que <strong><span class="math inline">\(A\)</span> está contido em <span class="math inline">\(B\)</span></strong>, ou, equivalentemente, que <span class="math inline">\(B\)</span> contém <span class="math inline">\(A\)</span>, <strong>se todos os elementos de <span class="math inline">\(A\)</span> também forem elementos de <span class="math inline">\(B\)</span></strong>. Escrevemos <strong><span class="math inline">\(A \subset B\)</span></strong>. Ou seja,</p>
 <p><span class="math display">\[\begin{align*}
   A \subset B \Longleftrightarrow (x\in A \Longrightarrow x \in B).
 \end{align*}\]</span></p>
-<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Exemplos">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exemplos
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>Se <span class="math inline">\(\Omega = \{\unicode{x2680}, \ldots, \unicode{x2685}\}\)</span> e <span class="math inline">\(X = \{\unicode{x2680}, \unicode{x2681}, \unicode{x2682}\}\)</span>, então <span class="math inline">\(X\subset \Omega\)</span>.</li>
-</ul>
-</div>
-</div>
-<div class="callout callout-style-simple callout-tip no-icon callout-titled" title="O conjunto vazio $\emptyset$">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>O conjunto vazio <span class="math inline">\(\emptyset\)</span>
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<p>Por exemplo, se <span class="math inline">\(\Omega = \{\unicode{x2680}, \ldots, \unicode{x2685}\}\)</span> e <span class="math inline">\(X = \{\unicode{x2680}, \unicode{x2681}, \unicode{x2682}\}\)</span>, então <span class="math inline">\(X\subset \Omega\)</span>.</p>
+</section><section id="o-conjunto-vazio" class="level4"><h4 class="anchored" data-anchor-id="o-conjunto-vazio">O conjunto vazio</h4>
 <p>Definimos um <strong>conjunto vazio</strong> como o <strong>único conjunto que não contém nenhum elemento</strong>:</p>
 <p><span class="math display">\[\begin{align*}
   \emptyset = \{\}.
@@ -339,9 +382,7 @@ window.Quarto = {
   \emptyset \subset A, \quad \forall A.
 \end{align*}\]</span></p>
 <p>Ressaltando que a suposição anterior não quer dizer que o conjunto vazio é elemento de qualquer outro conjunto. Ou seja, não é verdade que sempre <span class="math inline">\(\emptyset \in A\)</span>. <strong>O conjunto vazio é elemento de outro conjunto apenas quando aparecer explicitamente listado como elemento</strong>.</p>
-</div>
-</div>
-</section><section id="igualdade" class="level3"><h3 class="anchored" data-anchor-id="igualdade">Igualdade</h3>
+</section><section id="igualdade" class="level4"><h4 class="anchored" data-anchor-id="igualdade">Igualdade</h4>
 <p>Dizemos que <strong><span class="math inline">\(A\)</span> é igual a <span class="math inline">\(B\)</span></strong> se tivermos, simultaneamente, que <span class="math inline">\(A\)</span> é contido em <span class="math inline">\(B\)</span> e que <span class="math inline">\(B\)</span> é contido em <span class="math inline">\(A\)</span>. Escrevemos <span class="math inline">\(A = B\)</span>. Ou seja,</p>
 <p><span class="math display">\[\begin{align*}
   A = B \Longleftrightarrow (A \subset B \text{ e } B \subset A).
@@ -350,53 +391,21 @@ window.Quarto = {
 <ul>
 <li>se <span class="math inline">\(x \in A\)</span> então <span class="math inline">\(x \in B\)</span>, e</li>
 <li>se <span class="math inline">\(x \in B\)</span> então <span class="math inline">\(x \in A\)</span>.</li>
-</ul>
-<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Diferença entre $\subset$ e $\subseteq$">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Diferença entre <span class="math inline">\(\subset\)</span> e <span class="math inline">\(\subseteq\)</span>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Uma ressalva sobre notação.</p>
-</div>
-</div>
-<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Paradoxo de Russell">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Paradoxo de Russell
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Quase qualquer conjunto pode ser definido, mas temos que tomar um pouco de cuidado ao definir conjuntos com base nos elementos que não fazem parte de tal conjunto.</p>
-<p>Tome o conjunto</p>
-<p><span class="math display">\[\begin{align*}
-  A = \{ x: x\notin A\}.
-\end{align*}\]</span></p>
-<p>Considere um certo elemento <span class="math inline">\(x\)</span>, pertencente a <span class="math inline">\(A\)</span>. Se <span class="math inline">\(x \in A\)</span>, então deve respeitar o predicado <span class="math inline">\(x \notin A\)</span>. Portanto concluimos que <span class="math inline">\(x\)</span> não pertence a <span class="math inline">\(A\)</span>. Alternativamente, tome <span class="math inline">\(x \notin A\)</span>. Mas nesse caso <span class="math inline">\(x\)</span> respeita o predicado e portanto <span class="math inline">\(x \in A\)</span>. Perceba que não conseguimos decididir se o elemento <span class="math inline">\(x\)</span> pertence, ou não, a esse conjunto <span class="math inline">\(A\)</span>. Essa contradição é conhecida como <em>Paradoxo de (Bertrand) Russell</em>.</p>
-</div>
-</div>
-<hr></section></section><section id="operações-entre-conjuntos" class="level2 scrollable" data-number="3.6"><h2 class="scrollable anchored" data-number="3.6" data-anchor-id="operações-entre-conjuntos">
-<span class="header-section-number">3.6</span> Operações entre Conjuntos</h2>
-<section id="união-cup-vee-ou" class="level3"><h3 class="anchored" data-anchor-id="união-cup-vee-ou">União (<span class="math inline">\(\cup\)</span>, <span class="math inline">\(\vee\)</span>, ou)</h3>
+</ul></section></section><section id="operações-entre-conjuntos" class="level3" data-number="3.3.2"><h3 data-number="3.3.2" class="anchored" data-anchor-id="operações-entre-conjuntos">
+<span class="header-section-number">3.3.2</span> Operações entre conjuntos</h3>
+<section id="união-cup-vee-ou" class="level4"><h4 class="anchored" data-anchor-id="união-cup-vee-ou">União (<span class="math inline">\(\cup\)</span>, <span class="math inline">\(\vee\)</span>, ou)</h4>
 <p>A <strong>união</strong> entre <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span>, denotada <strong><span class="math inline">\(A \cup B\)</span></strong>, é o conjunto composto por todos os elementos pertencentes a <span class="math inline">\(A\)</span>, pertencentes a <span class="math inline">\(B\)</span>, ou pertencentes a ambos <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span>. <span class="math display">\[\begin{align*}
   A \cup B = \{x: x\in A \text{ ou } x \in B\}.
 \end{align*}\]</span> A união é associada ao operador lógico <strong>ou</strong>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="03-elementos-probabilidade_files/figure-html/unnamed-chunk-1-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+<figure class="figure"><p><img src="03-elementos-probabilidade_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="intersecção-cap-wedge-e" class="level3"><h3 class="anchored" data-anchor-id="intersecção-cap-wedge-e">Intersecção (<span class="math inline">\(\cap\)</span>, <span class="math inline">\(\wedge\)</span>, e)</h3>
+</section><section id="intersecção-cap-wedge-e" class="level4"><h4 class="anchored" data-anchor-id="intersecção-cap-wedge-e">Intersecção (<span class="math inline">\(\cap\)</span>, <span class="math inline">\(\wedge\)</span>, e)</h4>
 <p>A <strong>intersecção</strong> entre os conjuntos <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span>, denotada <strong><span class="math inline">\(A\cap B\)</span></strong>, é o conjunto dos elementos que pertencem a ambos <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span>: <span class="math display">\[\begin{align*}
     A\cap B = \{x: x\in A \text{ e } x\in B\}.
 \end{align*}\]</span></p>
@@ -409,7 +418,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-</section><section id="complementação-ac-não" class="level3"><h3 class="anchored" data-anchor-id="complementação-ac-não">Complementação (<span class="math inline">\(A^c\)</span>, não)</h3>
+</section><section id="complementação-ac-não" class="level4"><h4 class="anchored" data-anchor-id="complementação-ac-não">Complementação (<span class="math inline">\(A^c\)</span>, não)</h4>
 <p>O <strong>complemento</strong> do conjunto <span class="math inline">\(A\)</span> (com relação a todo o universo <span class="math inline">\(\Omega\)</span>) é o conjunto composto por todos os elementos em <span class="math inline">\(\Omega\)</span> que não pertencem ao conjunto <span class="math inline">\(A\)</span>.</p>
 <p><span class="math display">\[\begin{align*}
   A^c = \{ x: x\notin A\}
@@ -422,7 +431,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-</section><section id="complementação-relativa-setminus-subtração" class="level3"><h3 class="anchored" data-anchor-id="complementação-relativa-setminus-subtração">Complementação relativa (<span class="math inline">\(\setminus\)</span>, subtração)</h3>
+</section><section id="complementação-relativa-setminus-subtração" class="level4"><h4 class="anchored" data-anchor-id="complementação-relativa-setminus-subtração">Complementação relativa (<span class="math inline">\(\setminus\)</span>, subtração)</h4>
 <p>O <strong>complemento relativo</strong> do conjunto <span class="math inline">\(A\)</span> com relação ao conjunto <span class="math inline">\(B\)</span>, escrito <span class="math inline">\(A\setminus B\)</span> ou <span class="math inline">\(A-B\)</span> (podemos ler como <span class="math inline">\(A\)</span> menos <span class="math inline">\(B\)</span>), é o conjunto de todos os elementos presentes em <span class="math inline">\(A\)</span> mas não presentes em <span class="math inline">\(B\)</span>.</p>
 <p><span class="math display">\[\begin{align*}
   A\setminus B = \{x: x\in A \text{ e } x \notin B\}
@@ -435,7 +444,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-</section><section id="propriedades-básicas-das-operações-entre-conjuntos" class="level3"><h3 class="anchored" data-anchor-id="propriedades-básicas-das-operações-entre-conjuntos">Propriedades básicas das operações entre conjuntos</h3>
+</section><section id="propriedades-básicas-das-operações-entre-conjuntos" class="level4"><h4 class="anchored" data-anchor-id="propriedades-básicas-das-operações-entre-conjuntos">Propriedades básicas das operações entre conjuntos</h4>
 <p>Tome três eventos <span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span>, e <span class="math inline">\(Z\)</span>, definidos no mesmo espaço amostral <span class="math inline">\(\Omega\)</span>.</p>
 <ol type="a">
 <li><strong>Comutatividade</strong></li>
@@ -465,59 +474,42 @@ window.Quarto = {
     (X \cup Y)^c &amp;= X^c\cap Y^c \\
     (X \cap Y)^c &amp;= X^c\cup Y^c
   \end{align*}\]</span></p>
-<hr></section></section><section id="eventos-disjuntos-e-partições" class="level2 scrollable" data-number="3.7"><h2 class="scrollable anchored" data-number="3.7" data-anchor-id="eventos-disjuntos-e-partições">
-<span class="header-section-number">3.7</span> Eventos Disjuntos e Partições</h2>
-<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Definição: Eventos disjuntos">
-<div class="callout-header d-flex align-content-center">
+</section></section><section id="eventos-disjuntos-e-partições" class="level3" data-number="3.3.3"><h3 data-number="3.3.3" class="anchored" data-anchor-id="eventos-disjuntos-e-partições">
+<span class="header-section-number">3.3.3</span> Eventos Disjuntos e Partições</h3>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Definição: Eventos disjuntos
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Dizemos que <strong>dois eventos <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span></strong> são <strong>disjuntos</strong> (ou <strong>mutuamente exclusivos</strong>) se <strong><span class="math inline">\(A\cap B=\emptyset\)</span></strong>.</p>
+<div class="callout-body-container">
+<div id="def-eventos-disjuntos" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 3.3</strong></span> Dizemos que <strong>dois eventos <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span></strong> são <strong>disjuntos</strong> (ou <strong>mutuamente exclusivos</strong>) se <strong><span class="math inline">\(A\cap B=\emptyset\)</span></strong>.</p>
 <p>Dizemos que os eventos enumerados na <strong>sequência <span class="math inline">\(A_1, A_2, \dots\)</span></strong> são <strong>disjuntos dois a dois</strong> se <strong><span class="math inline">\(A_i\cap A_j=\emptyset\)</span></strong> para qualquer <span class="math inline">\(i\neq j\)</span>.</p>
 </div>
 </div>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-conjuntos-disjuntos" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="90%">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-conjuntos-disjuntos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-elementos-probabilidade_files/figure-html/fig-conjuntos-disjuntos-1.svg" id="fig-conjuntos-disjuntos" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-conjuntos-disjuntos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.1
-</figcaption></figure>
 </div>
 </div>
-</div>
-<p>[figura eventos disjuntos]</p>
-<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Definição: Partição de um conjunto">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Definição: Partição de um conjunto
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Seja <span class="math inline">\(A_1, A_2, \dots\)</span> uma sequência de eventos <strong>disjuntos dois a dois</strong> e suponha que <strong><span class="math inline">\(\cup^\infty_{j=1}A_j=X\)</span></strong>. Dizemos então que a sequência de conjuntos <strong><span class="math inline">\(A_1, A_2, \dots\)</span> forma uma partição do conjunto <span class="math inline">\(X\)</span></strong>.</p>
-</div>
-</div>
-<section id="exemplos-de-partições" class="level4"><h4 class="anchored" data-anchor-id="exemplos-de-partições">Exemplos de partições</h4>
-<p>Uma partição finita do espaço amostral <span class="math inline">\(\Omega\)</span></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="03-elementos-probabilidade_files/figure-html/unnamed-chunk-5-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+<figure class="figure"><p><img src="03-elementos-probabilidade_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Uma partição infinita do espaço amostral <span class="math inline">\(\Omega\)</span></p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-particao" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 3.4</strong></span> Seja <span class="math inline">\(A_1, A_2, \dots\)</span> uma sequência de eventos <strong>disjuntos dois a dois</strong> e suponha que <strong><span class="math inline">\(\cup^\infty_{j=1}A_j=X\)</span></strong>. Dizemos então que a sequência de conjuntos <strong><span class="math inline">\(A_1, A_2, \dots\)</span> forma uma partição do conjunto <span class="math inline">\(X\)</span></strong>.</p>
+</div>
+</div>
+</div>
+</div>
+<p>Uma partição finita do espaço amostral <span class="math inline">\(\Omega\)</span>:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -526,32 +518,34 @@ Figure&nbsp;3.1
 </div>
 </div>
 </div>
+<p>Uma partição infinita do espaço amostral <span class="math inline">\(\Omega\)</span></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="03-elementos-probabilidade_files/figure-html/unnamed-chunk-7-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
 <p>Dados <span class="math inline">\(A,B\subset\Omega\)</span>, sempre conseguimos particionar <span class="math inline">\(A\)</span> ao escrever <span class="math inline">\(A = (A\cap B)\cup (A\cap B^c)\)</span>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-identidade-a" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="90%">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-identidade-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-elementos-probabilidade_files/figure-html/fig-identidade-a-1.svg" id="fig-identidade-a" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-identidade-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.2
-</figcaption></figure>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="03-elementos-probabilidade_files/figure-html/unnamed-chunk-8-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
 </div>
 </div>
 </div>
-<hr></section></section><section id="espaço-de-eventos" class="level2 scrollable" data-number="3.8"><h2 class="scrollable anchored" data-number="3.8" data-anchor-id="espaço-de-eventos">
-<span class="header-section-number">3.8</span> Espaço de Eventos</h2>
-<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Definição: Espaço de eventos">
-<div class="callout-header d-flex align-content-center">
+</section></section><section id="espaço-de-eventos" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="espaço-de-eventos">
+<span class="header-section-number">3.4</span> Espaço de Eventos</h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Definição: Espaço de eventos
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>O conjunto <strong><span class="math inline">\(\mathcal{F}\)</span>, cujos elementos são subconjuntos de <span class="math inline">\(\Omega\)</span></strong> é chamado <span class="math inline">\(\sigma\)</span>-álgebra ou <strong>espaço de eventos</strong> em se:</p>
+<div class="callout-body-container">
+<div id="def-sigma-algebra" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 3.5</strong></span> O conjunto <strong><span class="math inline">\(\mathcal{F}\)</span>, cujos elementos são subconjuntos de <span class="math inline">\(\Omega\)</span></strong> é chamado <span class="math inline">\(\sigma\)</span>-álgebra ou <strong>espaço de eventos</strong> em se:</p>
 <ol type="a">
 <li><strong>O conjunto vazio é elemento de <span class="math inline">\(\mathcal{F}\)</span></strong></li>
 <li><strong><span class="math inline">\(\mathcal{F}\)</span> é fechado sob complementação</strong></li>
@@ -559,13 +553,19 @@ Figure&nbsp;3.2
 </ol>
 </div>
 </div>
-<section id="exemplo-menor-sigma-álgebra-possível" class="level4"><h4 class="anchored" data-anchor-id="exemplo-menor-sigma-álgebra-possível">Exemplo: Menor <span class="math inline">\(\sigma\)</span>-álgebra possível</h4>
-</section><section id="exemplo-segunda-menor-sigma-álgebra-possível" class="level4"><h4 class="anchored" data-anchor-id="exemplo-segunda-menor-sigma-álgebra-possível">Exemplo: Segunda menor <span class="math inline">\(\sigma\)</span>-álgebra possível</h4>
-</section><section id="exemplo-maior-sigma-álgebra-possível" class="level4"><h4 class="anchored" data-anchor-id="exemplo-maior-sigma-álgebra-possível">Exemplo: Maior <span class="math inline">\(\sigma\)</span>-álgebra possível</h4>
-</section><section id="exemplo-espaço-de-eventos-definido-sobre-um-espaço-amostral-incontável" class="level4"><h4 class="anchored" data-anchor-id="exemplo-espaço-de-eventos-definido-sobre-um-espaço-amostral-incontável">Exemplo: Espaço de eventos definido sobre um espaço amostral incontável</h4>
-<hr></section></section><section id="função-de-probabilidade" class="level2 scrollable" data-number="3.9"><h2 class="scrollable anchored" data-number="3.9" data-anchor-id="função-de-probabilidade">
-<span class="header-section-number">3.9</span> Função de Probabilidade</h2>
-<p>Dados um <strong>espaço amostral <span class="math inline">\(\Omega\)</span></strong> e um associado <strong>espaço de eventos <span class="math inline">\(\mathcal{F}\)</span></strong>, uma <strong>função de probabilidade <span class="math inline">\(\Pr(\cdot)\)</span></strong> é qualquer função com <strong>domínio no espaço de eventos <span class="math inline">\(\mathcal{F}\)</span> e contradomínio nos números reais <span class="math inline">\(\mathbb{R}\)</span></strong> que satisfaz as propriedades (axiomas):</p>
+</div>
+</div>
+<p>Exemplo: Menor <span class="math inline">\(\sigma\)</span>-álgebra possível Exemplo: Segunda menor <span class="math inline">\(\sigma\)</span>-álgebra possível Exemplo: Maior <span class="math inline">\(\sigma\)</span>-álgebra possível Exemplo: Espaço de eventos definido sobre um espaço amostral incontável</p>
+</section><section id="função-de-probabilidade" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="função-de-probabilidade">
+<span class="header-section-number">3.5</span> Função de Probabilidade</h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-funcao-probabilidade" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 3.6</strong></span> Dados um <strong>espaço amostral <span class="math inline">\(\Omega\)</span></strong> e um associado <strong>espaço de eventos <span class="math inline">\(\mathcal{F}\)</span></strong>, uma <strong>função de probabilidade <span class="math inline">\(\Pr(\cdot)\)</span></strong> é qualquer função com <strong>domínio no espaço de eventos <span class="math inline">\(\mathcal{F}\)</span> e contradomínio nos números reais <span class="math inline">\(\mathbb{R}\)</span></strong> que satisfaz as propriedades (axiomas):</p>
 <ul>
 <li>
 <strong>A1 (Não-negatividade):</strong> <span class="math inline">\(\Pr(A)\geq 0, \forall A\in \mathcal{F}\)</span>.</li>
@@ -577,90 +577,115 @@ Figure&nbsp;3.2
 \end{align*}\]</span>
 </li>
 </ul>
-<section id="propriedades-elimentares" class="level3"><h3 class="anchored" data-anchor-id="propriedades-elimentares">Propriedades elimentares</h3>
-<hr></section></section><section id="probabilidade-condicional-e-independência-entre-eventos" class="level2 scrollable" data-number="3.10"><h2 class="scrollable anchored" data-number="3.10" data-anchor-id="probabilidade-condicional-e-independência-entre-eventos">
-<span class="header-section-number">3.10</span> Probabilidade Condicional e Independência entre Eventos</h2>
-<section id="probabilidade-condicional" class="level3"><h3 class="anchored" data-anchor-id="probabilidade-condicional">Probabilidade condicional</h3>
-<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Definição: Probabilidade condicional">
-<div class="callout-header d-flex align-content-center">
+</div>
+</div>
+</div>
+</div>
+</section><section id="probabilidade-condicional-e-independência" class="level2" data-number="3.6"><h2 data-number="3.6" class="anchored" data-anchor-id="probabilidade-condicional-e-independência">
+<span class="header-section-number">3.6</span> Probabilidade Condicional e Independência</h2>
+<section id="probabilidade-condicional" class="level3" data-number="3.6.1"><h3 data-number="3.6.1" class="anchored" data-anchor-id="probabilidade-condicional">
+<span class="header-section-number">3.6.1</span> Probabilidade Condicional</h3>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Definição: Probabilidade condicional
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Tome <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> eventos devinidos no espaço amostral <span class="math inline">\(\Omega\)</span>. Assuma <span class="math inline">\(\Pr(B)&gt;0\)</span>. Então a probabilidade condicional do evento <span class="math inline">\(A\)</span> dada a ocorrência do evento <span class="math inline">\(B\)</span> é</p>
+<div class="callout-body-container">
+<div id="def-probabilidade-condicional" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 3.7</strong></span> <strong>(Probabilidade Condicional)</strong> Tome <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> eventos devinidos no espaço amostral <span class="math inline">\(\Omega\)</span>. Assuma <span class="math inline">\(\Pr(A)&gt;0\)</span>. Então a probabilidade condicional do evento <span class="math inline">\(B\)</span> dada a ocorrência do evento <span class="math inline">\(A\)</span> é</p>
 <p><span class="math display">\[\begin{align*}
-  \Pr(A|B)=\frac{\Pr(A\cap B)}{\Pr(B)}.
+  \Pr(B|A)=\frac{\Pr(B\cap A)}{\Pr(A)}.
 \end{align*}\]</span></p>
 </div>
 </div>
-<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Lei da Probabilidade Total">
-<div class="callout-header d-flex align-content-center">
+</div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Lei da Probabilidade Total
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Seja <span class="math inline">\(A_1, A_2, \dots, A_n\)</span> uma partição do espaço amostral <span class="math inline">\(\Omega\)</span>, e seja <span class="math inline">\(B\)</span> um evento qualquer. Então podemos escrever</p>
+<div class="callout-body-container">
+<div id="thm-lei-probabilidade-total" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 3.1</strong></span> <strong>(Lei da Probabilidade Total)</strong> Seja <span class="math inline">\(A_1, A_2, \dots, A_n\)</span> uma partição do espaço amostral <span class="math inline">\(\Omega\)</span>, e seja <span class="math inline">\(B\)</span> um evento qualquer. Então podemos escrever</p>
 <p><span class="math display">\[\begin{align*}
   \Pr(B) = \Pr(B|A_1)\Pr(A_1)+\Pr(B|A_2)\Pr(A_2)+\cdots+\Pr(B|A_n)\Pr(A_n).
 \end{align*}\]</span></p>
 </div>
 </div>
-<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Teorema de Bayes">
-<div class="callout-header d-flex align-content-center">
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution no-icon callout-titled" title="Demonstração">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Teorema de Bayes
+<span class="screen-reader-only">Caution</span>Demonstração
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Tome <span class="math inline">\(A,A^c\)</span> formando uma partição de <span class="math inline">\(\Omega\)</span> e <span class="math inline">\(B\)</span> um evento qualquer. Então <span class="math display">\[\begin{align*}
+<p>Vamos demonstrar, passo a passo, o caso em que o espaço amostral <span class="math inline">\(\Omega\)</span> é particionado entre <span class="math inline">\(A\)</span> e <span class="math inline">\(A^c\)</span>. Ou seja, queremos mostrar que <span class="math display">\[\begin{align*}
+  \Pr(B) = \Pr(B|A)\Pr(A) + \Pr(B|A^c)\Pr(A^c).
+\end{align*}\]</span></p>
+<ol type="1">
+<li><p>Começamos particionando o conjunto <span class="math inline">\(B\)</span> por meio da identidade <span class="math display">\[\begin{align*}
+  B = (B\cap A)\cup(B\cap A^c).
+\end{align*}\]</span></p></li>
+<li><p>Aplicamos a função probabilidade <span class="math inline">\(\Pr(\cdot)\)</span> a ambos os lados da igualdade acima. (Perceba que passamos de uma igualdade de conjuntos para uma igualdade numérica.) <span class="math display">\[\begin{align*}
+  \Pr(B) = \Pr\left((B\cap A)\cup(B\cap A^c)\right).
+\end{align*}\]</span></p></li>
+<li><p>Pelo axioma da aditividade finita <strong>A3</strong>, <span class="math display">\[\begin{align*}
+  \Pr(B) = \Pr(B\cap A)+(B\cap A^c).
+\end{align*}\]</span></p></li>
+<li><p>Manipulando a definição de probabilidade condicional, podemos escrever <span class="math display">\[\begin{align*}
+  \Pr(B\cap A) &amp;= \Pr(B|A)\Pr(B), \text{ e} \\
+  \Pr(B\cap A^c) &amp;= \Pr(B|A^c)\Pr(A^c).
+\end{align*}\]</span></p></li>
+<li><p>E substituindo obtemos o resultado que procuravamos: <span class="math display">\[\begin{align*}
+  \Pr(B) = \Pr(B|A)\Pr(A) + \Pr(B|A^c)\Pr(A^c). \qquad \blacksquare
+\end{align*}\]</span></p></li>
+</ol>
+<p>Não é difícil generalizar esse resultado para o caso geral de uma partição com <span class="math inline">\(n\)</span> partes disjuntas.</p>
+</div>
+</div>
+</div>
+</section><section id="teorema-de-bayes" class="level3" data-number="3.6.2"><h3 data-number="3.6.2" class="anchored" data-anchor-id="teorema-de-bayes">
+<span class="header-section-number">3.6.2</span> Teorema de Bayes</h3>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-bayes" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 3.2</strong></span> <strong>(Teorema de Bayes)</strong> Tome <span class="math inline">\(A,A^c\)</span> formando uma partição de <span class="math inline">\(\Omega\)</span> e <span class="math inline">\(B\)</span> um evento qualquer. Então <span class="math display">\[\begin{align*}
   \Pr(A|B) = \frac{\Pr(B|A)\Pr(B)}{\Pr(B|A)\Pr(A)+\Pr(B|A^c)\Pr(A^c)}.
 \end{align*}\]</span></p>
 <p>Seja <span class="math inline">\(A_1,A_2,\dots,A_n\)</span> uma partição de espaço amostral <span class="math inline">\(\Omega\)</span> e seja <span class="math inline">\(B\)</span> um evento qualquer. Então</p>
 <p><span class="math display">\[\begin{align*}
-  \Pr(A_j|B) = \frac{\Pr(B|A_j)\Pr(A_j)}{\sum^n_{i=1}\Pr(B|A_i)\Pr(A_i)}
+  \Pr(A_j|B) = \frac{\Pr(B|A_j)\Pr(A_j)}{\sum^n_{i=1}\Pr(B|A_i)\Pr(A_i)}.
 \end{align*}\]</span></p>
 </div>
 </div>
-<section id="exemplo" class="level4"><h4 class="anchored" data-anchor-id="exemplo">Exemplo:</h4>
-<p>Suponha que 5% dos homens e 0.25% das mulheres sejam dautônicos. Uma pessoa escolhida aleatoriamente é dautônica. Qual é probabilidade de que essa pessoa seja homem? (Assuma mesma incidência de homens e mulheres na população.)</p>
-<div class="callout callout-style-simple callout-caution no-icon callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+</div>
+</div>
+<div id="exm-bayes-dautonicos" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3.1</strong></span> Suponha que 5% dos homens e 0.25% das mulheres sejam dautônicos. Uma pessoa escolhida aleatoriamente é dautônica. Qual é probabilidade de que essa pessoa seja homem? (Assuma mesma incidência de homens e mulheres na população.)</p>
+</div>
+<div class="callout callout-style-simple callout-caution no-icon callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Caution</span>Expand To Learn About Collapse
+<span class="screen-reader-only">Caution</span>Solução
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-11" class="callout-11-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>This is an example of a ‘folded’ caution callout that can be expanded by the user. You can use <code>collapse="true"</code> to collapse it by default or <code>collapse="false"</code> to make a collapsible callout that is expanded by default.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Solução">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Solução
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Defina os seguintes eventos:</p>
 <ul>
@@ -694,60 +719,150 @@ Figure&nbsp;3.2
 </div>
 </div>
 </div>
-</section><section id="exemplo-1" class="level4"><h4 class="anchored" data-anchor-id="exemplo-1">Exemplo:</h4>
-<p>Considere o problema de um teste clínico para a presença de uma certa doença.</p>
+<div id="exm-bayes-teste" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3.2</strong></span> Considere o problema de um teste clínico para a presença de uma certa doença.</p>
 <ul>
 <li>Se o indivíduo não estiver infectado, o teste tem probabilidade de 5% de apontar um falso positivo.</li>
 <li>Se o indivídio estiver, de fato, doente, o teste tem probabilidade de 1% de apontar um falso negativo.</li>
 <li>Acreditamos que, na população, 25% dos indivíduos estejam infectados.</li>
 </ul>
 <p>Um indivíduo realizou o teste e o resultado foi negativo. Qual é a probabilidade desse indivíduo estar infectado pela doença?</p>
-</section><section id="exemplo-problema-dos-três-prisioneiros" class="level4"><h4 class="anchored" data-anchor-id="exemplo-problema-dos-três-prisioneiros">Exemplo: Problema dos três prisioneiros</h4>
-<p>Três prisioneiros, <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, e <span class="math inline">\(C\)</span> estão no corredor da morte. Um deles, já escolhido aleatoriamente, será perdoado. O diretor da prisão conta ao carcereiro quem será perdoado, mas pede que a identidade do prisioneiro perdoado permaneça em segredo.</p>
+</div>
+<div class="callout callout-style-simple callout-caution no-icon callout-empty-content callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+</div>
+<div id="exm-tres-prisioneiros" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3.3</strong></span> <strong>(Problema dos três prisioneiros)</strong> Três prisioneiros, <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, e <span class="math inline">\(C\)</span> estão no corredor da morte. Um deles, já escolhido aleatoriamente, será perdoado. O diretor da prisão conta ao carcereiro quem será perdoado, mas pede que a identidade do prisioneiro perdoado permaneça em segredo.</p>
 <p>Mais tarde naquele dia, o prisioneiro <span class="math inline">\(A\)</span> pergunta ao carcereiro quem será perdoado. O carcereiro se recusa a responder. Insistente, o prisioneiro <span class="math inline">\(A\)</span> então pergunta: “entre <span class="math inline">\(B\)</span> e <span class="math inline">\(C\)</span>, qual dos dois será executado?”. O carcereiro pensa um pouco e responde: “<span class="math inline">\(B\)</span> será executado”.</p>
 <ul>
 <li>Raciocínio do prisioneiro <span class="math inline">\(A\)</span>: Sei que <span class="math inline">\(B\)</span> será executado, então um entre <span class="math inline">\(A\)</span> e <span class="math inline">\(C\)</span> será perdoado. Minhas chances de sobrevivência são 1/2.</li>
 <li>Raciocínio do carcereiro: Cada prisioneiro tem probabilidade 1/3 de ser perdoado. Claramente entre <span class="math inline">\(B\)</span> e <span class="math inline">\(C\)</span> um deles será executado. Portanto não dei nenhuma informação adicional ao prisioneiro <span class="math inline">\(A\)</span>.</li>
 </ul>
 <p>Quem está correto nessa situação?</p>
-</section><section id="exemplo-problema-de-monty-hall" class="level4"><h4 class="anchored" data-anchor-id="exemplo-problema-de-monty-hall">Exemplo: Problema de Monty-Hall</h4>
-<p>Em um programa de auditório, três portas <span class="math inline">\(A,B,C\)</span> fechadas lhe são oferecidas. Atrás de apenas uma delas se encontra um prêmio. Você ganha o prêmio se escolher a porta correta.</p>
+</div>
+<div class="callout callout-style-simple callout-caution no-icon callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Esse exemplo ilustra como probabilidades condicionais podem causar confusão e requerem interpretação cuidadosa do problema em questão.</p>
+<p>Defina os eventos:</p>
+<ul>
+<li>
+<span class="math inline">\(A\)</span>: <span class="math inline">\(A\)</span> será perdoado. É claro do enunciado que <span class="math inline">\(\Pr(A)=1/3\)</span>.</li>
+<li>
+<span class="math inline">\(B\)</span>: <span class="math inline">\(B\)</span> será perdoado. <span class="math inline">\(\Pr(B)=1/3\)</span>.</li>
+<li>
+<span class="math inline">\(C\)</span>: <span class="math inline">\(C\)</span> será perdoado. <span class="math inline">\(\Pr(C)=1/3\)</span>.</li>
+<li>
+<span class="math inline">\(W\)</span>: Carcereiro diz que <span class="math inline">\(B\)</span> será executado.</li>
+</ul>
+<p>Queremos <span class="math inline">\(\Pr(A|W)\)</span>:</p>
+<p><span class="math display">\[\begin{align*}
+  \Pr(A|W) = \frac{\Pr(W|A)\Pr(A)}{\Pr(W)}.
+\end{align*}\]</span></p>
+<p><span class="math inline">\(\Pr(W|A)\)</span> é a probabilidade de que o carcereiro fale que <span class="math inline">\(B\)</span> vai ser executado, supondo que o prisioneiro perdoado é <span class="math inline">\(A\)</span>. Se <span class="math inline">\(A\)</span> for perdoado, o carcereiro pode falar que <span class="math inline">\(B\)</span> ou <span class="math inline">\(C\)</span> vão ser executados. <span class="math inline">\(\Pr(W|A)=1/2\)</span>.</p>
+<p>Nosso problema é obter a probabilidade incondicional do evento “<span class="math inline">\(W\)</span>: o carcereiro diz que <span class="math inline">\(B\)</span> morre”. Em quais situações isso pode ocorrer? (Estamos usando o teorema da probabilidade total.)</p>
+<p><span class="math display">\[\begin{align*}
+  W = (W\cap A)\cup(W\cap B)\cup(W\cap C)
+\end{align*}\]</span></p>
+<p>Em palavras: o carcereiro diz que <span class="math inline">\(B\)</span> morre e <span class="math inline">\(A\)</span> é perdoado <span class="math inline">\((W\cap A)\)</span>, ou o carcereiro diz que <span class="math inline">\(B\)</span> morre e <span class="math inline">\(B\)</span> é perdoado <span class="math inline">\((W\cap B)\)</span>, ou o carcereiro diz que <span class="math inline">\(B\)</span> morre e <span class="math inline">\(C\)</span> é perdoado <span class="math inline">\((W\cap C)\)</span>.</p>
+<p>Aplicando a função probabilidade a ambos os lados da igualdade de conjuntos acima, e utilizando o axioma da adiditivade finita <strong>A3</strong>, escrevemos</p>
+<p><span class="math display">\[\begin{align*}
+  \Pr(W) = \Pr(W\cap A)+\Pr(W\cap B)+\Pr(W\cap C)
+\end{align*}\]</span></p>
+<p>Da definição de probabilidades condicionais, escrevemos <span class="math display">\[\begin{align*}
+  \Pr(W) = \Pr(W|A)\Pr(A)+\Pr(W|B)\Pr(B)+\Pr(W|C)\Pr(C)
+\end{align*}\]</span></p>
+<ul>
+<li>Primeiro repare que <span class="math inline">\((W\cap B)=\emptyset\)</span>. O carcereiro nunca vai falar que <span class="math inline">\(B\)</span> morre se <span class="math inline">\(B\)</span> for o prisioneiro perdoado, então <span class="math inline">\(\Pr(W|B)=0=\Pr(W\cap B)\)</span>.</li>
+<li>Se <span class="math inline">\(A\)</span> for o prisioneiro perdoado, então o carcereiro é indiferente em dizer que <span class="math inline">\(B\)</span> ou <span class="math inline">\(C\)</span> vai morrer, então <span class="math inline">\(\Pr(W|A)=1/2\)</span>.</li>
+<li>Finalmente, se <span class="math inline">\(C\)</span> for o prisioneiro perdoado, então necessariamente o carcereiro dirá a <span class="math inline">\(A\)</span> que <span class="math inline">\(B\)</span> será executado (ou estará dando informação adicional a <span class="math inline">\(A\)</span>), então <span class="math inline">\(\Pr(W|C)=1\)</span>.</li>
+</ul>
+<p><span class="math display">\[\begin{align*}
+  \Pr(W) &amp;= \Pr(W|A)\Pr(A) + \Pr(W|B)\Pr(B) + \Pr(W|C)\Pr(C) \\
+  &amp;= \frac{1}{2}\times\frac{1}{3}+0\times\frac{1}{3}+1\times\frac{1}{3} \\
+  &amp;=1/2
+\end{align*}\]</span></p>
+<p>E finalmente calculamos</p>
+<p><span class="math display">\[\begin{align*}
+  \Pr(A|W) = \frac{\Pr(W|A)\Pr(A)}{\Pr(W)} = \Pr(A) = \frac{1}{3}
+\end{align*}\]</span></p>
+<p>O erro no raciocínio do prisioneiro <span class="math inline">\(A\)</span> é interpretar <span class="math inline">\(W\)</span> como <span class="math inline">\(B^c\)</span>: “<span class="math inline">\(B\)</span> não será o prisioneiro perdoado”.</p>
+</div>
+</div>
+</div>
+<div id="exm-monty-hall" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3.4</strong></span> <strong>(Problema de Monty-Hall)</strong> Em um programa de auditório, três portas <span class="math inline">\(A,B,C\)</span> fechadas lhe são oferecidas. Atrás de apenas uma delas se encontra um prêmio. Você ganha o prêmio se escolher a porta correta.</p>
 <ol type="1">
 <li>Você escolhe uma entre as portas <span class="math inline">\(A,B,C\)</span>.</li>
 <li>Monty, que sabe atrás de qual porta está o prêmio, abre uma das portas que você não escolheu e mostra que o prêmio não estava atrás dessa porta.</li>
 <li>A você, então, é oferecida a oportunidade de trocar a porta escolhida para a outra porta fechada restante.</li>
 </ol>
 <p>Você deve trocar? Faz alguma diferença para sua probabilidade de obter o prêmio?</p>
-</section></section><section id="independência-entre-dois-eventos" class="level3"><h3 class="anchored" data-anchor-id="independência-entre-dois-eventos">Independência entre dois eventos</h3>
-<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Definição: Independência entre dois eventos">
-<div class="callout-header d-flex align-content-center">
+</div>
+<div class="callout callout-style-simple callout-caution no-icon callout-empty-content callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Definição: Independência entre dois eventos
+<span class="screen-reader-only">Caution</span>Solução
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Dizemos que dois eventos <span class="math inline">\(A,B\subset\Omega\)</span> são independentes se</p>
+
+</div>
+</div>
+</div>
+</section><section id="independência-entre-eventos" class="level3" data-number="3.6.3"><h3 data-number="3.6.3" class="anchored" data-anchor-id="independência-entre-eventos">
+<span class="header-section-number">3.6.3</span> Independência entre eventos</h3>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-independencia-dois-eventos" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 3.8</strong></span> <strong>(Independência entre dois eventos)</strong> Dizemos que dois eventos <span class="math inline">\(A,B\subset\Omega\)</span> são independentes se</p>
 <p><span class="math display">\[\begin{align*}
   \Pr(A\cap B) = \Pr(A)\Pr(B).
 \end{align*}\]</span></p>
 </div>
 </div>
-</section><section id="independência-entre-vários-eventos" class="level3"><h3 class="anchored" data-anchor-id="independência-entre-vários-eventos">Independência entre vários eventos</h3>
+</div>
+</div>
 <p>A definição de independência entre dois eventos é bem direta e fácil de se checar. Quando estamos tratando de uma coleção de eventos, os requerimentos para independência se tornam mais rigorosos.</p>
-<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Definição: Independência entre uma coleção de eventos">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Definição: Independência entre uma coleção de eventos
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Uma coleção de eventos <span class="math inline">\(A_1, \dots, A_n\)</span> são ditos <strong>(mutuamente) independentes</strong> se, para qualquer subcoleção <span class="math inline">\(A_{i_1}, A_{i_2}, \dots, A_{i_k}\)</span>, tivermos</p>
+<div class="callout-body-container">
+<div id="def-independencia-varios-eventos" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 3.9</strong></span> <strong>(Independência entre vários eventos)</strong> Uma coleção de eventos <span class="math inline">\(A_1, \dots, A_n\)</span> são ditos <strong>(mutuamente) independentes</strong> se, para qualquer subcoleção <span class="math inline">\(A_{i_1}, A_{i_2}, \dots, A_{i_k}\)</span>, tivermos</p>
 <p><span class="math display">\[\begin{align*}
   \Pr\left( \cup^k_{j=1} A_{i_j} \right) = \prod_{j=1}^k \Pr(A_{i_j}).
 \end{align*}\]</span></p>
@@ -761,8 +876,10 @@ Figure&nbsp;3.2
 <p>Analogamente, a independência entre uma coleção <span class="math inline">\(A,B,C,D\)</span> com quatro eventos definidos em <span class="math inline">\(\Omega\)</span>, requer <span class="math inline">\({4\choose 2}=6\)</span> condições de independência “dois a dois”, <span class="math inline">\({4\choose 3} = 4\)</span> condições de independência “três a três”, e <span class="math inline">\({4\choose 4}=1\)</span> condição de independência “quatro a quatro”.</p>
 </div>
 </div>
-<section id="exemplo-2" class="level4"><h4 class="anchored" data-anchor-id="exemplo-2">Exemplo:</h4>
-<p>Considere o espaço amostral composto pelas <span class="math inline">\(3!\)</span> permutações das letras <span class="math inline">\(a,b,c\)</span>, combinadas com as três repetições de cada letra. Ou seja,</p>
+</div>
+</div>
+<div id="exm-violacao-independencia-letras" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3.5</strong></span> Considere o espaço amostral composto pelas <span class="math inline">\(3!\)</span> permutações das letras <span class="math inline">\(a,b,c\)</span>, combinadas com as três repetições de cada letra. Ou seja,</p>
 <p><span class="math display">\[\begin{align*}
   S = \left\{\begin{matrix} (a,a,a), &amp; (b,b,b), &amp; (c,c,c), \\ (a,b,c), &amp; (b,c,a), &amp; (c,b,a), \\
   (a,c,b), &amp; (b,a,c), &amp; (c,a,b)
@@ -779,9 +896,20 @@ Figure&nbsp;3.2
 <li>O que podemos afirmar sobre a independência entre <span class="math inline">\(A_1\)</span> e <span class="math inline">\(A_2\)</span>?</li>
 <li>E sobre a independência mútua entre <span class="math inline">\(A_1, A_2\)</span> e <span class="math inline">\(A_3\)</span>?</li>
 </ul>
+</div>
+</section></section><section id="exercícios" class="level2" data-number="3.7"><h2 data-number="3.7" class="anchored" data-anchor-id="exercícios">
+<span class="header-section-number">3.7</span> Exercícios</h2>
 
 
-</section></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-bussab2010estatistica" class="csl-entry" role="listitem">
+Bussab, Wilton O, and Pedro A Morettin. 2010. <em>Estat<span>ı́</span>stica b<span>á</span>sica</em>. 6th ed. Saraiva.
+</div>
+<div id="ref-casella2002statistical" class="csl-entry" role="listitem">
+Casella, George, and Roger L. Berger. 2002. <em>Statistical Inference</em>. 2nd ed. Belmont, CA: Duxbury.
+</div>
+</div>
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -1010,13 +1138,13 @@ Figure&nbsp;3.2
         }
   });
   </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="../capitulos/01-introducao.html" class="pagination-link" aria-label="01-introducao.html">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">01-introducao.html</span></span>
+      <a href="../capitulos/02-estatistica-descritiva.html" class="pagination-link" aria-label="02-estatistica-descritiva.html">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">02-estatistica-descritiva.html</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../exercicios/01-lista-revisao.html" class="pagination-link" aria-label="01-lista-revisao.html">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">01-lista-revisao.html</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../capitulos/04-variaveis-aleatorias.html" class="pagination-link" aria-label="Variáveis Aleatórias">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Variáveis Aleatórias</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

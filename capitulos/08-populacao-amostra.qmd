@@ -1,0 +1,175 @@
+---
+title: "População e Amostra, Parâmetro e Estatística"
+format: html
+---
+
+Referências:
+
+
+::: {.callout-note}
+::: {#def-amostra-aleatoria}
+**(Amostra aleatória)** A sequência de variáveis aleatórias $X_1,X_2,\dots,X_n$ é chamada amostra aleatória de tamanho $n$, retirada de uma população $f(x)$ se tivermos que:
+
+  - $X_1,X_2,\dots,X_n$ são variáveis aleatórias independentes. (Independentes.)
+  - A função densidade (ou massa) de probabilidades de cada $X_j$ é a mesma $f(x)$. (Identicamente distribuídas.)
+
+Alternativamente, podemos dizer que a sequência de variáveis aleatórias $X_1,\dots,X_n$ é i.i.d (independentes, identicamente distribuídas).
+
+:::
+:::
+
+::: {.callout-note}
+::: {#def-estatistica}
+**(Estatística)** Uma estatística é uma característica da amostra. Ou seja, a estatística $T(\cdot)$ é qualquer função cujo domínio inclua os valores da amostra $X_1,\dots,X_n$.
+:::
+:::
+
+São exemplos de estatísticas:
+
+  - A média amostral: $\bar X = \frac{1}{n}\sum^n_{j=1}X_j$
+  - A variância amostral: $s^2 = \frac{1}{n-1}\sum^n_{j=1}(X_j-\bar X)$
+  - O valor mínimo na amostra: $X_{(1)}=\min(X_1,\dots,X_n)$
+  - O valor máximo na amostra: $X_{(n)}=\max(X_1,\dots,X_n)$
+  - Qualquer estatística de ordem $X_(j)$.
+  - Qualquer quantil empírico.
+  
+::: {.callout-note}
+::: {#def-parametro}
+**(Parâmetro)** Um parâmetro é uma medida usada para descrever uma característica da população.
+:::
+:::
+
+Abaixo seguem algumas características populacionais (parâmetros) associadas às suas contrapartes amostrais (estatísticas).
+
+| Denominação             | População                    | Amostra                                 |
+| ----------------------- | ---------------------------- | --------------------------------------- |
+| Média                   | $\mu = E(X)$                 | $\bar X = \sum X_i / n$                 |
+| Mediana                 | $\mathrm{Md} = Q_2$          | $\mathrm{md} = q_2$                     |
+| Variância               | $\sigma^2 = \mathrm{Var}(X)$ | $S^2 = \sum (X_i - \bar X)^2 / (n - 1)$ |
+| Nº de elementos         | $N$                          | $n$                                     |
+| Proporção               | $p$                          | $\hat p$                                |
+| Quantil                 | $Q(p)$                       | $q(p)$                                  |
+| Quartis                 | $Q_1, Q_2, Q_3$              | $q_1, q_2, q_3$                         |
+| Intervalo inter-quartil | $d_Q = Q_3 - Q_1$            | $d_q = q_3 - q_1$                       |
+| Função densidade        | $f(x)$                       | histograma                              |
+| Função de distribuição  | $F(x)$                       | $F_e(x)$                                |
+
+
+## Distribuição da Média Amostral
+
+A estatística $\bar X$, a média amostral, é definida como
+
+\begin{align*}
+  \bar X = \frac{1}{n}\sum^n_{j=1} x_j.
+\end{align*}
+
+
+Suponha uma amostra aleatória de tamanho $n=5$ retirada de uma população com distribuição Poisson com parâmetro $\lambda=2$.
+
+```{r}
+set.seed(1729)
+n = 5
+x_amostra_1 = rpois(n,lambda=2)
+print(x_amostra_1)
+xbar_1 = mean(x_amostra_1)
+print(xbar_1)
+```
+
+Observada uma amostra particular $\mathbf{x^1}=\{x_1^1,x_2^1,\dots,x^1_n \}$, calculamos um único valor $\bar x_{obs}^1$. 
+
+Mas esse valor $\bar x_{obs}^1$ depende dos sorteios dos valores da amostra $\{x^1_1,x^1_2,\dots,x^1_n\}$. Se tivessemos sorteado uma amostra diferente, obteriamos outro valor para $\bar x_{obs}$.
+
+```{r}
+x_amostra_2 = rpois(n, lambda=2)
+print(x_amostra_2)
+xbar_2 = mean(x_amostra_2)
+print(xbar_2)
+```
+
+Uma estatística $T(\cdot)$ tem uma certa distribuição de probabilidades que descreve os possíveis valores adotados por tal estatística, quando calculada usando diferentes amostras. Dizemos que é a **distribuição de amostragem da estatística $T(\cdot)$**.
+
+### Valor esperado da média amostral
+
+Cada elemento $X_j$ da amostra $X_1,\dots,X_n$ é uma variável aleatória com mesma distribuição $f(x)$. A média amostral é construída como a soma desses elementos $X_j$, divididos pela quantidade $n$ de elementos na amostra.
+
+\begin{align*}
+  \bar X = \frac{X_1+X_2+\cdots+X_n}{n}
+\end{align*}
+
+Aplicando o operador valor esperado $E[\cdot]$,
+
+\begin{align*}
+  E[\bar X] &= E\left[\frac{X_1+X_2+\cdots+X_n}{n}\right] \\
+  &= \frac{1}{n}E\left[X_1+X_2+\cdots+X_n\right] \tag{$E[aY]=aE[Y]$}\\
+  &= \frac{1}{n}\left(E[X_1]+E[X_2]+\cdots+E[X_n]\right) \tag{$E[Y+Z]=E[Y]+E[Z]$}\\
+  &= \frac{1}{n}\left(E[X]+E[X]+\cdots+E[X]\right) \tag{$f(X_1)=\cdots=f(X_n)$}\\
+  &= \frac{1}{n}\left(nE[X]\right) \\
+  &= E[X] = \mu_X
+\end{align*}
+
+Então o valor esperado da média amostral é a verdadeira média populacional: $E[\bar X]=E[X]$.
+
+---
+
+Concretamente:
+
+  1. Coletamos $k=1,2,\dots,M$ diferentes amostras aleatórias de uma certa população $f(x)$, todas com mesmo tamanho amostral $n$:
+  
+  \begin{align*}
+    \mathbf{x}^1 &= \{x^1_1,x_2^1,\dots,x^1_n\}, \\
+    \mathbf{x}^2 &= \{x^2_1,x_2^2,\dots,x^2_n\}, \\
+    &\vdots \\
+    \mathbf{x}^M &= \{x^M_1,x^M_2,\dots,x^M_n\}.
+  \end{align*}
+
+  2.  Calculamos $M$ diferentes médias amostrais $\bar x^k$, $k=1,2,\dots,M$:
+
+\begin{align*}
+  \bar x^1 &= \sum^n_{j=1}x^1_j/n, \\
+  \bar x^2 &= \sum^n_{j=1}x^2_j/n, \\
+  &\vdots \\  
+  \bar x^M &= \sum^n_{j=1}x^M_j/n.
+\end{align*}
+
+- Calculamos a média aritmética dessas $M$ médias amostrais calculadas com base em amostras diferentes:
+
+\begin{align*}
+  E[\bar X] = \frac{\bar x^1 + \bar x^2 + \cdots + \bar x^M}{M}.
+\end{align*}
+
+- É essa média das médias amostrais, calculadas com base em amostras diferentes, cujo valor esperado é a verdadeira média populacional $E[X]$. É nesse sentido que dizemos que o valor esperado da distribuição de amostragem de $\bar X$ é a verdadeira média populacional: $E[\bar X]=E[X]=\mu_X$.
+
+Abaixo uma ilustração numérica no caso em que a população original é $\text{Pois.}(\lambda)$.
+
+```{r}
+n = 5
+M = 50
+lambda = 3
+Xbars = vector(length=M)
+for (k in 1:M){
+  amostra_k = rpois(n, lambda=lambda)
+  Xbars[k] = mean(amostra_k)
+}
+print(paste("Média das médias amostrais:", mean(Xbars)))
+print(paste("Verdadeira média populacional:", lambda))
+```
+---
+
+::: {.callout-tip title="Comentário importante"}
+
+Em situações práticas, na grande maioria dos casos, só observaremos uma única amostra $\mathbf x = \{x_1,\dots,x_n\}$. De modo que a ilustração acima é, fundamentalmente, um exercício teórico.
+
+A utilidade prática é: conhecendo a distribuição de amostragem da estatística $T(\cdot)$, conseguimos fazer afirmações (inferência) sobre parâmetros populacionais desconhecidos $\mathbf{\theta}$, com base na amostra observada $\{x_1,\dots,x_n\}$.
+
+:::
+
+### Variância da média amostral
+
+### Intervalo de confiança para a média populacional
+
+
+Ver [https://pedrochaim.shinyapps.io/simula-media-amostral/](https://pedrochaim.shinyapps.io/simula-media-amostral/) para simulações numéricas.
+
+## Teorema do Limite Central
+
+## Distribuição da Proporção Amostral

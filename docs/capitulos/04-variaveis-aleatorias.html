@@ -17,6 +17,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -197,12 +232,31 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">06-distribuicoes-continuas.html</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/07-distribuicao-normal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">07-distribuicao-normal</span></span></a>
+  </div>
+</li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Inferência Estatística</span></span>
-  </li>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Inferência Estatística</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/08-populacao-amostra.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">População e Amostra, Parâmetro e Estatística</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <span class="sidebar-item-text sidebar-link text-start">
  <span class="menu-text">Regressão Linear</span></span>
@@ -210,7 +264,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">references.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">references.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -254,13 +308,26 @@ window.Quarto = {
   <li>
 <a href="#m%C3%A9dia-de-uma-vari%C3%A1vel-aleat%C3%B3ria" id="toc-média-de-uma-variável-aleatória" class="nav-link" data-scroll-target="#m%C3%A9dia-de-uma-vari%C3%A1vel-aleat%C3%B3ria"><span class="header-section-number">4.3</span> Média de uma Variável Aleatória</a>
   <ul>
-<li><a href="#propriedades-do-valor-esperado-de-uma-vari%C3%A1vel-aleat%C3%B3ria" id="toc-propriedades-do-valor-esperado-de-uma-variável-aleatória" class="nav-link" data-scroll-target="#propriedades-do-valor-esperado-de-uma-vari%C3%A1vel-aleat%C3%B3ria"><span class="header-section-number">4.3.1</span> Propriedades do valor esperado de uma variável aleatória</a></li>
+<li><a href="#propriedades-do-valor-esperado" id="toc-propriedades-do-valor-esperado" class="nav-link" data-scroll-target="#propriedades-do-valor-esperado"><span class="header-section-number">4.3.1</span> Propriedades do valor esperado</a></li>
   <li><a href="#m%C3%A9dia-de-uma-fun%C3%A7%C3%A3o-de-uma-vari%C3%A1vel-aleat%C3%B3ria" id="toc-média-de-uma-função-de-uma-variável-aleatória" class="nav-link" data-scroll-target="#m%C3%A9dia-de-uma-fun%C3%A7%C3%A3o-de-uma-vari%C3%A1vel-aleat%C3%B3ria"><span class="header-section-number">4.3.2</span> Média de uma função de uma variável aleatória</a></li>
   </ul>
 </li>
-  <li><a href="#vari%C3%A2ncia-de-uma-vari%C3%A1vel-aleat%C3%B3ria" id="toc-variância-de-uma-variável-aleatória" class="nav-link" data-scroll-target="#vari%C3%A2ncia-de-uma-vari%C3%A1vel-aleat%C3%B3ria"><span class="header-section-number">4.4</span> Variância de uma Variável Aleatória</a></li>
-  <li><a href="#vari%C3%A1veis-aleat%C3%B3rias-cont%C3%ADnuas" id="toc-variáveis-aleatórias-contínuas" class="nav-link" data-scroll-target="#vari%C3%A1veis-aleat%C3%B3rias-cont%C3%ADnuas"><span class="header-section-number">4.5</span> Variáveis Aleatórias Contínuas</a></li>
-  <li><a href="#vari%C3%A1veis-aleat%C3%B3rias-multidimensionais" id="toc-variáveis-aleatórias-multidimensionais" class="nav-link" data-scroll-target="#vari%C3%A1veis-aleat%C3%B3rias-multidimensionais"><span class="header-section-number">4.6</span> Variáveis Aleatórias Multidimensionais</a></li>
+  <li>
+<a href="#vari%C3%A2ncia-de-uma-vari%C3%A1vel-aleat%C3%B3ria" id="toc-variância-de-uma-variável-aleatória" class="nav-link" data-scroll-target="#vari%C3%A2ncia-de-uma-vari%C3%A1vel-aleat%C3%B3ria"><span class="header-section-number">4.4</span> Variância de uma Variável Aleatória</a>
+  <ul>
+<li><a href="#propriedades-da-vari%C3%A2ncia" id="toc-propriedades-da-variância" class="nav-link" data-scroll-target="#propriedades-da-vari%C3%A2ncia">Propriedades da variância</a></li>
+  <li><a href="#representa%C3%A7%C3%A3o-alternativa-da-vari%C3%A2ncia" id="toc-representação-alternativa-da-variância" class="nav-link" data-scroll-target="#representa%C3%A7%C3%A3o-alternativa-da-vari%C3%A2ncia">Representação alternativa da variância</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#vari%C3%A1veis-aleat%C3%B3rias-cont%C3%ADnuas" id="toc-variáveis-aleatórias-contínuas" class="nav-link" data-scroll-target="#vari%C3%A1veis-aleat%C3%B3rias-cont%C3%ADnuas"><span class="header-section-number">4.5</span> Variáveis Aleatórias Contínuas</a>
+  <ul>
+<li><a href="#m%C3%A9dia-e-vari%C3%A2ncia-de-uma-vari%C3%A1vel-aleat%C3%B3ria-cont%C3%ADnua" id="toc-média-e-variância-de-uma-variável-aleatória-contínua" class="nav-link" data-scroll-target="#m%C3%A9dia-e-vari%C3%A2ncia-de-uma-vari%C3%A1vel-aleat%C3%B3ria-cont%C3%ADnua">Média e variância de uma variável aleatória contínua</a></li>
+  </ul>
+</li>
+  <li><a href="#fun%C3%A7%C3%A3o-quant%C3%ADlica" id="toc-função-quantílica" class="nav-link" data-scroll-target="#fun%C3%A7%C3%A3o-quant%C3%ADlica"><span class="header-section-number">4.6</span> Função Quantílica</a></li>
+  <li><a href="#vari%C3%A1veis-aleat%C3%B3rias-multidimensionais" id="toc-variáveis-aleatórias-multidimensionais" class="nav-link" data-scroll-target="#vari%C3%A1veis-aleat%C3%B3rias-multidimensionais"><span class="header-section-number">4.7</span> Variáveis Aleatórias Multidimensionais</a></li>
+  <li><a href="#exercicios" id="toc-exercicios" class="nav-link" data-scroll-target="#exercicios"><span class="header-section-number">4.8</span> Exercicios</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -401,6 +468,7 @@ window.Quarto = {
 f:X[\Omega]\longrightarrow \mathbb R
 \end{align*}\]</span>
 </li>
+<li>A função massa de probabilidade é o análogo teórico ao histograma de um conjunto de dados.</li>
 </ul>
 <hr>
 <div id="exm-fmp-1" class="theorem example">
@@ -485,7 +553,30 @@ Figure&nbsp;4.2: Em cinza, <span class="math inline">\(f(x)=\Pr(X=x)\)</span>; e
 </div>
 </div>
 </div>
-<p>[Exemplo distribuicao geométrica]</p>
+<div id="exm-va-geometrica" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4.4</strong></span> Suponha um experimento que consiste em lançar uma moeda sucessivamente até se obter a primeira cara. Chame <span class="math inline">\(H=\)</span>cara, <span class="math inline">\(T=\)</span>coroa. Então alguns possíveis resultados para nosso experimento (elementos do espaço amostral) são: <span class="math display">\[\begin{align*}
+  \omega_1 &amp;= (H),\\
+  \omega_2 &amp;= (T,H),\\
+  \omega_3 &amp;= (T,T,H).
+\end{align*}\]</span></p>
+<p>O espaço amostral <span class="math inline">\(\Omega\)</span> é então <span class="math display">\[\begin{align*}
+  \Omega = \{(H), (T,H), (T,T,H), (T,T,T,H), \dots \}
+\end{align*}\]</span></p>
+<p>Esse espaço amostral é infinito, mas é contável (um conjunto enumerável).</p>
+<p>Defina a variável aleatória <span class="math inline">\(X=\)</span>quantidade de lançamentos até obtermos a primeira cara <span class="math inline">\(H\)</span>. Como os lançamentos são independentes e precisamos de <span class="math inline">\(x-1\)</span> coroas até a primeira cara, não é difícil perceber que</p>
+<p><span class="math display">\[\begin{align*}
+  \Pr(X=x) = (1-p)^{x-1}p, \quad x=1,2,\dots.
+\end{align*}\]</span></p>
+<p>Essa é a função massa de probabilidade da distribuição geométrica. (Obs.: uma “variável aleatória geométrica” e uma “distribuição geométrica” são sinônimos.)</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="04-variaveis-aleatorias_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
 </section></section><section id="média-de-uma-variável-aleatória" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="média-de-uma-variável-aleatória">
 <span class="header-section-number">4.3</span> Média de uma Variável Aleatória</h2>
 <div class="callout callout-style-simple callout-note no-icon">
@@ -573,8 +664,8 @@ Figure&nbsp;4.2: Em cinza, <span class="math inline">\(f(x)=\Pr(X=x)\)</span>; e
 </tr>
 </tbody>
 </table>
-<section id="propriedades-do-valor-esperado-de-uma-variável-aleatória" class="level3" data-number="4.3.1"><h3 data-number="4.3.1" class="anchored" data-anchor-id="propriedades-do-valor-esperado-de-uma-variável-aleatória">
-<span class="header-section-number">4.3.1</span> Propriedades do valor esperado de uma variável aleatória</h3>
+<section id="propriedades-do-valor-esperado" class="level3" data-number="4.3.1"><h3 data-number="4.3.1" class="anchored" data-anchor-id="propriedades-do-valor-esperado">
+<span class="header-section-number">4.3.1</span> Propriedades do valor esperado</h3>
 <p>Sejam <span class="math inline">\(X,Y\)</span> uma variávei aleatórias definidas no mesmo espaço amostral <span class="math inline">\(\Omega\)</span> e <span class="math inline">\(a,b\)</span> números reais. Então as propriedades abaixo são válidas:</p>
 <ol type="a">
 <li>
@@ -605,6 +696,7 @@ Figure&nbsp;4.2: Em cinza, <span class="math inline">\(f(x)=\Pr(X=x)\)</span>; e
 </div>
 </div>
 <p>Esse resultado facilita enormemente o cálculo de momentos da variável. Em especial vai ser importante para calcularmos variância.</p>
+<hr>
 <p>Continuando com o <a href="#exm-variavel-aleatoria-dois-dados" class="quarto-xref">Example&nbsp;<span>4.1</span></a>, defina <span class="math inline">\(Y(X)=(X-7)^2\)</span>. Queremos <span class="math inline">\(E(Y)=E[(X-7)^2]\)</span>. Primeiro iremos construir a distribuição de probabilidades de <span class="math inline">\(Y\)</span> e calcular a média diretamente como <span class="math inline">\(E(Y)=\sum_y y\Pr(Y=y)\)</span>, depois iremos calcular <span class="math inline">\(E(Y)=\sum_x Y(x)\Pr(X=x)\)</span> e ver que os resultados são os mesmos. (Esse resultado não é imediatamente óbvio porque <span class="math inline">\(Y(X)\)</span> não é uma função bijetora!)</p>
 <p>Construindo diretamente a variável aleatória <span class="math inline">\(Y(X)=(X-7)^2\)</span>:</p>
 <table class="caption-top table">
@@ -733,12 +825,458 @@ Figure&nbsp;4.2: Em cinza, <span class="math inline">\(f(x)=\Pr(X=x)\)</span>; e
 <td style="text-align: center;"><span class="math inline">\(210/36 = 35/6\)</span></td>
 </tr>
 </tbody>
-</table></section></section><section id="variância-de-uma-variável-aleatória" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="variância-de-uma-variável-aleatória">
+</table>
+<hr>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-desigualdade-jensen" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 4.5</strong></span> <strong>(Desigualdade de Jensen)</strong> Tome <span class="math inline">\((\Omega,\mathcal{F},\Pr)\)</span> um espaço de probabilidades, <span class="math inline">\(X\)</span> uma variável aleatória definida sobre <span class="math inline">\(\Omega\)</span>, e <span class="math inline">\(\psi:X[\Omega]\rightarrow \mathbb R\)</span> uma função. Então</p>
+<ul>
+<li>Se <span class="math inline">\(\psi(\cdot)\)</span> for uma função convexa: <span class="math inline">\(E[\psi(X)]\geq \psi(E[X])\)</span>.</li>
+<li>Se <span class="math inline">\(\psi(\cdot)\)</span> for uma função côncava: <span class="math inline">\(E[\psi(X)]\leq \psi(E[X])\)</span>.</li>
+</ul>
+<p>Temos igualdade se, e somente se, <span class="math inline">\(\psi(\cdot)\)</span> for uma função linear.</p>
+</div>
+</div>
+</div>
+</div>
+</section></section><section id="variância-de-uma-variável-aleatória" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="variância-de-uma-variável-aleatória">
 <span class="header-section-number">4.4</span> Variância de uma Variável Aleatória</h2>
-</section><section id="variáveis-aleatórias-contínuas" class="level2" data-number="4.5"><h2 data-number="4.5" class="anchored" data-anchor-id="variáveis-aleatórias-contínuas">
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-variancia" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 4.6</strong></span> <strong>(Variância de uma variável aleatória discreta)</strong> A variância de uma variável aleatória <span class="math inline">\(X\)</span> é definida como o valor esperado dos desvios da média tomados ao quadrado: <span class="math display">\[\begin{align*}
+  Var(X) = E[(X-E(X))^2].
+\end{align*}\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<section id="propriedades-da-variância" class="level4"><h4 class="anchored" data-anchor-id="propriedades-da-variância">Propriedades da variância</h4>
+<ol type="a">
+<li><span class="math inline">\(Var(X+a)=Var(X)\)</span></li>
+<li><span class="math inline">\(Var(aX)=a^2Var(X)\)</span></li>
+<li><span class="math inline">\(Var(aX+b)=a^2Var(X)\)</span></li>
+<li><span class="math inline">\(Var(aX\pm bY)=a^2Var(X)+b^2Var(Y)\pm 2abCov(X,Y)\)</span></li>
+</ol></section><section id="representação-alternativa-da-variância" class="level4"><h4 class="anchored" data-anchor-id="representação-alternativa-da-variância">Representação alternativa da variância</h4>
+<p>A variância é o segundo momento centrado na média: <span class="math inline">\(Var(X) = E[(X-E(X))^2]\)</span>. Alternativamente, podemos representar a variância como uma função do primeiro momento <span class="math inline">\(E(X)\)</span> e o segundo momento <span class="math inline">\(E(X^2)\)</span> não centrados (sem subtraír a média).</p>
+<p><span class="math display">\[\begin{align*}
+  Var(X) &amp;= E[(X-E(X))^2] \\
+  &amp;= E[X^2-2XE(X)+E(X)^2] \\
+  &amp;= E(X^2)-E[2XE(X)] + E(X)^2 \\
+  &amp;= E(X^2)-2E(X)E(X)+E(X)^2 \\
+  &amp;= E(X^2)-E(X)^2.
+\end{align*}\]</span></p>
+<p>Portanto podemos escrever</p>
+<p><span class="math display">\[\begin{align*}
+  Var(X) = E(X^2)-E(X)^2.
+\end{align*}\]</span></p>
+<hr>
+<p>Ainda no <a href="#exm-variavel-aleatoria-dois-dados" class="quarto-xref">Example&nbsp;<span>4.1</span></a>, perceba que, porque <span class="math inline">\(E(X)=7\)</span>, quando fizemos <span class="math inline">\(Y=(X-7)^2\)</span> e calculamos <span class="math inline">\(E(Y)\)</span> nós estávamos computando <span class="math inline">\(Var(X)=35/6\)</span>. Vamos calcular <span class="math inline">\(Var(X)=E(X^2)-E(X)^2\)</span>.</p>
+<table class="caption-top table">
+<thead><tr class="header">
+<th style="text-align: right;"><span class="math inline">\(x\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\Pr(X = x)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(x \Pr(X = x)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(x^2 \Pr(X = x)\)</span></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: center;"><span class="math inline">\(1/36\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2/36\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(4/36\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: center;"><span class="math inline">\(2/36\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(6/36\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(18/36\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: center;"><span class="math inline">\(3/36\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(12/36\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(48/36\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: center;"><span class="math inline">\(4/36\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(20/36\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(100/36\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: center;"><span class="math inline">\(5/36\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(30/36\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(180/36\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7</td>
+<td style="text-align: center;"><span class="math inline">\(6/36\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(42/36\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(294/36\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">8</td>
+<td style="text-align: center;"><span class="math inline">\(5/36\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(40/36\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(320/36\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9</td>
+<td style="text-align: center;"><span class="math inline">\(4/36\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(36/36\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(324/36\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">10</td>
+<td style="text-align: center;"><span class="math inline">\(3/36\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(30/36\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(300/36\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">11</td>
+<td style="text-align: center;"><span class="math inline">\(2/36\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(22/36\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(242/36\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">12</td>
+<td style="text-align: center;"><span class="math inline">\(1/36\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(12/36\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(144/36\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><span class="math inline">\(\sum\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(36/36\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(252/36 = 7\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1974/36 = 329/6\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Então <span class="math display">\[\begin{align*}
+  Var(X) &amp;= E(X^2)-E(X)^2 \\
+  &amp;= 329/6 - 7^2 \\
+  &amp;= \frac{329 - 6\times 49}{6} \\
+  &amp;= \frac{35}{6}.
+\end{align*}\]</span></p>
+<hr></section></section><section id="variáveis-aleatórias-contínuas" class="level2" data-number="4.5"><h2 data-number="4.5" class="anchored" data-anchor-id="variáveis-aleatórias-contínuas">
 <span class="header-section-number">4.5</span> Variáveis Aleatórias Contínuas</h2>
-</section><section id="variáveis-aleatórias-multidimensionais" class="level2" data-number="4.6"><h2 data-number="4.6" class="anchored" data-anchor-id="variáveis-aleatórias-multidimensionais">
-<span class="header-section-number">4.6</span> Variáveis Aleatórias Multidimensionais</h2>
+<p>Agora considerarmos casos nos quais a imagem da variável aleatória é um conjunto não enumerável. Aqui não é direto atribuir probabilidade a um certo valor específico da variável aleatória (a função massa de probabilidades <span class="math inline">\(\Pr(X=x)\)</span>) como fizemos até agora.</p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-fdp" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 4.7</strong></span> <strong>(Função densidade de probabilidade)</strong> A função densidade de probabilidade (fdp) de uma variável aleatória contínua é a função <span class="math inline">\(f_X(\cdot)\)</span> que satisfaz <span class="math display">\[\begin{align*}
+  \Pr(X\leq x)=F_X(x)=\int_{-\infty}^x f_X(t)dt, \text{ para todo }x\in X[\Omega].
+\end{align*}\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<p>Comentários:</p>
+<ul>
+<li>O valor <span class="math inline">\(f_X(x)\)</span> (fdp) não tem a mesma interpretação <span class="math inline">\(\Pr(X=x)\)</span> (fmp) do caso discreto.</li>
+<li>
+<span class="math inline">\(f_x(x)\)</span> não é uma probabilidade (é uma “densidade”) e não precisa adotar valores entre 0 e 1 (o que tem que somar 1 é a área total abaixo de <span class="math inline">\(f_X(\cdot)\)</span>).</li>
+<li>Podemos interpretar <span class="math inline">\(f_x(x)\)</span> como o análogo teórico à densidade de frequência de uma classe em um histograma (normalizado) de um conjunto de dados.</li>
+<li>O tratamento de variáveis aleatórias contínuas requer, invariavelmente, a aplicação de cálculo diferencial e integral. Dito isso, manipulações algébricas não são nosso foco. O importante é entender como os conceitos se relacionam e conseguir aplicar em problemas práticos.</li>
+<li>Em muitos casos nem é possível obter uma fórmula fechada para a função densidade acumulada <span class="math inline">\(F_X(\cdot)\)</span>.</li>
+</ul>
+<hr>
+<div id="exm-dist-exponencial" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4.5</strong></span> <strong>(Distribuição exponencial)</strong> Dizemos que a variável aleatória <span class="math inline">\(X\)</span> tem distribuição exponencial com parâmetro de escala <span class="math inline">\(\beta\)</span> se sua função densidade de probabilidade tiver a forma</p>
+<p><span class="math display">\[\begin{align*}
+  f(x; \beta) = \begin{cases}
+    \frac{1}{\beta}e^{-x/\beta}, \quad \text{ se }x\geq 0,\\
+    0, \quad \text{ caso contrário}.
+  \end{cases}
+\end{align*}\]</span></p>
+<p>A distribuição exponencial é o análogo contínuo à distribuição geométrica. Esse modelo é bastante utilizado para modelar o tempo até a ocorrência de um certo evento (por exemplo o tempo de espera em um <em>call center</em>, ou o tempo até a falha de um certo componente mecânico).</p>
+<p>Por simplicidade, suponha <span class="math inline">\(\beta=1\)</span>. (Não mostraremos agora, mas <span class="math inline">\(E(X)=\beta\)</span> e <span class="math inline">\(Var(X)=\beta^2\)</span>. É o tempo médio até a ocorrência do evento. Quanto maior <span class="math inline">\(\beta\)</span>, esperamos ver maiores valores de <span class="math inline">\(X\)</span>.)</p>
+<p>Queremos, por exemplo <span class="math inline">\(\Pr(X\leq 2)\)</span>. Vamos calcular a função de densidade acumulada <span class="math inline">\(F(X)\)</span> e avaliar em <span class="math inline">\(x=2\)</span>.</p>
+<p><span class="math display">\[\begin{align*}
+  F(X;\beta=1)=\Pr(X\leq x) &amp;= \int_0^\infty e^{-t}dt \\
+  &amp;= \left[-e^{-t}\right]^x_0 = -e^{-x}-(-e^{-0}) \\
+  &amp;= 1-e^{-x}
+\end{align*}\]</span></p>
+<p>Então <span class="math inline">\(F(2;\beta=1)=1-e^{-2}\approx 0.864664\)</span>. É a área abaixo da função densidade de probabilidade <span class="math inline">\(f(x)\)</span> para <span class="math inline">\(0&lt;x&lt;2\)</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="04-variaveis-aleatorias_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="614"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Alternativamente, podemos olhar para a função densidade acumulada <span class="math inline">\(F(X)=\Pr(X\leq x)\)</span>. Daí <span class="math inline">\(\Pr(X\leq 2)\)</span> é o valor <span class="math inline">\(F(2)\)</span> em si.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="04-variaveis-aleatorias_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="614"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Se quiseremos, por exemplo, <span class="math inline">\(\Pr(1\leq X\leq 3)\)</span>, avaliamos a área abaixo de <span class="math inline">\(f(x)\)</span> para <span class="math inline">\(1\leq x \leq 3\)</span>.</p>
+<p><span class="math display">\[\begin{align*}
+  \Pr(1\leq X \leq 3) &amp;= \int_1^3 f(x)dx \\
+  &amp;=F(3)-F(1)\\
+  &amp;=(1-e^{-3})-(1-e^{-1})\\
+  &amp;=e^{-1}-e^{-3}\approx 0.31809
+\end{align*}\]</span></p>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="04-variaveis-aleatorias_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="614"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+<section id="média-e-variância-de-uma-variável-aleatória-contínua" class="level4"><h4 class="anchored" data-anchor-id="média-e-variância-de-uma-variável-aleatória-contínua">Média e variância de uma variável aleatória contínua</h4>
+<p>Quando <span class="math inline">\(X\)</span> é uma variável aleatória contínua a definição de média (valor esperado) é análoga ao caso discreto, mas substituimos somatórios por integrais.</p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-valor-esperado-continuo" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 4.8</strong></span> <strong>(Média de uma variável aleatória contínua)</strong> O valor esperado, ou média, de uma variável aleatória contínua <span class="math inline">\(X\)</span>, denotado <span class="math inline">\(E[X]\)</span>, ou <span class="math inline">\(\mu_X\)</span>, é definido como <span class="math display">\[\begin{align*}
+  E[X] = \int_{-\infty}^\infty xf(x)dx.
+\end{align*}\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<p>Não vou enunciar formalmente, mas podemos tomar <span class="math inline">\(E(g(X))\)</span> (valor esperado de uma função da variável) usando as probabilidades originais <span class="math inline">\(f(x)\)</span> da mesma forma que vimos no caso discreto.</p>
+<hr>
+<div id="exm-media-distribuicao-uniforme" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4.6</strong></span> <strong>(Média da distribuição uniforme)</strong> Dizemos que a variável aleatória <span class="math inline">\(X\)</span> tem distribuição uniforme se ela adotar valores entre <span class="math inline">\(a\)</span> (valor mínimo) e <span class="math inline">\(b\)</span> (valor máximo), e quaisquer intervalos de mesma amplitude forem igualmente prováveis.</p>
+<p>A função densidade de probabilidade de <span class="math inline">\(X\sim \text{Unif.}(a,b)\)</span> é <span class="math display">\[\begin{align*}
+  f(x;a,b) = \begin{cases}
+    \frac{1}{b-a}, \text{ se }a\leq x\leq b,\\
+    0, \text{ caso contrário}
+  \end{cases}
+\end{align*}\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="04-variaveis-aleatorias_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="614"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Vamos calcular <span class="math inline">\(E(X)\)</span>.</p>
+<p><span class="math display">\[\begin{align*}
+  E(X) &amp;= \int_a^b \frac{x}{b-a}dx \\
+  &amp;=\frac{1}{b-a}\int_a^b xdx \\
+  &amp;=\frac{1}{b-a}\left[\frac{x^2}{2}\right]^b_a\\
+  &amp;=\frac{1}{b-a}\left(\frac{b^2-a^2}{2}\right)\\
+  &amp;=\frac{a+b}{2}.
+\end{align*}\]</span></p>
+<p>Faz sentido intuitivo, <span class="math inline">\((a+b)/2\)</span> é o ponto médio do intervalo <span class="math inline">\([a,b]\)</span>.</p>
+</div>
+<hr>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-variancia-continuo" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 4.9</strong></span> <strong>(Variância de uma variável aleatória contínua)</strong> A variância de uma variável aleatória contínua <span class="math inline">\(X\)</span>, denotada como <span class="math inline">\(Var(X)\)</span>, ou <span class="math inline">\(\sigma^2_X\)</span>, é definida como <span class="math display">\[\begin{align*}
+  Var(X) = \int_{-\infty}^\infty (x-E(X))^2 f(x)dx.
+\end{align*}\]</span> Equivalentemente, <span class="math display">\[\begin{align*}
+  Var(X) = \int_{-\infty}^\infty x^2 f(x)dx - \left(\int_{-\infty}^\infty xf(x)dx\right)^2.
+\end{align*}\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+<div id="exm-variancia-distribuicao-uniforme" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4.7</strong></span> <strong>(Variância da distribuição uniforme)</strong> Vamos calcular a variância da distribuição uniforme usando <span class="math inline">\(Var(X)=E(X^2)-E(X)^2\)</span>. Temos <span class="math inline">\(E(X)=(a+b)/2\)</span>, falta <span class="math inline">\(E(X^2)\)</span>.</p>
+<p><span class="math display">\[\begin{align*}
+  E(X^2) &amp;= \int_{-\infty}^\infty x^2 f(x)dx \\
+  &amp;= \int_a^b \frac{x^2}{b-a}dx \\
+  &amp;= \frac{1}{b-a} \left[\frac{x^3}{3}\right]^b_a\\
+  &amp;= \frac{b^3-a^3}{3(b-a)}.
+\end{align*}\]</span></p>
+<p>Então,</p>
+<p><span class="math display">\[\begin{align*}
+  Var(X) &amp;= E(X^2)-E(X)^2 \\
+  &amp;= \frac{b^3-a^3}{3(b-a)}-\left(\frac{a+b}{2}\right)^2.
+\end{align*}\]</span></p>
+<p>Depois de algumas manipulações algébricas (a cargo do leitor) podemos escrever</p>
+<p><span class="math display">\[\begin{align*}
+  Var(X) = \frac{(b-a)^2}{12}.
+\end{align*}\]</span></p>
+</div>
+<hr>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-momentos" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 4.10</strong></span> <strong>(Momento de uma variável aleatória)</strong> Seja <span class="math inline">\(X\)</span> uma variável aleatória. Definimos o <span class="math inline">\(k\)</span>-ésimo momento de <span class="math inline">\(X\)</span> como <span class="math inline">\(E(X^k)\)</span>. Ou seja, <span class="math display">\[\begin{align*}
+  E(X^k) = \begin{cases} \sum_{x\in X[\Omega]} x^k \Pr(X=x), \quad \text{ se $X$ discreta, e,}\\
+   \int^\infty_{-\infty} x^k f(x)dx, \quad \text{ se $X$ contínua}. \end{cases}
+\end{align*}\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<p>Portanto a média é o primeiro momento, a variância é o segundo momento centrado na média.</p>
+</section></section><section id="função-quantílica" class="level2" data-number="4.6"><h2 data-number="4.6" class="anchored" data-anchor-id="função-quantílica">
+<span class="header-section-number">4.6</span> Função Quantílica</h2>
+<p>Recapitulando pontos de nossa discussão até aqui:</p>
+<ul>
+<li>Uma variável aleatória é uma função que mapeia elementos do espaço amostral a valores na reta real: <span class="math inline">\(X:\Omega\rightarrow\mathbb R\)</span>.</li>
+<li>As função massa de probabilidade <span class="math inline">\(\Pr(X=x)\)</span>, no caso discreto (ver Figura 00), ou função densidade de probabilidade <span class="math inline">\(f(x)\)</span>, no caso contínuo (ver Figura 00), se relacionam à probabilidade de um certo valor específico <span class="math inline">\(x\)</span> na imagem da variável aleatória <span class="math inline">\(X\)</span>.</li>
+<li>A função de probabilidade acumulada (ou função de distribuição acumulada) nos dá a probabilidade de obter um valor igual a <span class="math inline">\(x\)</span> ou menor: <span class="math inline">\(F(x)=\Pr(X\leq x)\)</span>. (Ver Figuras 00, 00.)</li>
+</ul>
+<p>Nós vamos definir agora a função inversa da função de distribuição acumulada. Se inicialmente <span class="math inline">\(F(x)\)</span> mapeia o valor <span class="math inline">\(x\)</span> à probabilidade <span class="math inline">\(q\)</span> de obter <span class="math inline">\(X\leq x\)</span>; a função inversa <span class="math inline">\(F^{-1}(q)\)</span> mapeia probabilidades <span class="math inline">\(q\)</span> ao valor específico <span class="math inline">\(x\)</span> tal que <span class="math inline">\(\Pr(X\leq x)=q\)</span>. Às vezes chamamos <span class="math inline">\(F^{-1}(q)\)</span> de função quantílica de <span class="math inline">\(X\)</span>.</p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-funcao-quantilica" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 4.11</strong></span> Seja <span class="math inline">\(X\)</span> uma variável aleatória com função de distribuição acumulada <span class="math inline">\(F(X)\)</span>. Então sua função de distribuição acumulada inversa, ou função quantílica, é definida como <span class="math display">\[\begin{align*}
+  F^{-1}(q) = \inf\{x: F(X)&gt;q\}, \quad \text{ para }q\in[0,1].
+\end{align*}\]</span></p>
+<p>Observações:</p>
+<ul>
+<li>Essa definição “complicada” existe principalmente para abarcar o caso discreto, onde <span class="math inline">\(F(X)\)</span> é uma função contínua apenas à direita. No caso contínuo, <span class="math inline">\(F(X)\)</span> é (na maioria das vezes) contínua e bijetora, de modo que a função inversa “tradicional” é bem definida.</li>
+<li>
+<span class="math inline">\(F(x)\)</span> e <span class="math inline">\(F^{-1}(q)\)</span> são pares de funções inversas. Então é verdade, para todo <span class="math inline">\(x\in X[\Omega]\)</span>, que <span class="math inline">\(F^{-1}(F(x))=x\)</span>. Alternativamente, também é verdade que, para todo <span class="math inline">\(q\in[0,1]\)</span>, <span class="math inline">\(F(F^{-1}(q))=q\)</span>.</li>
+<li>
+<span class="math inline">\(x_{(q)}=F^{-1}(q)\)</span> é o quantil <span class="math inline">\(q\)</span> teórico da variável <span class="math inline">\(X\)</span>.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<hr>
+<div id="exm-mediana-distribuicao-exponencial" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4.8</strong></span> Seja <span class="math inline">\(X\sim \text{Exp.}(\beta)\)</span>. Qual é a mediana de <span class="math inline">\(X\)</span>?</p>
+<p>Lembrando que a função densidade de probabilidade de <span class="math inline">\(X\)</span> é</p>
+<p><span class="math display">\[\begin{align*}
+    f(x) = \begin{cases}\frac{1}{\beta}e^{-x/\beta}, \text{ se }x&gt;0, \\
+    0, \text{ caso contrátio}. \end{cases}
+  \end{align*}\]</span></p>
+<p>Já calculamos que sua função de distribuição acumulada é dada por <span class="math display">\[\begin{align*}
+  F(X) = \int_0^\infty f(x)dx = 1-e^{-x/\beta}.
+\end{align*}\]</span></p>
+<p>É direto calcular função de distribuição acumulada inversa (ou função quantílica) de <span class="math inline">\(X\)</span> como</p>
+<p><span class="math display">\[\begin{align*}
+  F^{-1}(q) = -\beta\log(1-q).
+\end{align*}\]</span></p>
+<p>Então a mediana de <span class="math inline">\(X\)</span> é <span class="math inline">\(F^{-1}(0.5)\)</span>.</p>
+<p><span class="math display">\[\begin{align*}
+  F^{-1}(0.5)&amp;=-\beta\log(1-0.5)\\
+  &amp;=\beta\log(2).
+\end{align*}\]</span></p>
+<p>De maneira genérica, qualquer <span class="math inline">\(q\)</span>-quantil teórico pode ser obtido ao avaliar <span class="math inline">\(F^{-1}(q)\)</span>.</p>
+<p>Ilustração numérica:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">beta</span> <span class="op">=</span> <span class="fl">1</span></span>
+<span><span class="va">q</span> <span class="op">=</span> <span class="fl">0.5</span></span>
+<span><span class="va">xsim</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">rexp</a></span><span class="op">(</span><span class="fl">1e6</span>, rate<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="va">beta</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">xsim</span>, probs<span class="op">=</span><span class="va">q</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      50% 
+0.6940519 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="op">-</span><span class="va">beta</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="va">q</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6931472</code></pre>
+</div>
+</div>
+<p>Ilustração gráfica:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="04-variaveis-aleatorias_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<hr></section><section id="variáveis-aleatórias-multidimensionais" class="level2" data-number="4.7"><h2 data-number="4.7" class="anchored" data-anchor-id="variáveis-aleatórias-multidimensionais">
+<span class="header-section-number">4.7</span> Variáveis Aleatórias Multidimensionais</h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-fmp-conjunta" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 4.12</strong></span> <strong>(Função massa de probabilidade conjunta)</strong> Seja <span class="math inline">\((X,Y)\)</span> um vetor aleatório bi-variado discreto. Então a função <span class="math inline">\(f:\mathcal{F}\rightarrow\mathbb R\)</span> <span class="math display">\[\begin{align*}
+  f(x,y) = \Pr((X=x)\cap(Y=y)) \equiv \Pr(X=x,Y=y),
+\end{align*}\]</span> é chamada função massa de probabilidade conjunta de <span class="math inline">\((X,Y)\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+<div id="exm-variavel-bivariada-discreta-1" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4.9</strong></span> &nbsp;</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 37%">
+<col style="width: 23%">
+<col style="width: 29%">
+<col style="width: 9%">
+</colgroup>
+<thead><tr class="header">
+<th></th>
+<th style="text-align: right;">Chuva (<span class="math inline">\(X = 0\)</span>)</th>
+<th style="text-align: right;">Sem chuva (<span class="math inline">\(X = 1\)</span>)</th>
+<th style="text-align: right;">Total</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Deslocamento longo (<span class="math inline">\(Y = 0\)</span>)</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">0.22</td>
+</tr>
+<tr class="even">
+<td>Deslocamento curto (<span class="math inline">\(Y = 1\)</span>)</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;">0.63</td>
+<td style="text-align: right;">0.78</td>
+</tr>
+<tr class="odd">
+<td><strong>Total</strong></td>
+<td style="text-align: right;">0.30</td>
+<td style="text-align: right;">0.70</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr></section><section id="exercicios" class="level2" data-number="4.8"><h2 data-number="4.8" class="anchored" data-anchor-id="exercicios">
+<span class="header-section-number">4.8</span> Exercicios</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">

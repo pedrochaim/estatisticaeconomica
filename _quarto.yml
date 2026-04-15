@@ -19,8 +19,11 @@ book:
         - capitulos/04-variaveis-aleatorias.qmd
         - capitulos/05-distribuicoes-discretas.qmd
         - capitulos/06-distribuicoes-continuas.qmd
+        - capitulos/07-distribuicao-normal.qmd
     
     - part: "Inferência Estatística"
+      chapters: 
+        - capitulos/08-populacao-amostra.qmd
       
     - part: "Regressão Linear"
     

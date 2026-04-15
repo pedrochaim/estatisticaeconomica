@@ -1,0 +1,13 @@
+name: simula-media-amostral
+title: simula-media-amostral
+username: pedrochaim
+account: pedrochaim
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 17099884
+bundleId: 11829966
+url: https://pedrochaim.shinyapps.io/simula-media-amostral/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: simula-media-amostral-gpt.txt

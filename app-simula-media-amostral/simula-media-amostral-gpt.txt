@@ -1,0 +1,30 @@
+Crie um aplicativo shiny 
+
+* Simula $m_sim$ amostras aleatórias de tamanho $n_obs$ retiradas de uma população com distribuição $X$ a ser especificada. (Use uniforme 0,1 como primeiro caso)
+* Plota os histogramas de uma dessas $m_sim$ amostras. Plote também a fdp teórica de $X$.
+* Plota o histograma das médias amostrais de cada uma das $m_sim$ amostras. Plote também a fdp teórica $\bar X \sim N(\bar x, s^2/n)$
+
+Deve ser possível:
+	Escolher a família da distribuição entre opções
+	Escolher os parâmetros dessa distribuição. Opções ajustadas dinamicamente depois de estabelecida a família.
+
+Lista de distribuições:
+
+Uniforme
+Normal
+Exponencial
+Beta
+Poisson
+Gamma
+Binomial
+Binomial Negativa
+Qui-quadrado
+F
+t-Student
+Geométrica
+
+
+
+obs.:
+	* não precisa incluir controle da semente aleatória.
+	* faça com que os histogramas tenham pelo menos 7 classes distintas.

@@ -1,0 +1,1463 @@
+---
+title: "Distribuições de Probabilidade Discretas"
+format:
+  revealjs:
+    theme: simple
+    slide-number: false
+    controls: true
+    transition: slide
+    center: false
+    auto-stretch: false
+    width: 1800
+    height: 1000
+    margin: 0.015
+server: shiny
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| context: setup
+#| include: false
+library(shiny)
+
+theory_col <- "#0b3a6e"
+sim_fill_col <- grDevices::rgb(207 / 255, 90 / 255, 0, 0.5)
+
+common_par <- function() {
+  par(
+    mar = c(3.0, 3.8, 1.2, 0.3),
+    mgp = c(2.0, 0.6, 0),
+    cex.axis = 1.35,
+    cex.lab = 1.5,
+    cex.main = 1.45
+  )
+}
+
+discrete_axis_at <- function(x, n_target = 8) {
+  x <- sort(unique(x))
+  if (length(x) <= 12) {
+    return(x)
+  }
+  idx <- round(seq(1, length(x), length.out = min(n_target, length(x))))
+  unique(x[idx])
+}
+
+plot_discrete_mass <- function(x, y, main_title, sim_sample = NULL) {
+  op <- common_par()
+  on.exit(par(op), add = TRUE)
+
+  ord <- order(x)
+  x <- x[ord]
+  y <- y[ord]
+
+  sim_prob <- NULL
+  if (!is.null(sim_sample)) {
+    sim_sample <- sim_sample[!is.na(sim_sample)]
+    sim_sample <- sim_sample[sim_sample >= min(x) & sim_sample <= max(x)]
+    if (length(sim_sample) > 0) {
+      sim_tab <- table(factor(sim_sample, levels = x))
+      sim_prob <- as.numeric(sim_tab) / length(sim_sample)
+    }
+  }
+
+  ymax <- max(c(y, sim_prob, 0.05), na.rm = TRUE)
+
+  plot(
+    x, y,
+    type = "n",
+    xlim = c(min(x) - 0.5, max(x) + 0.5),
+    ylim = c(0, 1.08 * ymax),
+    xaxs = "i",
+    yaxs = "i",
+    xaxt = "n",
+    xlab = "x",
+    ylab = "P(X = x)"
+  )
+
+  x_at <- discrete_axis_at(x)
+  axis(1, at = x_at, labels = x_at)
+  abline(h = pretty(c(0, ymax), n = 6), lty = 3, col = "gray75")
+
+  if (!is.null(sim_prob)) {
+    rect(
+      xleft = x - 0.42,
+      ybottom = 0,
+      xright = x + 0.42,
+      ytop = sim_prob,
+      col = sim_fill_col,
+      border = NA
+    )
+  }
+
+  segments(x0 = x, y0 = 0, x1 = x, y1 = y, lwd = 3, col = theory_col)
+  points(x, y, pch = 16, cex = 1.8, col = theory_col)
+
+  title(main_title, line = 0.15)
+}
+
+plot_discrete_cdf <- function(x, y, main_title) {
+  op <- common_par()
+  on.exit(par(op), add = TRUE)
+
+  ord <- order(x)
+  x <- x[ord]
+  y <- y[ord]
+
+  plot(
+    NA,
+    xlim = c(min(x) - 0.5, max(x) + 0.5),
+    ylim = c(-0.05, 1.05),
+    xaxs = "i",
+    yaxs = "i",
+    xlab = "x",
+    ylab = "F(x)",
+    xaxt = "n"
+  )
+
+  x_at <- discrete_axis_at(x)
+  axis(1, at = x_at, labels = x_at)
+  abline(h = seq(0, 1, by = 0.2), lty = 3, col = "gray75")
+
+  Fprev <- 0
+  for (i in seq_along(x)) {
+    left <- if (i == 1) min(x) - 0.5 else x[i - 1]
+    right <- x[i]
+    segments(left, Fprev, right, Fprev, lwd = 3, col = theory_col)
+    points(right, Fprev, pch = 1, cex = 1.6, col = theory_col)
+    points(right, y[i], pch = 16, cex = 1.6, col = theory_col)
+    Fprev <- y[i]
+  }
+  segments(max(x), Fprev, max(x) + 0.5, Fprev, lwd = 3, col = theory_col)
+
+  title(main_title, line = 0.15)
+}
+
+sanitize_nsim <- function(n, default = 20) {
+  if (is.null(n) || is.na(n)) {
+    return(default)
+  }
+  max(1, min(20000, round(n)))
+}
+
+safe_var <- function(x) {
+  if (length(x) <= 1) {
+    return(NA_real_)
+  }
+  stats::var(x)
+}
+
+fmt_num_or_dash <- function(x) {
+  if (is.null(x) || length(x) == 0 || is.na(x)) {
+    return("—")
+  }
+  sprintf("%.4f", x)
+}
+
+bern_data <- function(p) {
+  list(
+    x = c(0, 1),
+    pmf = c(1 - p, p),
+    cdf = c(1 - p, 1),
+    mean = p,
+    variance = p * (1 - p)
+  )
+}
+
+binom_data <- function(n, p) {
+  x <- 0:n
+  list(
+    x = x,
+    pmf = dbinom(x, size = n, prob = p),
+    cdf = pbinom(x, size = n, prob = p),
+    mean = n * p,
+    variance = n * p * (1 - p)
+  )
+}
+
+geom_data <- function(p, tail_prob = 0.995, max_cap = 150, support_max = NULL) {
+  xmax <- max(5, qgeom(tail_prob, prob = p) + 1)
+  if (!is.null(support_max)) {
+    xmax <- max(xmax, support_max)
+  }
+  xmax <- min(max_cap, xmax)
+  x <- 1:xmax
+  list(
+    x = x,
+    pmf = dgeom(x - 1, prob = p),
+    cdf = pgeom(x - 1, prob = p),
+    mean = 1 / p,
+    variance = (1 - p) / p^2
+  )
+}
+
+nbinom_data <- function(r, p, tail_prob = 0.995, max_cap = 150, support_max = NULL) {
+  xmax <- max(5, qnbinom(tail_prob, size = r, prob = p))
+  if (!is.null(support_max)) {
+    xmax <- max(xmax, support_max)
+  }
+  xmax <- min(max_cap, xmax)
+  x <- 0:xmax
+  list(
+    x = x,
+    pmf = dnbinom(x, size = r, prob = p),
+    cdf = pnbinom(x, size = r, prob = p),
+    mean = r * (1 - p) / p,
+    variance = r * (1 - p) / p^2
+  )
+}
+
+pois_data <- function(lambda, tail_prob = 0.995, max_cap = 100, support_max = NULL) {
+  xmax <- max(5, qpois(tail_prob, lambda = lambda))
+  if (!is.null(support_max)) {
+    xmax <- max(xmax, support_max)
+  }
+  xmax <- min(max_cap, xmax)
+  x <- 0:xmax
+  list(
+    x = x,
+    pmf = dpois(x, lambda = lambda),
+    cdf = ppois(x, lambda = lambda),
+    mean = lambda,
+    variance = lambda
+  )
+}
+
+hyper_data <- function(N, M, n) {
+  M <- min(max(0, M), N)
+  n <- min(max(1, n), N)
+  xmin <- max(0, n - (N - M))
+  xmax <- min(n, M)
+  x <- xmin:xmax
+  list(
+    x = x,
+    pmf = dhyper(x, m = M, n = N - M, k = n),
+    cdf = phyper(x, m = M, n = N - M, k = n),
+    mean = n * M / N,
+    variance = n * (M / N) * (1 - M / N) * ((N - n) / (N - 1))
+  )
+}
+
+moment_block_ui <- function(mean_id, var_id) {
+  tags$div(
+    class = "moment-box",
+    tags$ul(
+      tags$li(tags$strong("Média"), uiOutput(mean_id)),
+      tags$li(tags$strong("Variância"), uiOutput(var_id))
+    )
+  )
+}
+
+moment_pair_ui <- function(theoretical, simulated) {
+  tagList(
+    tags$div(tags$strong("Teórico: "), fmt_num_or_dash(theoretical)),
+    tags$div(tags$strong("Simulado: "), fmt_num_or_dash(simulated))
+  )
+}
+
+bern_sample <- function(n_sim, p) rbinom(n_sim, size = 1, prob = p)
+binom_sample <- function(n_sim, n, p) rbinom(n_sim, size = n, prob = p)
+geom_sample <- function(n_sim, p) rgeom(n_sim, prob = p) + 1
+nbinom_sample <- function(n_sim, r, p) rnbinom(n_sim, size = r, prob = p)
+pois_sample <- function(n_sim, lambda) rpois(n_sim, lambda = lambda)
+hyper_sample <- function(n_sim, N, M, n) rhyper(n_sim, m = M, n = N - M, k = n)
+dice_sample <- function(n_sim) sample(1:6, size = n_sim, replace = TRUE)
+
+dice_data <- function() {
+  x <- 1:6
+  list(
+    x = x,
+    pmf = rep(1 / 6, 6),
+    cdf = x / 6,
+    mean = 7 / 2,
+    variance = 35 / 12
+  )
+}
+```
+
+```{css}
+.reveal {
+  font-family: "Aptos", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  color: #10243e;
+  background-color: #ffffff;
+}
+
+.reveal p,
+.reveal li {
+  line-height: 1.38;
+}
+
+.reveal h2 {
+  color: #0b3a6e;
+  font-weight: 800;
+  border-bottom: 3px solid #1f5ea8;
+  padding-bottom: 0.16em;
+  margin-bottom: 0.42em;
+}
+
+.reveal h3 {
+  color: #114a88;
+  font-weight: 800;
+}
+
+.reveal strong {
+  color: #8c2f00;
+  font-weight: 800;
+}
+
+.reveal em {
+  color: #3b5877;
+}
+
+.reveal ul li::marker {
+  color: #cf5a00;
+}
+
+.reveal .shiny-input-container label.control-label {
+  color: #114a88;
+  font-weight: 800;
+}
+
+.reveal .shiny-input-container {
+  margin-bottom: 0.8em;
+}
+
+.reveal .btn-primary {
+  background-color: #1f5ea8;
+  border-color: #1f5ea8;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.reveal .btn-primary:hover,
+.reveal .btn-primary:focus {
+  background-color: #174a84;
+  border-color: #174a84;
+}
+
+.eq-block {
+  font-size: clamp(0.72em, 0.9vw, 0.98em);
+  line-height: 1.08;
+  background: #eef5ff;
+  border: 1px solid #9ebee4;
+  border-left: 6px solid #1f5ea8;
+  padding: 0.50em 0.75em;
+  border-radius: 6px;
+  margin-bottom: 0.8em;
+  color: #0d2b4f;
+}
+
+.eq-block .math.display {
+  margin-top: 0.12em;
+  margin-bottom: 0.12em;
+}
+
+.moment-box {
+  background: #fff4e9;
+  border: 1px solid #f0bf8a;
+  border-left: 6px solid #cf5a00;
+  padding: 0.40em 0.75em;
+  border-radius: 6px;
+  color: #4a2500;
+}
+
+.moment-box ul {
+  margin-bottom: 0;
+}
+
+.moment-box li {
+  margin-bottom: 0.35em;
+}
+
+.moment-box li:last-child {
+  margin-bottom: 0;
+}
+
+.moment-box li > div {
+  margin-left: 0.25em;
+}
+
+.reveal code {
+  color: #8c2f00;
+}
+
+.reveal table th,
+.reveal table td {
+  border-color: #9ebee4;
+}
+```
+
+## Conteúdo {.scrollable}
+
+* Distribuição de Bernoulli
+* Distribuição Binomial
+* Distribuição Geométrica
+* Distribuição Binomial Negativa
+* Distribuição de Poisson
+* Distribuição Hipergeométrica
+* Distribuição Uniforme Discreta
+* Como acrescentar novas distribuições
+
+---
+
+## Distribuição de Bernoulli {.scrollable}
+
+O modelo de probabilidades mais simples é conhecido como **experimento de Bernoulli^[Jacob Bernoulli]**. Em um único experimento, há probabilidade $p$ de ocorrer sucesso e probabilidade $1-p$ de ocorrer fracasso.
+
+### Exemplos de aplicações práticas
+
+- Aprovação ou reprovação em um teste.
+- Acerto ou erro em uma questão objetiva.
+- Presença ou ausência de defeito em uma peça.
+
+### Suporte
+
+- $k \in \{0,1\}$.
+
+### Parâmetros
+
+- Probabilidade de sucesso $p$.
+
+### Função massa de probabilidade
+
+\begin{align*}
+  \Pr(X=k) = p^k(1-p)^{1-k}, \quad k \in \{0,1\}
+\end{align*}
+
+### Função de probabilidade acumulada
+
+\begin{align*}
+F(k) =
+\begin{cases}
+0, & k < 0 \\
+1-p, & 0 \leq k < 1 \\
+1, & k \geq 1
+\end{cases}
+\end{align*}
+
+### Média
+
+$E(X)=p$.
+
+### Variância
+
+$\mathrm{Var}(X)=p(1-p)$.
+
+### Comentários adicionais
+
+- É a distribuição base para várias distribuições discretas mais complexas.
+
+## Distribuição de Bernoulli {.scrollable}
+
+:::: {.columns}
+
+::: {.column width="400px"}
+
+::: {.eq-block}
+\begin{align*}
+X &\sim \mathrm{Bernoulli}(p)
+\end{align*}
+:::
+
+### Parâmetros
+
+```{r}
+sliderInput(
+  inputId = "bern_p",
+  label = "p",
+  min = 0,
+  max = 1,
+  value = 0.50,
+  step = 0.01,
+  width = "395px"
+)
+
+numericInput(
+  inputId = "bern_nsim",
+  label = "N_sim",
+  value = 20,
+  min = 1,
+  max = 20000,
+  step = 1,
+  width = "395px"
+)
+
+actionButton(
+  inputId = "bern_resample",
+  label = "Reamostrar",
+  width = "395px",
+  class = "btn-primary"
+)
+```
+
+### Momentos
+
+```{r}
+moment_block_ui("bern_mean_text", "bern_var_text")
+```
+
+:::
+
+::: {.column width="1200px"}
+```{r}
+plotOutput("bern_pmf_plot", width = "100%", height = "420px")
+```
+
+```{r}
+plotOutput("bern_cdf_plot", width = "100%", height = "420px")
+```
+:::
+
+::::
+
+---
+
+## Distribuição Binomial {.scrollable}
+
+A distribuição binomial modela o número de sucessos em $n$ repetições independentes de um experimento de Bernoulli, cada uma com probabilidade de sucesso $p$.
+
+### Exemplos de aplicações práticas
+
+- Número de alunos aprovados em uma turma.
+- Número de peças defeituosas em um lote.
+- Número de acertos em uma sequência de questões.
+
+### Suporte
+
+- $k \in \{0,1,2,\ldots,n\}$.
+
+### Parâmetros
+
+- Número de ensaios $n$.
+- Probabilidade de sucesso $p$.
+
+### Função massa de probabilidade
+
+\begin{align*}
+  \Pr(X=k)=\binom{n}{k}p^k(1-p)^{n-k}, \quad k=0,1,\ldots,n
+\end{align*}
+
+### Função de probabilidade acumulada
+
+\begin{align*}
+  F(k)=\Pr(X \leq k)
+\end{align*}
+
+### Média
+
+$E(X)=np$.
+
+### Variância
+
+$\mathrm{Var}(X)=np(1-p)$.
+
+### Comentários adicionais
+
+- Generaliza a Bernoulli para vários ensaios.
+
+## Distribuição Binomial {.scrollable}
+
+:::: {.columns}
+
+::: {.column width="400px"}
+
+::: {.eq-block}
+\begin{align*}
+X &\sim \mathrm{Binomial}(n,p)
+\end{align*}
+:::
+
+### Parâmetros
+
+```{r}
+numericInput(
+  inputId = "bin_n",
+  label = "n",
+  value = 10,
+  min = 1,
+  max = 30,
+  step = 1,
+  width = "395px"
+)
+
+sliderInput(
+  inputId = "bin_p",
+  label = "p",
+  min = 0,
+  max = 1,
+  value = 0.50,
+  step = 0.01,
+  width = "395px"
+)
+
+numericInput(
+  inputId = "bin_nsim",
+  label = "N_sim",
+  value = 20,
+  min = 1,
+  max = 20000,
+  step = 1,
+  width = "395px"
+)
+
+actionButton(
+  inputId = "bin_resample",
+  label = "Reamostrar",
+  width = "395px",
+  class = "btn-primary"
+)
+```
+
+### Momentos
+
+```{r}
+moment_block_ui("bin_mean_text", "bin_var_text")
+```
+
+:::
+
+::: {.column width="1200px"}
+```{r}
+plotOutput("bin_pmf_plot", width = "100%", height = "420px")
+```
+
+```{r}
+plotOutput("bin_cdf_plot", width = "100%", height = "420px")
+```
+:::
+
+::::
+
+---
+
+## Distribuição Geométrica {.scrollable}
+
+A distribuição geométrica modela o número do ensaio em que ocorre o primeiro sucesso, assumindo repetições independentes com probabilidade de sucesso $p$ em cada ensaio.
+
+### Exemplos de aplicações práticas
+
+- Número de tentativas até o primeiro acerto.
+- Número de ligações até o primeiro contato bem-sucedido.
+- Número de inspeções até detectar o primeiro defeito.
+
+### Suporte
+
+- $k \in \{1,2,3,\ldots\}$.
+
+### Parâmetros
+
+- Probabilidade de sucesso $p$.
+
+### Função massa de probabilidade
+
+\begin{align*}
+  \Pr(X=k)=(1-p)^{k-1}p, \quad k=1,2,3,\ldots
+\end{align*}
+
+### Função de probabilidade acumulada
+
+\begin{align*}
+  F(k)=1-(1-p)^k, \quad k=1,2,3,\ldots
+\end{align*}
+
+### Média
+
+$E(X)=\frac{1}{p}$.
+
+### Variância
+
+$\mathrm{Var}(X)=\frac{1-p}{p^2}$.
+
+### Comentários adicionais
+
+- É a análoga discreta da distribuição exponencial em termos de “tempo de espera”.
+
+## Distribuição Geométrica {.scrollable}
+
+:::: {.columns}
+
+::: {.column width="400px"}
+
+::: {.eq-block}
+\begin{align*}
+X &\sim \mathrm{Geom}(p)
+\end{align*}
+:::
+
+### Parâmetros
+
+```{r}
+sliderInput(
+  inputId = "geo_p",
+  label = "p",
+  min = 0.05,
+  max = 1,
+  value = 0.30,
+  step = 0.01,
+  width = "395px"
+)
+
+numericInput(
+  inputId = "geo_nsim",
+  label = "N_sim",
+  value = 20,
+  min = 1,
+  max = 20000,
+  step = 1,
+  width = "395px"
+)
+
+actionButton(
+  inputId = "geo_resample",
+  label = "Reamostrar",
+  width = "395px",
+  class = "btn-primary"
+)
+```
+
+### Momentos
+
+```{r}
+moment_block_ui("geo_mean_text", "geo_var_text")
+```
+
+:::
+
+::: {.column width="1200px"}
+```{r}
+plotOutput("geo_pmf_plot", width = "100%", height = "420px")
+```
+
+```{r}
+plotOutput("geo_cdf_plot", width = "100%", height = "420px")
+```
+:::
+
+::::
+
+---
+
+## Distribuição Binomial Negativa {.scrollable}
+
+A distribuição binomial negativa modela o número de fracassos observados antes da ocorrência do $r$-ésimo sucesso, assumindo ensaios independentes com probabilidade de sucesso $p$.
+
+### Exemplos de aplicações práticas
+
+- Número de erros antes de atingir certo número de acertos.
+- Número de ligações malsucedidas antes de obter um número alvo de contatos.
+- Número de peças não conformes antes de encontrar certo número de peças boas.
+
+### Suporte
+
+- $k \in \{0,1,2,\ldots\}$.
+
+### Parâmetros
+
+- Número alvo de sucessos $r$.
+- Probabilidade de sucesso $p$.
+
+### Função massa de probabilidade
+
+\begin{align*}
+  \Pr(X=k)=\binom{k+r-1}{k}(1-p)^k p^r, \quad k=0,1,2,\ldots
+\end{align*}
+
+### Função de probabilidade acumulada
+
+\begin{align*}
+  F(k)=\Pr(X \leq k)
+\end{align*}
+
+### Média
+
+$E(X)=\frac{r(1-p)}{p}$.
+
+### Variância
+
+$\mathrm{Var}(X)=\frac{r(1-p)}{p^2}$.
+
+### Comentários adicionais
+
+- Generaliza a geométrica, que surge quando $r=1$.
+
+## Distribuição Binomial Negativa {.scrollable}
+
+:::: {.columns}
+
+::: {.column width="400px"}
+
+::: {.eq-block}
+\begin{align*}
+X &\sim \mathrm{BinNeg}(r,p)
+\end{align*}
+:::
+
+### Parâmetros
+
+```{r}
+numericInput(
+  inputId = "nb_r",
+  label = "r",
+  value = 4,
+  min = 1,
+  max = 30,
+  step = 1,
+  width = "395px"
+)
+
+sliderInput(
+  inputId = "nb_p",
+  label = "p",
+  min = 0.05,
+  max = 0.95,
+  value = 0.40,
+  step = 0.01,
+  width = "395px"
+)
+
+numericInput(
+  inputId = "nb_nsim",
+  label = "N_sim",
+  value = 20,
+  min = 1,
+  max = 20000,
+  step = 1,
+  width = "395px"
+)
+
+actionButton(
+  inputId = "nb_resample",
+  label = "Reamostrar",
+  width = "395px",
+  class = "btn-primary"
+)
+```
+
+### Momentos
+
+```{r}
+moment_block_ui("nb_mean_text", "nb_var_text")
+```
+
+:::
+
+::: {.column width="1200px"}
+```{r}
+plotOutput("nb_pmf_plot", width = "100%", height = "420px")
+```
+
+```{r}
+plotOutput("nb_cdf_plot", width = "100%", height = "420px")
+```
+:::
+
+::::
+
+---
+
+## Distribuição de Poisson {.scrollable}
+
+A distribuição de Poisson modela o número de ocorrências de um evento em um intervalo fixo, quando os eventos acontecem de forma independente e a uma taxa média constante $\lambda$.
+
+### Exemplos de aplicações práticas
+
+- Número de chamadas recebidas por minuto.
+- Número de defeitos em uma extensão fixa de material.
+- Número de chegadas a um sistema em certo intervalo de tempo.
+
+### Suporte
+
+- $k \in \{0,1,2,\ldots\}$.
+
+### Parâmetros
+
+- Taxa média de ocorrência $\lambda$.
+
+### Função massa de probabilidade
+
+\begin{align*}
+  \Pr(X=k)=e^{-\lambda}\frac{\lambda^k}{k!}, \quad k=0,1,2,\ldots
+\end{align*}
+
+### Função de probabilidade acumulada
+
+\begin{align*}
+  F(k)=\Pr(X \leq k)
+\end{align*}
+
+### Média
+
+$E(X)=\lambda$.
+
+### Variância
+
+$\mathrm{Var}(X)=\lambda$.
+
+### Comentários adicionais
+
+- É frequentemente usada para modelar contagens de eventos raros.
+
+## Distribuição de Poisson {.scrollable}
+
+:::: {.columns}
+
+::: {.column width="400px"}
+
+::: {.eq-block}
+\begin{align*}
+X &\sim \mathrm{Poisson}(\lambda)
+\end{align*}
+:::
+
+### Parâmetros
+
+```{r}
+sliderInput(
+  inputId = "pois_lambda",
+  label = "λ",
+  min = 0.2,
+  max = 20,
+  value = 4,
+  step = 0.1,
+  width = "395px"
+)
+
+numericInput(
+  inputId = "pois_nsim",
+  label = "N_sim",
+  value = 20,
+  min = 1,
+  max = 20000,
+  step = 1,
+  width = "395px"
+)
+
+actionButton(
+  inputId = "pois_resample",
+  label = "Reamostrar",
+  width = "395px",
+  class = "btn-primary"
+)
+```
+
+### Momentos
+
+```{r}
+moment_block_ui("pois_mean_text", "pois_var_text")
+```
+
+:::
+
+::: {.column width="1200px"}
+```{r}
+plotOutput("pois_pmf_plot", width = "100%", height = "420px")
+```
+
+```{r}
+plotOutput("pois_cdf_plot", width = "100%", height = "420px")
+```
+:::
+
+::::
+
+---
+
+## Distribuição Hipergeométrica {.scrollable}
+
+A distribuição hipergeométrica modela o número de sucessos em uma amostra sem reposição de tamanho $n$, extraída de uma população finita de tamanho $N$ que contém $M$ elementos classificados como sucesso.
+
+### Exemplos de aplicações práticas
+
+- Número de peças defeituosas em uma amostra sem reposição.
+- Número de cartas de um naipe em uma mão de cartas.
+- Número de indivíduos com certa característica em uma amostra finita.
+
+### Suporte
+
+- $k \in \{\max(0,n-(N-M)), \ldots, \min(n,M)\}$.
+
+### Parâmetros
+
+- Tamanho da população $N$.
+- Número de sucessos na população $M$.
+- Tamanho da amostra $n$.
+
+### Função massa de probabilidade
+
+\begin{align*}
+  \Pr(X=k)=\frac{\binom{M}{k}\binom{N-M}{n-k}}{\binom{N}{n}}
+\end{align*}
+
+### Função de probabilidade acumulada
+
+\begin{align*}
+  F(k)=\Pr(X \leq k)
+\end{align*}
+
+### Média
+
+$E(X)=n\frac{M}{N}$.
+
+### Variância
+
+\begin{align*}
+  \mathrm{Var}(X)=n\frac{M}{N}\left(1-\frac{M}{N}\right)\frac{N-n}{N-1}
+\end{align*}
+
+### Comentários adicionais
+
+- Difere da binomial porque as retiradas não são independentes.
+
+## Distribuição Hipergeométrica {.scrollable}
+
+:::: {.columns}
+
+::: {.column width="400px"}
+
+::: {.eq-block}
+\begin{align*}
+X &\sim \mathrm{Hipergeom}(N,M,n)
+\end{align*}
+:::
+
+### Parâmetros
+
+```{r}
+numericInput(
+  inputId = "hyp_N",
+  label = "N",
+  value = 30,
+  min = 2,
+  max = 200,
+  step = 1,
+  width = "395px"
+)
+
+numericInput(
+  inputId = "hyp_M",
+  label = "M",
+  value = 12,
+  min = 0,
+  max = 30,
+  step = 1,
+  width = "395px"
+)
+
+numericInput(
+  inputId = "hyp_n",
+  label = "n",
+  value = 8,
+  min = 1,
+  max = 30,
+  step = 1,
+  width = "395px"
+)
+
+numericInput(
+  inputId = "hyp_nsim",
+  label = "N_sim",
+  value = 20,
+  min = 1,
+  max = 20000,
+  step = 1,
+  width = "395px"
+)
+
+actionButton(
+  inputId = "hyp_resample",
+  label = "Reamostrar",
+  width = "395px",
+  class = "btn-primary"
+)
+```
+
+### Momentos
+
+```{r}
+moment_block_ui("hyp_mean_text", "hyp_var_text")
+```
+
+:::
+
+::: {.column width="1200px"}
+```{r}
+plotOutput("hyp_pmf_plot", width = "100%", height = "420px")
+```
+
+```{r}
+plotOutput("hyp_cdf_plot", width = "100%", height = "420px")
+```
+:::
+
+::::
+
+---
+
+## Distribuição Uniforme Discreta {.scrollable}
+
+A distribuição uniforme discreta atribui a mesma probabilidade a todos os valores de um conjunto finito. Um exemplo clássico é o resultado do lançamento de um dado cúbico honesto.
+
+### Exemplos de aplicações práticas
+
+- Resultado do lançamento de um dado justo.
+- Escolha equiprovável entre categorias numeradas.
+- Sorteio uniforme entre valores inteiros finitos.
+
+### Suporte
+
+- $k \in \{1,2,3,4,5,6\}$.
+
+### Parâmetros
+
+- Não há parâmetros livres no caso do dado honesto.
+
+### Função massa de probabilidade
+
+\begin{align*}
+  \Pr(X=k)=\frac{1}{6}, \quad k=1,2,3,4,5,6
+\end{align*}
+
+### Função de probabilidade acumulada
+
+\begin{align*}
+  F(k)=\frac{k}{6}, \quad k=1,2,3,4,5,6
+\end{align*}
+
+### Média
+
+$E(X)=\frac{7}{2}=3.5$.
+
+### Variância
+
+$\mathrm{Var}(X)=\frac{35}{12}$.
+
+### Comentários adicionais
+
+- É o exemplo mais simples de distribuição uniforme discreta finita.
+
+## Distribuição Uniforme Discreta {.scrollable}
+
+:::: {.columns}
+
+::: {.column width="400px"}
+
+::: {.eq-block}
+\begin{align*}
+X &\sim \mathrm{Unif}\{1,\dots,6\}
+\end{align*}
+:::
+
+### Parâmetros
+
+Sem parâmetros livres. O exemplo considera um dado cúbico honesto.
+
+```{r}
+numericInput(
+  inputId = "dice_nsim",
+  label = "N_sim",
+  value = 20,
+  min = 1,
+  max = 20000,
+  step = 1,
+  width = "395px"
+)
+
+actionButton(
+  inputId = "dice_resample",
+  label = "Reamostrar",
+  width = "395px",
+  class = "btn-primary"
+)
+```
+
+### Momentos
+
+```{r}
+moment_block_ui("dice_mean_text", "dice_var_text")
+```
+
+:::
+
+::: {.column width="1200px"}
+```{r}
+plotOutput("dice_pmf_plot", width = "100%", height = "420px")
+```
+
+```{r}
+plotOutput("dice_cdf_plot", width = "100%", height = "420px")
+```
+:::
+
+::::
+
+---
+
+## Como acrescentar novas distribuições {.scrollable}
+
+### Padrão sugerido
+
+Para cada nova distribuição, repita sempre o mesmo bloco:
+
+1. Um slide teórico com definição, suporte, parâmetros, fmp, fda, média e variância.
+2. Um slide interativo com:
+   - coluna esquerda com bloco de equação;
+   - parâmetros logo abaixo;
+   - média e variância teóricas e simuladas;
+   - coluna direita para fmp e fda.
+3. Um prefixo exclusivo nos IDs.
+4. Dois `renderPlot()` novos no chunk `context: server`.
+5. Uma nova função `*_data()` no `setup` para centralizar suporte, fmp, fda, média e variância.
+6. Uma função `*_sample()` para a amostra simulada.
+
+### Outras distribuições que ainda podem ser incluídas
+
+- Multinomial
+- Zipf
+- Yule-Simon
+
+```{r}
+#| context: server
+
+observe({
+  N <- input$hyp_N
+  M <- input$hyp_M
+  n <- input$hyp_n
+
+  if (is.null(N) || is.na(N)) N <- 30
+  if (is.null(M) || is.na(M)) M <- 12
+  if (is.null(n) || is.na(n)) n <- 8
+
+  N2 <- max(2, round(N))
+  M2 <- min(max(0, round(M)), N2)
+  n2 <- min(max(1, round(n)), N2)
+
+  if (!identical(N, N2)) {
+    updateNumericInput(session, "hyp_N", value = N2)
+  }
+
+  updateNumericInput(session, "hyp_M", value = M2, max = N2)
+  updateNumericInput(session, "hyp_n", value = n2, max = N2)
+})
+
+bern_sim <- eventReactive(
+  list(input$bern_p, input$bern_nsim, input$bern_resample),
+  {
+    bern_sample(sanitize_nsim(input$bern_nsim), input$bern_p)
+  },
+  ignoreInit = FALSE
+)
+
+bin_sim <- eventReactive(
+  list(input$bin_n, input$bin_p, input$bin_nsim, input$bin_resample),
+  {
+    binom_sample(sanitize_nsim(input$bin_nsim), input$bin_n, input$bin_p)
+  },
+  ignoreInit = FALSE
+)
+
+geo_sim <- eventReactive(
+  list(input$geo_p, input$geo_nsim, input$geo_resample),
+  {
+    geom_sample(sanitize_nsim(input$geo_nsim), input$geo_p)
+  },
+  ignoreInit = FALSE
+)
+
+nb_sim <- eventReactive(
+  list(input$nb_r, input$nb_p, input$nb_nsim, input$nb_resample),
+  {
+    nbinom_sample(sanitize_nsim(input$nb_nsim), input$nb_r, input$nb_p)
+  },
+  ignoreInit = FALSE
+)
+
+pois_sim <- eventReactive(
+  list(input$pois_lambda, input$pois_nsim, input$pois_resample),
+  {
+    pois_sample(sanitize_nsim(input$pois_nsim), input$pois_lambda)
+  },
+  ignoreInit = FALSE
+)
+
+hyp_sim <- eventReactive(
+  list(input$hyp_N, input$hyp_M, input$hyp_n, input$hyp_nsim, input$hyp_resample),
+  {
+    hyper_sample(sanitize_nsim(input$hyp_nsim), input$hyp_N, input$hyp_M, input$hyp_n)
+  },
+  ignoreInit = FALSE
+)
+
+dice_sim <- eventReactive(
+  list(input$dice_nsim, input$dice_resample),
+  {
+    dice_sample(sanitize_nsim(input$dice_nsim))
+  },
+  ignoreInit = FALSE
+)
+
+output$bern_pmf_plot <- renderPlot({
+  s <- bern_sim()
+  d <- bern_data(input$bern_p)
+  plot_discrete_mass(d$x, d$pmf, "Função massa de probabilidade", sim_sample = s)
+}, res = 120)
+
+output$bern_cdf_plot <- renderPlot({
+  d <- bern_data(input$bern_p)
+  plot_discrete_cdf(d$x, d$cdf, "Função distribuição acumulada")
+}, res = 120)
+
+output$bern_mean_text <- renderUI({
+  d <- bern_data(input$bern_p)
+  s <- bern_sim()
+  moment_pair_ui(d$mean, mean(s))
+})
+
+output$bern_var_text <- renderUI({
+  d <- bern_data(input$bern_p)
+  s <- bern_sim()
+  moment_pair_ui(d$variance, safe_var(s))
+})
+
+output$bin_pmf_plot <- renderPlot({
+  s <- bin_sim()
+  d <- binom_data(input$bin_n, input$bin_p)
+  plot_discrete_mass(d$x, d$pmf, "Função massa de probabilidade", sim_sample = s)
+}, res = 120)
+
+output$bin_cdf_plot <- renderPlot({
+  d <- binom_data(input$bin_n, input$bin_p)
+  plot_discrete_cdf(d$x, d$cdf, "Função distribuição acumulada")
+}, res = 120)
+
+output$bin_mean_text <- renderUI({
+  d <- binom_data(input$bin_n, input$bin_p)
+  s <- bin_sim()
+  moment_pair_ui(d$mean, mean(s))
+})
+
+output$bin_var_text <- renderUI({
+  d <- binom_data(input$bin_n, input$bin_p)
+  s <- bin_sim()
+  moment_pair_ui(d$variance, safe_var(s))
+})
+
+output$geo_pmf_plot <- renderPlot({
+  s <- geo_sim()
+  d <- geom_data(input$geo_p, support_max = max(s))
+  plot_discrete_mass(d$x, d$pmf, "Função massa de probabilidade", sim_sample = s)
+}, res = 120)
+
+output$geo_cdf_plot <- renderPlot({
+  s <- geo_sim()
+  d <- geom_data(input$geo_p, support_max = max(s))
+  plot_discrete_cdf(d$x, d$cdf, "Função distribuição acumulada")
+}, res = 120)
+
+output$geo_mean_text <- renderUI({
+  d <- geom_data(input$geo_p)
+  s <- geo_sim()
+  moment_pair_ui(d$mean, mean(s))
+})
+
+output$geo_var_text <- renderUI({
+  d <- geom_data(input$geo_p)
+  s <- geo_sim()
+  moment_pair_ui(d$variance, safe_var(s))
+})
+
+output$nb_pmf_plot <- renderPlot({
+  s <- nb_sim()
+  d <- nbinom_data(input$nb_r, input$nb_p, support_max = max(s))
+  plot_discrete_mass(d$x, d$pmf, "Função massa de probabilidade", sim_sample = s)
+}, res = 120)
+
+output$nb_cdf_plot <- renderPlot({
+  s <- nb_sim()
+  d <- nbinom_data(input$nb_r, input$nb_p, support_max = max(s))
+  plot_discrete_cdf(d$x, d$cdf, "Função distribuição acumulada")
+}, res = 120)
+
+output$nb_mean_text <- renderUI({
+  d <- nbinom_data(input$nb_r, input$nb_p)
+  s <- nb_sim()
+  moment_pair_ui(d$mean, mean(s))
+})
+
+output$nb_var_text <- renderUI({
+  d <- nbinom_data(input$nb_r, input$nb_p)
+  s <- nb_sim()
+  moment_pair_ui(d$variance, safe_var(s))
+})
+
+output$pois_pmf_plot <- renderPlot({
+  s <- pois_sim()
+  d <- pois_data(input$pois_lambda, support_max = max(s))
+  plot_discrete_mass(d$x, d$pmf, "Função massa de probabilidade", sim_sample = s)
+}, res = 120)
+
+output$pois_cdf_plot <- renderPlot({
+  s <- pois_sim()
+  d <- pois_data(input$pois_lambda, support_max = max(s))
+  plot_discrete_cdf(d$x, d$cdf, "Função distribuição acumulada")
+}, res = 120)
+
+output$pois_mean_text <- renderUI({
+  d <- pois_data(input$pois_lambda)
+  s <- pois_sim()
+  moment_pair_ui(d$mean, mean(s))
+})
+
+output$pois_var_text <- renderUI({
+  d <- pois_data(input$pois_lambda)
+  s <- pois_sim()
+  moment_pair_ui(d$variance, safe_var(s))
+})
+
+output$hyp_pmf_plot <- renderPlot({
+  s <- hyp_sim()
+  d <- hyper_data(input$hyp_N, input$hyp_M, input$hyp_n)
+  plot_discrete_mass(d$x, d$pmf, "Função massa de probabilidade", sim_sample = s)
+}, res = 120)
+
+output$hyp_cdf_plot <- renderPlot({
+  d <- hyper_data(input$hyp_N, input$hyp_M, input$hyp_n)
+  plot_discrete_cdf(d$x, d$cdf, "Função distribuição acumulada")
+}, res = 120)
+
+output$hyp_mean_text <- renderUI({
+  d <- hyper_data(input$hyp_N, input$hyp_M, input$hyp_n)
+  s <- hyp_sim()
+  moment_pair_ui(d$mean, mean(s))
+})
+
+output$hyp_var_text <- renderUI({
+  d <- hyper_data(input$hyp_N, input$hyp_M, input$hyp_n)
+  s <- hyp_sim()
+  moment_pair_ui(d$variance, safe_var(s))
+})
+
+output$dice_pmf_plot <- renderPlot({
+  s <- dice_sim()
+  d <- dice_data()
+  plot_discrete_mass(d$x, d$pmf, "Função massa de probabilidade", sim_sample = s)
+}, res = 120)
+
+output$dice_cdf_plot <- renderPlot({
+  d <- dice_data()
+  plot_discrete_cdf(d$x, d$cdf, "Função distribuição acumulada")
+}, res = 120)
+
+output$dice_mean_text <- renderUI({
+  d <- dice_data()
+  s <- dice_sim()
+  moment_pair_ui(d$mean, mean(s))
+})
+
+output$dice_var_text <- renderUI({
+  d <- dice_data()
+  s <- dice_sim()
+  moment_pair_ui(d$variance, safe_var(s))
+})
+```

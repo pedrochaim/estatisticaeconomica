@@ -1,0 +1,15 @@
+name: app-distribuicoes-discretas
+title: app-distribuicoes-discretas
+username: pedrochaim
+account: pedrochaim
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 17144652
+bundleId: 11856669
+url: https://pedrochaim.shinyapps.io/app-distribuicoes-discretas/
+version: 1
+quarto_version: 1.8.23
+quarto_engines: markdown, knitr
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: _quarto.yml|apendices/notacao.qmd|exercicios/01-lista-revisao.qmd|index.qmd|outline.txt|README.md|references.bib|references.qmd|style.css|app-simula-media-amostral|capitulos|docs

@@ -1,0 +1,6 @@
+---
+title: "Distribuições Discretas"
+chapter: true
+---
+
+Ver [https://pedrochaim.shinyapps.io/distribuicoes-discretas-app](https://pedrochaim.shinyapps.io/distribuicoes-discretas-app) para exemplos de importantes distribuições de probabilidade discretas.

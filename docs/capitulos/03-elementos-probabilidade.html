@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.23">
+<meta name="generator" content="quarto-1.9.37">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>3&nbsp; Conjuntos e Probabilidade – Estatística Econômica</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -21,7 +27,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -39,6 +44,7 @@ div.csl-indent {
   margin-left: 2em;
 }</style>
 
+
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
@@ -50,15 +56,15 @@ div.csl-indent {
 <link href="../capitulos/02-estatistica-descritiva.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1fe81d0376b2c50856e68e651e390326.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-9e3e5b9121e68b3f077afb32f2c64d95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -84,7 +90,12 @@ div.csl-indent {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -110,11 +121,15 @@ window.Quarto = {
   typesetMath
 };
 </script>
+
 </head>
+
 <body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -125,11 +140,13 @@ window.Quarto = {
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Estatística Econômica</a> 
     </div>
@@ -141,7 +158,7 @@ window.Quarto = {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introdução</span></span></a>
@@ -155,15 +172,15 @@ window.Quarto = {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../capitulos/02-estatistica-descritiva.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">02-estatistica-descritiva.html</span></span></a>
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
@@ -172,8 +189,8 @@ window.Quarto = {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../capitulos/03-elementos-probabilidade.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Conjuntos e Probabilidade</span></span></a>
@@ -188,7 +205,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../capitulos/05-distribuicoes-discretas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">05-distribuicoes-discretas.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Distribuições Discretas</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -204,7 +221,7 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
@@ -213,15 +230,15 @@ window.Quarto = {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../capitulos/08-populacao-amostra.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">População e Amostra, Parâmetro e Estatística</span></span></a>
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <span class="sidebar-item-text sidebar-link text-start">
  <span class="menu-text">Regressão Linear</span></span>
@@ -240,68 +257,64 @@ window.Quarto = {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../apendices/notacao.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">notacao.html</span></span></a>
   </div>
 </li>
       </ul>
-</li>
+  </li>
     </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#introdu%C3%A7%C3%A3o" id="toc-introdução" class="nav-link active" data-scroll-target="#introdu%C3%A7%C3%A3o"><span class="header-section-number">3.1</span> Introdução</a></li>
-  <li><a href="#espa%C3%A7o-amostral" id="toc-espaço-amostral" class="nav-link" data-scroll-target="#espa%C3%A7o-amostral"><span class="header-section-number">3.2</span> Espaço Amostral</a></li>
-  <li>
-<a href="#rela%C3%A7%C3%B5es-e-opera%C3%A7%C3%B5es-entre-conjuntos" id="toc-relações-e-operações-entre-conjuntos" class="nav-link" data-scroll-target="#rela%C3%A7%C3%B5es-e-opera%C3%A7%C3%B5es-entre-conjuntos"><span class="header-section-number">3.3</span> Relações e Operações entre Conjuntos</a>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">3.1</span> Introdução</a></li>
+  <li><a href="#espaço-amostral" id="toc-espaço-amostral" class="nav-link" data-scroll-target="#espaço-amostral"><span class="header-section-number">3.2</span> Espaço Amostral</a></li>
+  <li><a href="#relações-e-operações-entre-conjuntos" id="toc-relações-e-operações-entre-conjuntos" class="nav-link" data-scroll-target="#relações-e-operações-entre-conjuntos"><span class="header-section-number">3.3</span> Relações e Operações entre Conjuntos</a>
   <ul>
-<li>
-<a href="#rela%C3%A7%C3%B5es-entre-conjuntos" id="toc-relações-entre-conjuntos" class="nav-link" data-scroll-target="#rela%C3%A7%C3%B5es-entre-conjuntos"><span class="header-section-number">3.3.1</span> Relações entre conjuntos</a>
+  <li><a href="#relações-entre-conjuntos" id="toc-relações-entre-conjuntos" class="nav-link" data-scroll-target="#relações-entre-conjuntos"><span class="header-section-number">3.3.1</span> Relações entre conjuntos</a>
   <ul class="collapse">
-<li><a href="#pertin%C3%AAncia" id="toc-pertinência" class="nav-link" data-scroll-target="#pertin%C3%AAncia">Pertinência</a></li>
-  <li><a href="#conten%C3%A7%C3%A3o" id="toc-contenção" class="nav-link" data-scroll-target="#conten%C3%A7%C3%A3o">Contenção</a></li>
+  <li><a href="#pertinência" id="toc-pertinência" class="nav-link" data-scroll-target="#pertinência">Pertinência</a></li>
+  <li><a href="#contenção" id="toc-contenção" class="nav-link" data-scroll-target="#contenção">Contenção</a></li>
   <li><a href="#o-conjunto-vazio" id="toc-o-conjunto-vazio" class="nav-link" data-scroll-target="#o-conjunto-vazio">O conjunto vazio</a></li>
   <li><a href="#igualdade" id="toc-igualdade" class="nav-link" data-scroll-target="#igualdade">Igualdade</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#opera%C3%A7%C3%B5es-entre-conjuntos" id="toc-operações-entre-conjuntos" class="nav-link" data-scroll-target="#opera%C3%A7%C3%B5es-entre-conjuntos"><span class="header-section-number">3.3.2</span> Operações entre conjuntos</a>
+  </ul></li>
+  <li><a href="#operações-entre-conjuntos" id="toc-operações-entre-conjuntos" class="nav-link" data-scroll-target="#operações-entre-conjuntos"><span class="header-section-number">3.3.2</span> Operações entre conjuntos</a>
   <ul class="collapse">
-<li><a href="#uni%C3%A3o-cup-vee-ou" id="toc-união-cup-vee-ou" class="nav-link" data-scroll-target="#uni%C3%A3o-cup-vee-ou">União (<span class="math inline">\(\cup\)</span>, <span class="math inline">\(\vee\)</span>, ou)</a></li>
-  <li><a href="#intersec%C3%A7%C3%A3o-cap-wedge-e" id="toc-intersecção-cap-wedge-e" class="nav-link" data-scroll-target="#intersec%C3%A7%C3%A3o-cap-wedge-e">Intersecção (<span class="math inline">\(\cap\)</span>, <span class="math inline">\(\wedge\)</span>, e)</a></li>
-  <li><a href="#complementa%C3%A7%C3%A3o-ac-n%C3%A3o" id="toc-complementação-ac-não" class="nav-link" data-scroll-target="#complementa%C3%A7%C3%A3o-ac-n%C3%A3o">Complementação (<span class="math inline">\(A^c\)</span>, não)</a></li>
-  <li><a href="#complementa%C3%A7%C3%A3o-relativa-setminus-subtra%C3%A7%C3%A3o" id="toc-complementação-relativa-setminus-subtração" class="nav-link" data-scroll-target="#complementa%C3%A7%C3%A3o-relativa-setminus-subtra%C3%A7%C3%A3o">Complementação relativa (<span class="math inline">\(\setminus\)</span>, subtração)</a></li>
-  <li><a href="#propriedades-b%C3%A1sicas-das-opera%C3%A7%C3%B5es-entre-conjuntos" id="toc-propriedades-básicas-das-operações-entre-conjuntos" class="nav-link" data-scroll-target="#propriedades-b%C3%A1sicas-das-opera%C3%A7%C3%B5es-entre-conjuntos">Propriedades básicas das operações entre conjuntos</a></li>
-  </ul>
-</li>
-  <li><a href="#eventos-disjuntos-e-parti%C3%A7%C3%B5es" id="toc-eventos-disjuntos-e-partições" class="nav-link" data-scroll-target="#eventos-disjuntos-e-parti%C3%A7%C3%B5es"><span class="header-section-number">3.3.3</span> Eventos Disjuntos e Partições</a></li>
-  </ul>
-</li>
-  <li><a href="#espa%C3%A7o-de-eventos" id="toc-espaço-de-eventos" class="nav-link" data-scroll-target="#espa%C3%A7o-de-eventos"><span class="header-section-number">3.4</span> Espaço de Eventos</a></li>
-  <li><a href="#fun%C3%A7%C3%A3o-de-probabilidade" id="toc-função-de-probabilidade" class="nav-link" data-scroll-target="#fun%C3%A7%C3%A3o-de-probabilidade"><span class="header-section-number">3.5</span> Função de Probabilidade</a></li>
-  <li>
-<a href="#probabilidade-condicional-e-independ%C3%AAncia" id="toc-probabilidade-condicional-e-independência" class="nav-link" data-scroll-target="#probabilidade-condicional-e-independ%C3%AAncia"><span class="header-section-number">3.6</span> Probabilidade Condicional e Independência</a>
+  <li><a href="#união-cup-vee-ou" id="toc-união-cup-vee-ou" class="nav-link" data-scroll-target="#união-cup-vee-ou">União (<span class="math inline">\(\cup\)</span>, <span class="math inline">\(\vee\)</span>, ou)</a></li>
+  <li><a href="#intersecção-cap-wedge-e" id="toc-intersecção-cap-wedge-e" class="nav-link" data-scroll-target="#intersecção-cap-wedge-e">Intersecção (<span class="math inline">\(\cap\)</span>, <span class="math inline">\(\wedge\)</span>, e)</a></li>
+  <li><a href="#complementação-ac-não" id="toc-complementação-ac-não" class="nav-link" data-scroll-target="#complementação-ac-não">Complementação (<span class="math inline">\(A^c\)</span>, não)</a></li>
+  <li><a href="#complementação-relativa-setminus-subtração" id="toc-complementação-relativa-setminus-subtração" class="nav-link" data-scroll-target="#complementação-relativa-setminus-subtração">Complementação relativa (<span class="math inline">\(\setminus\)</span>, subtração)</a></li>
+  <li><a href="#propriedades-básicas-das-operações-entre-conjuntos" id="toc-propriedades-básicas-das-operações-entre-conjuntos" class="nav-link" data-scroll-target="#propriedades-básicas-das-operações-entre-conjuntos">Propriedades básicas das operações entre conjuntos</a></li>
+  </ul></li>
+  <li><a href="#eventos-disjuntos-e-partições" id="toc-eventos-disjuntos-e-partições" class="nav-link" data-scroll-target="#eventos-disjuntos-e-partições"><span class="header-section-number">3.3.3</span> Eventos Disjuntos e Partições</a></li>
+  </ul></li>
+  <li><a href="#espaço-de-eventos" id="toc-espaço-de-eventos" class="nav-link" data-scroll-target="#espaço-de-eventos"><span class="header-section-number">3.4</span> Espaço de Eventos</a></li>
+  <li><a href="#função-de-probabilidade" id="toc-função-de-probabilidade" class="nav-link" data-scroll-target="#função-de-probabilidade"><span class="header-section-number">3.5</span> Função de Probabilidade</a></li>
+  <li><a href="#probabilidade-condicional-e-independência" id="toc-probabilidade-condicional-e-independência" class="nav-link" data-scroll-target="#probabilidade-condicional-e-independência"><span class="header-section-number">3.6</span> Probabilidade Condicional e Independência</a>
   <ul>
-<li><a href="#probabilidade-condicional" id="toc-probabilidade-condicional" class="nav-link" data-scroll-target="#probabilidade-condicional"><span class="header-section-number">3.6.1</span> Probabilidade Condicional</a></li>
+  <li><a href="#probabilidade-condicional" id="toc-probabilidade-condicional" class="nav-link" data-scroll-target="#probabilidade-condicional"><span class="header-section-number">3.6.1</span> Probabilidade Condicional</a></li>
   <li><a href="#teorema-de-bayes" id="toc-teorema-de-bayes" class="nav-link" data-scroll-target="#teorema-de-bayes"><span class="header-section-number">3.6.2</span> Teorema de Bayes</a></li>
-  <li><a href="#independ%C3%AAncia-entre-eventos" id="toc-independência-entre-eventos" class="nav-link" data-scroll-target="#independ%C3%AAncia-entre-eventos"><span class="header-section-number">3.6.3</span> Independência entre eventos</a></li>
+  <li><a href="#independência-entre-eventos" id="toc-independência-entre-eventos" class="nav-link" data-scroll-target="#independência-entre-eventos"><span class="header-section-number">3.6.3</span> Independência entre eventos</a></li>
+  </ul></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">3.7</span> Exercícios</a></li>
   </ul>
-</li>
-  <li><a href="#exerc%C3%ADcios" id="toc-exercícios" class="nav-link" data-scroll-target="#exerc%C3%ADcios"><span class="header-section-number">3.7</span> Exercícios</a></li>
-  </ul></nav>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../capitulos/03-elementos-probabilidade.html">Probabilidade</a></li><li class="breadcrumb-item"><a href="../capitulos/03-elementos-probabilidade.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Conjuntos e Probabilidade</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title">
-<span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Conjuntos e Probabilidade</span>
-</h1>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../capitulos/03-elementos-probabilidade.html">Probabilidade</a></li><li class="breadcrumb-item"><a href="../capitulos/03-elementos-probabilidade.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Conjuntos e Probabilidade</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Conjuntos e Probabilidade</span></h1>
 </div>
 
 
@@ -315,25 +328,27 @@ window.Quarto = {
   
 
 
-</header><p>Nesta aula iremos</p>
+</header>
+
+
+<p>Nesta aula iremos</p>
 <p>Leituras:</p>
 <ul>
 <li><span class="citation" data-cites="bussab2010estatistica">(<a href="#ref-bussab2010estatistica" role="doc-biblioref">Bussab and Morettin 2010</a>)</span></li>
-<li>
-<span class="citation" data-cites="casella2002statistical">(<a href="#ref-casella2002statistical" role="doc-biblioref">Casella and Berger 2002</a>)</span> capítulo 1.</li>
+<li><span class="citation" data-cites="casella2002statistical">(<a href="#ref-casella2002statistical" role="doc-biblioref">Casella and Berger 2002</a>)</span> capítulo 1.</li>
 </ul>
-<section id="introdução" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="introdução">
-<span class="header-section-number">3.1</span> Introdução</h2>
+<section id="introdução" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="introdução"><span class="header-section-number">3.1</span> Introdução</h2>
 <p>Um espaço de probabilidades é uma tripla <strong><span class="math inline">\((\Omega, \mathcal{F}, \Pr)\)</span></strong>.</p>
 <ul>
 <li>O conjunto <strong><span class="math inline">\(\Omega\)</span></strong> é chamado <strong>espaço amostral</strong>. Os elementos de <strong><span class="math inline">\(\Omega\)</span> são todos os possíveis resultados individuais de nosso experimento</strong>.</li>
 <li>O conjunto <strong><span class="math inline">\(\mathcal{F}\)</span></strong> é a <span class="math inline">\(\sigma\)</span>-álgebra de eventos, ou <strong>espaço de eventos</strong>. São os resultados (ou conjunto de resultados) de interesse. O espaço de eventos <strong><span class="math inline">\(\mathcal F\)</span> é formado por subconjuntos do espaço amostral <span class="math inline">\(\Omega\)</span></strong>. Temos alguns requerimentos sobre a estrutura do conjunto <strong><span class="math inline">\(\mathcal{F}\)</span></strong>.</li>
-<li>
-<strong><span class="math inline">\(\Pr\)</span></strong> é uma <strong>função de probabilidade</strong>, ou distribuição de probabilidade, que <strong>atribui pesos relativos aos elementos de <span class="math inline">\(\mathcal{F}\)</span></strong>.</li>
+<li><strong><span class="math inline">\(\Pr\)</span></strong> é uma <strong>função de probabilidade</strong>, ou distribuição de probabilidade, que <strong>atribui pesos relativos aos elementos de <span class="math inline">\(\mathcal{F}\)</span></strong>.</li>
 </ul>
 <p>Uma <strong>variável aleatória</strong> <strong><span class="math inline">\(X\)</span></strong> é uma função que mapeia os elementos do espaço amostral <strong><span class="math inline">\(\Omega\)</span></strong> a valores na reta real.</p>
-</section><section id="espaço-amostral" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="espaço-amostral">
-<span class="header-section-number">3.2</span> Espaço Amostral</h2>
+</section>
+<section id="espaço-amostral" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="espaço-amostral"><span class="header-section-number">3.2</span> Espaço Amostral</h2>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -367,31 +382,34 @@ window.Quarto = {
 <li>Resultado é menor do que três: <span class="math inline">\(X = \{\unicode{x2680}, \unicode{x2681}\}\)</span>.</li>
 <li>Resultado é par: <span class="math inline">\(Y = \{\unicode{x2681}, \unicode{x2683}, \unicode{x2685}\}\)</span>.</li>
 <li>Resultado é menor do que seis: <span class="math inline">\(Z = \{\unicode{x2680},\unicode{x2681},\unicode{x2682},\unicode{x2683},\unicode{x2684}\}\)</span>.</li>
-</ul></section><section id="relações-e-operações-entre-conjuntos" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="relações-e-operações-entre-conjuntos">
-<span class="header-section-number">3.3</span> Relações e Operações entre Conjuntos</h2>
+</ul>
+</section>
+<section id="relações-e-operações-entre-conjuntos" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="relações-e-operações-entre-conjuntos"><span class="header-section-number">3.3</span> Relações e Operações entre Conjuntos</h2>
 <p>Vamos dar um passo atrás e lembrar a definição e as principais relações e operações entre conjuntos.</p>
 <p>Um <strong>conjunto é uma coleção de elementos</strong>. Existem várias formas de definir um conjunto.</p>
 <ul>
-<li>
-<strong>Verbalmente:</strong> <span class="math inline">\(S\)</span> é o conjunto de todos os cisnes que não são negros. <span class="math inline">\(A\)</span> é o conjunto composto por todos os números pares.</li>
-<li>
-<strong>Por enumeração</strong>: <span class="math inline">\(Z = \{2, 4, 6, 8, 10, 12, 14, ...\}\)</span>.</li>
-<li>
-<strong>Via notação de conjuntos</strong>: <span class="math inline">\(Z = \{ z: z=2n, n \in \mathbb{N}\}\)</span>
-</li>
+<li><strong>Verbalmente:</strong> <span class="math inline">\(S\)</span> é o conjunto de todos os cisnes que não são negros. <span class="math inline">\(A\)</span> é o conjunto composto por todos os números pares.</li>
+<li><strong>Por enumeração</strong>: <span class="math inline">\(Z = \{2, 4, 6, 8, 10, 12, 14, ...\}\)</span>.</li>
+<li><strong>Via notação de conjuntos</strong>: <span class="math inline">\(Z = \{ z: z=2n, n \in \mathbb{N}\}\)</span></li>
 </ul>
 <p>Um conjunto se relaciona com seus elementos por meio da <strong>pertinência</strong>. A relação básica entre conjuntos é a <strong>contenção</strong>. Com base nesse conceito, definimos a relação de <strong>igualdade</strong> entre conjuntos, e então conseguimos definir operações entre conjuntos como <strong>união</strong>, <strong>intersecção</strong>, e <strong>complemento</strong>.</p>
-<section id="relações-entre-conjuntos" class="level3" data-number="3.3.1"><h3 data-number="3.3.1" class="anchored" data-anchor-id="relações-entre-conjuntos">
-<span class="header-section-number">3.3.1</span> Relações entre conjuntos</h3>
-<section id="pertinência" class="level4"><h4 class="anchored" data-anchor-id="pertinência">Pertinência</h4>
+<section id="relações-entre-conjuntos" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="relações-entre-conjuntos"><span class="header-section-number">3.3.1</span> Relações entre conjuntos</h3>
+<section id="pertinência" class="level4">
+<h4 class="anchored" data-anchor-id="pertinência">Pertinência</h4>
 <p>A <strong>pertinência</strong> é a relação entre um elemento e um conjunto. Se um elemento <span class="math inline">\(x\)</span> pertence a um certo conjunto <span class="math inline">\(A\)</span> escrevemos <span class="math inline">\(x \in A\)</span>. Alternativamente, se esse elemento <span class="math inline">\(x\)</span> não pertencer a <span class="math inline">\(A\)</span> escrevemos <span class="math inline">\(x \notin A\)</span>.</p>
-</section><section id="contenção" class="level4"><h4 class="anchored" data-anchor-id="contenção">Contenção</h4>
+</section>
+<section id="contenção" class="level4">
+<h4 class="anchored" data-anchor-id="contenção">Contenção</h4>
 <p>Dizemos que <strong><span class="math inline">\(A\)</span> está contido em <span class="math inline">\(B\)</span></strong>, ou, equivalentemente, que <span class="math inline">\(B\)</span> contém <span class="math inline">\(A\)</span>, <strong>se todos os elementos de <span class="math inline">\(A\)</span> também forem elementos de <span class="math inline">\(B\)</span></strong>. Escrevemos <strong><span class="math inline">\(A \subset B\)</span></strong>. Ou seja,</p>
 <p><span class="math display">\[\begin{align*}
   A \subset B \Longleftrightarrow (x\in A \Longrightarrow x \in B).
 \end{align*}\]</span></p>
 <p>Por exemplo, se <span class="math inline">\(\Omega = \{\unicode{x2680}, \ldots, \unicode{x2685}\}\)</span> e <span class="math inline">\(X = \{\unicode{x2680}, \unicode{x2681}, \unicode{x2682}\}\)</span>, então <span class="math inline">\(X\subset \Omega\)</span>.</p>
-</section><section id="o-conjunto-vazio" class="level4"><h4 class="anchored" data-anchor-id="o-conjunto-vazio">O conjunto vazio</h4>
+</section>
+<section id="o-conjunto-vazio" class="level4">
+<h4 class="anchored" data-anchor-id="o-conjunto-vazio">O conjunto vazio</h4>
 <p>Definimos um <strong>conjunto vazio</strong> como o <strong>único conjunto que não contém nenhum elemento</strong>:</p>
 <p><span class="math display">\[\begin{align*}
   \emptyset = \{\}.
@@ -401,7 +419,9 @@ window.Quarto = {
   \emptyset \subset A, \quad \forall A.
 \end{align*}\]</span></p>
 <p>Ressaltando que a suposição anterior não quer dizer que o conjunto vazio é elemento de qualquer outro conjunto. Ou seja, não é verdade que sempre <span class="math inline">\(\emptyset \in A\)</span>. <strong>O conjunto vazio é elemento de outro conjunto apenas quando aparecer explicitamente listado como elemento</strong>.</p>
-</section><section id="igualdade" class="level4"><h4 class="anchored" data-anchor-id="igualdade">Igualdade</h4>
+</section>
+<section id="igualdade" class="level4">
+<h4 class="anchored" data-anchor-id="igualdade">Igualdade</h4>
 <p>Dizemos que <strong><span class="math inline">\(A\)</span> é igual a <span class="math inline">\(B\)</span></strong> se tivermos, simultaneamente, que <span class="math inline">\(A\)</span> é contido em <span class="math inline">\(B\)</span> e que <span class="math inline">\(B\)</span> é contido em <span class="math inline">\(A\)</span>. Escrevemos <span class="math inline">\(A = B\)</span>. Ou seja,</p>
 <p><span class="math display">\[\begin{align*}
   A = B \Longleftrightarrow (A \subset B \text{ e } B \subset A).
@@ -410,21 +430,28 @@ window.Quarto = {
 <ul>
 <li>se <span class="math inline">\(x \in A\)</span> então <span class="math inline">\(x \in B\)</span>, e</li>
 <li>se <span class="math inline">\(x \in B\)</span> então <span class="math inline">\(x \in A\)</span>.</li>
-</ul></section></section><section id="operações-entre-conjuntos" class="level3" data-number="3.3.2"><h3 data-number="3.3.2" class="anchored" data-anchor-id="operações-entre-conjuntos">
-<span class="header-section-number">3.3.2</span> Operações entre conjuntos</h3>
-<section id="união-cup-vee-ou" class="level4"><h4 class="anchored" data-anchor-id="união-cup-vee-ou">União (<span class="math inline">\(\cup\)</span>, <span class="math inline">\(\vee\)</span>, ou)</h4>
+</ul>
+</section>
+</section>
+<section id="operações-entre-conjuntos" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="operações-entre-conjuntos"><span class="header-section-number">3.3.2</span> Operações entre conjuntos</h3>
+<section id="união-cup-vee-ou" class="level4">
+<h4 class="anchored" data-anchor-id="união-cup-vee-ou">União (<span class="math inline">\(\cup\)</span>, <span class="math inline">\(\vee\)</span>, ou)</h4>
 <p>A <strong>união</strong> entre <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span>, denotada <strong><span class="math inline">\(A \cup B\)</span></strong>, é o conjunto composto por todos os elementos pertencentes a <span class="math inline">\(A\)</span>, pertencentes a <span class="math inline">\(B\)</span>, ou pertencentes a ambos <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span>. <span class="math display">\[\begin{align*}
   A \cup B = \{x: x\in A \text{ ou } x \in B\}.
 \end{align*}\]</span> A união é associada ao operador lógico <strong>ou</strong>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="03-elementos-probabilidade_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+<figure class="figure">
+<p><img src="03-elementos-probabilidade_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="intersecção-cap-wedge-e" class="level4"><h4 class="anchored" data-anchor-id="intersecção-cap-wedge-e">Intersecção (<span class="math inline">\(\cap\)</span>, <span class="math inline">\(\wedge\)</span>, e)</h4>
+</section>
+<section id="intersecção-cap-wedge-e" class="level4">
+<h4 class="anchored" data-anchor-id="intersecção-cap-wedge-e">Intersecção (<span class="math inline">\(\cap\)</span>, <span class="math inline">\(\wedge\)</span>, e)</h4>
 <p>A <strong>intersecção</strong> entre os conjuntos <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span>, denotada <strong><span class="math inline">\(A\cap B\)</span></strong>, é o conjunto dos elementos que pertencem a ambos <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span>: <span class="math display">\[\begin{align*}
     A\cap B = \{x: x\in A \text{ e } x\in B\}.
 \end{align*}\]</span></p>
@@ -432,12 +459,15 @@ window.Quarto = {
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="03-elementos-probabilidade_files/figure-html/unnamed-chunk-2-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+<figure class="figure">
+<p><img src="03-elementos-probabilidade_files/figure-html/unnamed-chunk-2-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="complementação-ac-não" class="level4"><h4 class="anchored" data-anchor-id="complementação-ac-não">Complementação (<span class="math inline">\(A^c\)</span>, não)</h4>
+</section>
+<section id="complementação-ac-não" class="level4">
+<h4 class="anchored" data-anchor-id="complementação-ac-não">Complementação (<span class="math inline">\(A^c\)</span>, não)</h4>
 <p>O <strong>complemento</strong> do conjunto <span class="math inline">\(A\)</span> (com relação a todo o universo <span class="math inline">\(\Omega\)</span>) é o conjunto composto por todos os elementos em <span class="math inline">\(\Omega\)</span> que não pertencem ao conjunto <span class="math inline">\(A\)</span>.</p>
 <p><span class="math display">\[\begin{align*}
   A^c = \{ x: x\notin A\}
@@ -445,12 +475,15 @@ window.Quarto = {
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="03-elementos-probabilidade_files/figure-html/unnamed-chunk-3-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+<figure class="figure">
+<p><img src="03-elementos-probabilidade_files/figure-html/unnamed-chunk-3-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="complementação-relativa-setminus-subtração" class="level4"><h4 class="anchored" data-anchor-id="complementação-relativa-setminus-subtração">Complementação relativa (<span class="math inline">\(\setminus\)</span>, subtração)</h4>
+</section>
+<section id="complementação-relativa-setminus-subtração" class="level4">
+<h4 class="anchored" data-anchor-id="complementação-relativa-setminus-subtração">Complementação relativa (<span class="math inline">\(\setminus\)</span>, subtração)</h4>
 <p>O <strong>complemento relativo</strong> do conjunto <span class="math inline">\(A\)</span> com relação ao conjunto <span class="math inline">\(B\)</span>, escrito <span class="math inline">\(A\setminus B\)</span> ou <span class="math inline">\(A-B\)</span> (podemos ler como <span class="math inline">\(A\)</span> menos <span class="math inline">\(B\)</span>), é o conjunto de todos os elementos presentes em <span class="math inline">\(A\)</span> mas não presentes em <span class="math inline">\(B\)</span>.</p>
 <p><span class="math display">\[\begin{align*}
   A\setminus B = \{x: x\in A \text{ e } x \notin B\}
@@ -458,12 +491,15 @@ window.Quarto = {
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="03-elementos-probabilidade_files/figure-html/unnamed-chunk-4-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+<figure class="figure">
+<p><img src="03-elementos-probabilidade_files/figure-html/unnamed-chunk-4-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="propriedades-básicas-das-operações-entre-conjuntos" class="level4"><h4 class="anchored" data-anchor-id="propriedades-básicas-das-operações-entre-conjuntos">Propriedades básicas das operações entre conjuntos</h4>
+</section>
+<section id="propriedades-básicas-das-operações-entre-conjuntos" class="level4">
+<h4 class="anchored" data-anchor-id="propriedades-básicas-das-operações-entre-conjuntos">Propriedades básicas das operações entre conjuntos</h4>
 <p>Tome três eventos <span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span>, e <span class="math inline">\(Z\)</span>, definidos no mesmo espaço amostral <span class="math inline">\(\Omega\)</span>.</p>
 <ol type="a">
 <li><strong>Comutatividade</strong></li>
@@ -493,8 +529,10 @@ window.Quarto = {
     (X \cup Y)^c &amp;= X^c\cap Y^c \\
     (X \cap Y)^c &amp;= X^c\cup Y^c
   \end{align*}\]</span></p>
-</section></section><section id="eventos-disjuntos-e-partições" class="level3" data-number="3.3.3"><h3 data-number="3.3.3" class="anchored" data-anchor-id="eventos-disjuntos-e-partições">
-<span class="header-section-number">3.3.3</span> Eventos Disjuntos e Partições</h3>
+</section>
+</section>
+<section id="eventos-disjuntos-e-partições" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="eventos-disjuntos-e-partições"><span class="header-section-number">3.3.3</span> Eventos Disjuntos e Partições</h3>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -511,7 +549,8 @@ window.Quarto = {
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="03-elementos-probabilidade_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+<figure class="figure">
+<p><img src="03-elementos-probabilidade_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -532,7 +571,8 @@ window.Quarto = {
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="03-elementos-probabilidade_files/figure-html/unnamed-chunk-6-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+<figure class="figure">
+<p><img src="03-elementos-probabilidade_files/figure-html/unnamed-chunk-6-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -541,7 +581,8 @@ window.Quarto = {
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="03-elementos-probabilidade_files/figure-html/unnamed-chunk-7-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+<figure class="figure">
+<p><img src="03-elementos-probabilidade_files/figure-html/unnamed-chunk-7-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -550,13 +591,16 @@ window.Quarto = {
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="03-elementos-probabilidade_files/figure-html/unnamed-chunk-8-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+<figure class="figure">
+<p><img src="03-elementos-probabilidade_files/figure-html/unnamed-chunk-8-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section></section><section id="espaço-de-eventos" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="espaço-de-eventos">
-<span class="header-section-number">3.4</span> Espaço de Eventos</h2>
+</section>
+</section>
+<section id="espaço-de-eventos" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="espaço-de-eventos"><span class="header-section-number">3.4</span> Espaço de Eventos</h2>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -575,8 +619,9 @@ window.Quarto = {
 </div>
 </div>
 <p>Exemplo: Menor <span class="math inline">\(\sigma\)</span>-álgebra possível Exemplo: Segunda menor <span class="math inline">\(\sigma\)</span>-álgebra possível Exemplo: Maior <span class="math inline">\(\sigma\)</span>-álgebra possível Exemplo: Espaço de eventos definido sobre um espaço amostral incontável</p>
-</section><section id="função-de-probabilidade" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="função-de-probabilidade">
-<span class="header-section-number">3.5</span> Função de Probabilidade</h2>
+</section>
+<section id="função-de-probabilidade" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="função-de-probabilidade"><span class="header-section-number">3.5</span> Função de Probabilidade</h2>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -586,24 +631,21 @@ window.Quarto = {
 <div id="def-funcao-probabilidade" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 3.6</strong></span> Dados um <strong>espaço amostral <span class="math inline">\(\Omega\)</span></strong> e um associado <strong>espaço de eventos <span class="math inline">\(\mathcal{F}\)</span></strong>, uma <strong>função de probabilidade <span class="math inline">\(\Pr(\cdot)\)</span></strong> é qualquer função com <strong>domínio no espaço de eventos <span class="math inline">\(\mathcal{F}\)</span> e contradomínio nos números reais <span class="math inline">\(\mathbb{R}\)</span></strong> que satisfaz as propriedades (axiomas):</p>
 <ul>
-<li>
-<strong>A1 (Não-negatividade):</strong> <span class="math inline">\(\Pr(A)\geq 0, \forall A\in \mathcal{F}\)</span>.</li>
-<li>
-<strong>A2 (Normalização unitária):</strong> <span class="math inline">\(\Pr(\Omega)=1\)</span>.</li>
-<li>
-<strong>A3 (Aditividade finita):</strong> Sejam <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> eventos disjuntos. Ou seja, que <span class="math inline">\(A \cap B=\emptyset\)</span>. Então <span class="math display">\[\begin{align*}
+<li><strong>A1 (Não-negatividade):</strong> <span class="math inline">\(\Pr(A)\geq 0, \forall A\in \mathcal{F}\)</span>.</li>
+<li><strong>A2 (Normalização unitária):</strong> <span class="math inline">\(\Pr(\Omega)=1\)</span>.</li>
+<li><strong>A3 (Aditividade finita):</strong> Sejam <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> eventos disjuntos. Ou seja, que <span class="math inline">\(A \cap B=\emptyset\)</span>. Então <span class="math display">\[\begin{align*}
 \Pr(A \cup B) = \Pr(A) + \Pr(B).
-\end{align*}\]</span>
-</li>
+\end{align*}\]</span></li>
 </ul>
 </div>
 </div>
 </div>
 </div>
-</section><section id="probabilidade-condicional-e-independência" class="level2" data-number="3.6"><h2 data-number="3.6" class="anchored" data-anchor-id="probabilidade-condicional-e-independência">
-<span class="header-section-number">3.6</span> Probabilidade Condicional e Independência</h2>
-<section id="probabilidade-condicional" class="level3" data-number="3.6.1"><h3 data-number="3.6.1" class="anchored" data-anchor-id="probabilidade-condicional">
-<span class="header-section-number">3.6.1</span> Probabilidade Condicional</h3>
+</section>
+<section id="probabilidade-condicional-e-independência" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="probabilidade-condicional-e-independência"><span class="header-section-number">3.6</span> Probabilidade Condicional e Independência</h2>
+<section id="probabilidade-condicional" class="level3" data-number="3.6.1">
+<h3 data-number="3.6.1" class="anchored" data-anchor-id="probabilidade-condicional"><span class="header-section-number">3.6.1</span> Probabilidade Condicional</h3>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -671,8 +713,9 @@ window.Quarto = {
 </div>
 </div>
 </div>
-</section><section id="teorema-de-bayes" class="level3" data-number="3.6.2"><h3 data-number="3.6.2" class="anchored" data-anchor-id="teorema-de-bayes">
-<span class="header-section-number">3.6.2</span> Teorema de Bayes</h3>
+</section>
+<section id="teorema-de-bayes" class="level3" data-number="3.6.2">
+<h3 data-number="3.6.2" class="anchored" data-anchor-id="teorema-de-bayes"><span class="header-section-number">3.6.2</span> Teorema de Bayes</h3>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -708,14 +751,10 @@ window.Quarto = {
 <div class="callout-body-container callout-body">
 <p>Defina os seguintes eventos:</p>
 <ul>
-<li>
-<span class="math inline">\(H\)</span>: o indivíduo é homem.</li>
-<li>
-<span class="math inline">\(H^c\)</span>: o indivíduo é mulher.</li>
-<li>
-<span class="math inline">\(D\)</span>: o indivíduo é dautônico.</li>
-<li>
-<span class="math inline">\(D^c\)</span>: o indivíduo não é dautônico.</li>
+<li><span class="math inline">\(H\)</span>: o indivíduo é homem.</li>
+<li><span class="math inline">\(H^c\)</span>: o indivíduo é mulher.</li>
+<li><span class="math inline">\(D\)</span>: o indivíduo é dautônico.</li>
+<li><span class="math inline">\(D^c\)</span>: o indivíduo não é dautônico.</li>
 </ul>
 <p><em>Uma pessoa escolhida aleatoriamente é dautônica. Qual é probabilidade de que essa pessoa seja homem?</em></p>
 <p>Queremos <span class="math inline">\(\Pr(H|D)\)</span>.</p>
@@ -787,14 +826,10 @@ window.Quarto = {
 <p>Esse exemplo ilustra como probabilidades condicionais podem causar confusão e requerem interpretação cuidadosa do problema em questão.</p>
 <p>Defina os eventos:</p>
 <ul>
-<li>
-<span class="math inline">\(A\)</span>: <span class="math inline">\(A\)</span> será perdoado. É claro do enunciado que <span class="math inline">\(\Pr(A)=1/3\)</span>.</li>
-<li>
-<span class="math inline">\(B\)</span>: <span class="math inline">\(B\)</span> será perdoado. <span class="math inline">\(\Pr(B)=1/3\)</span>.</li>
-<li>
-<span class="math inline">\(C\)</span>: <span class="math inline">\(C\)</span> será perdoado. <span class="math inline">\(\Pr(C)=1/3\)</span>.</li>
-<li>
-<span class="math inline">\(W\)</span>: Carcereiro diz que <span class="math inline">\(B\)</span> será executado.</li>
+<li><span class="math inline">\(A\)</span>: <span class="math inline">\(A\)</span> será perdoado. É claro do enunciado que <span class="math inline">\(\Pr(A)=1/3\)</span>.</li>
+<li><span class="math inline">\(B\)</span>: <span class="math inline">\(B\)</span> será perdoado. <span class="math inline">\(\Pr(B)=1/3\)</span>.</li>
+<li><span class="math inline">\(C\)</span>: <span class="math inline">\(C\)</span> será perdoado. <span class="math inline">\(\Pr(C)=1/3\)</span>.</li>
+<li><span class="math inline">\(W\)</span>: Carcereiro diz que <span class="math inline">\(B\)</span> será executado.</li>
 </ul>
 <p>Queremos <span class="math inline">\(\Pr(A|W)\)</span>:</p>
 <p><span class="math display">\[\begin{align*}
@@ -856,8 +891,9 @@ window.Quarto = {
 </div>
 </div>
 </div>
-</section><section id="independência-entre-eventos" class="level3" data-number="3.6.3"><h3 data-number="3.6.3" class="anchored" data-anchor-id="independência-entre-eventos">
-<span class="header-section-number">3.6.3</span> Independência entre eventos</h3>
+</section>
+<section id="independência-entre-eventos" class="level3" data-number="3.6.3">
+<h3 data-number="3.6.3" class="anchored" data-anchor-id="independência-entre-eventos"><span class="header-section-number">3.6.3</span> Independência entre eventos</h3>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -916,19 +952,24 @@ window.Quarto = {
 <li>E sobre a independência mútua entre <span class="math inline">\(A_1, A_2\)</span> e <span class="math inline">\(A_3\)</span>?</li>
 </ul>
 </div>
-</section></section><section id="exercícios" class="level2" data-number="3.7"><h2 data-number="3.7" class="anchored" data-anchor-id="exercícios">
-<span class="header-section-number">3.7</span> Exercícios</h2>
+</section>
+</section>
+<section id="exercícios" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">3.7</span> Exercícios</h2>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-bussab2010estatistica" class="csl-entry" role="listitem">
 Bussab, Wilton O, and Pedro A Morettin. 2010. <em>Estat<span>ı́</span>stica b<span>á</span>sica</em>. 6th ed. Saraiva.
 </div>
 <div id="ref-casella2002statistical" class="csl-entry" role="listitem">
-Casella, George, and Roger L. Berger. 2002. <em>Statistical Inference</em>. 2nd ed. Belmont, CA: Duxbury.
+Casella, George, and Roger L. Berger. 2002. <em>Statistical Inference</em>. 2nd ed. Duxbury.
 </div>
 </div>
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -1156,7 +1197,9 @@ Casella, George, and Roger L. Berger. 2002. <em>Statistical Inference</em>. 2nd 
           });
         }
   });
-  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
       <a href="../capitulos/02-estatistica-descritiva.html" class="pagination-link" aria-label="02-estatistica-descritiva.html">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">02-estatistica-descritiva.html</span></span>
       </a>          
@@ -1168,6 +1211,7 @@ Casella, George, and Roger L. Berger. 2002. <em>Statistical Inference</em>. 2nd 
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

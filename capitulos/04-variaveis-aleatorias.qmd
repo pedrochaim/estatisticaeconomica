@@ -1332,6 +1332,68 @@ ggplot() +
 
 ---
 
+## Exemplos usando a linguagem de programação R
+
+Na linguagem de programação `R` existem funções específicas que nos retornam os conceitos discutidos acima para distribuições selecionadas. A nomenclatura das funções segue um padrão.
+
+Vamos tomar a distribuição exponencial como exemplo. Um detalhe é que no `R` ela é definida usando o parâmetro de taxa (*rate*) $\lambda=1/\beta$. Daí sua média é $1/\lambda$. 
+
+### Função densidade/massa de probabilidade
+
+Computamos a função densidade de probabilidade da distribuição exponencial com parâmetro $\beta=3$ para $x=0.5$ como
+
+```{r}
+beta = 3
+dexp(x=0.5, rate=1/beta)
+```
+`dexp()` vem de "distribuição" `exp`.
+
+Se quisermos computar para vários valores de $x$, podemos escrever algo como
+
+```{r}
+beta = 3
+x_range = seq(from=0.1, to=5, by=0.1)
+dexp(x=x_range, rate=1/beta)
+```
+
+Para construir uma figura parecida com Figura 00, poderíamos fazer
+
+```{r}
+beta=3
+x_range = seq(from=0.1, to=beta*3, by=0.1)
+fdp_x_range = dexp(x=x_range, rate=1/beta)
+plot(x=x_range, # valores do eixo x
+     y=fdp_x_range, # valores do eixo y
+     t="l", # tipo do gráfico é "line"
+     xlab="x", # label do eixo x
+     ylab="f(x)", # label do eixo y
+     main="X~Exp.(3)") # título principal da figura
+```
+
+Se estivessemos lidando com uma distribuição binomial com parâmetros $n=3, p=0.4$, poderíamos obter $\Pr(X=2)$ como
+
+```{r}
+n = 3
+p = 0.4
+dbinom(2, size=n, prob=p)
+```
+### Função de probabilidade acumulada
+
+`pexp()` vem de "probabilidade"`exp`.
+
+
+### Função Quantílica
+
+`qexp()` vem de "quantil"`exp`.
+
+### Simular valores sorteados da distribuição
+
+
+`rexp()` vem de "*random*"`exp`.
+
+
 ## Exercicios
 
+TO;DO
 
+## Referências {.unnumbered}

@@ -327,7 +327,17 @@ window.Quarto = {
 </li>
   <li><a href="#fun%C3%A7%C3%A3o-quant%C3%ADlica" id="toc-função-quantílica" class="nav-link" data-scroll-target="#fun%C3%A7%C3%A3o-quant%C3%ADlica"><span class="header-section-number">4.6</span> Função Quantílica</a></li>
   <li><a href="#vari%C3%A1veis-aleat%C3%B3rias-multidimensionais" id="toc-variáveis-aleatórias-multidimensionais" class="nav-link" data-scroll-target="#vari%C3%A1veis-aleat%C3%B3rias-multidimensionais"><span class="header-section-number">4.7</span> Variáveis Aleatórias Multidimensionais</a></li>
-  <li><a href="#exercicios" id="toc-exercicios" class="nav-link" data-scroll-target="#exercicios"><span class="header-section-number">4.8</span> Exercicios</a></li>
+  <li>
+<a href="#exemplos-usando-a-linguagem-de-programa%C3%A7%C3%A3o-r" id="toc-exemplos-usando-a-linguagem-de-programação-r" class="nav-link" data-scroll-target="#exemplos-usando-a-linguagem-de-programa%C3%A7%C3%A3o-r"><span class="header-section-number">4.8</span> Exemplos usando a linguagem de programação R</a>
+  <ul>
+<li><a href="#fun%C3%A7%C3%A3o-densidademassa-de-probabilidade" id="toc-função-densidademassa-de-probabilidade" class="nav-link" data-scroll-target="#fun%C3%A7%C3%A3o-densidademassa-de-probabilidade"><span class="header-section-number">4.8.1</span> Função densidade/massa de probabilidade</a></li>
+  <li><a href="#fun%C3%A7%C3%A3o-de-probabilidade-acumulada-1" id="toc-função-de-probabilidade-acumulada-1" class="nav-link" data-scroll-target="#fun%C3%A7%C3%A3o-de-probabilidade-acumulada-1"><span class="header-section-number">4.8.2</span> Função de probabilidade acumulada</a></li>
+  <li><a href="#fun%C3%A7%C3%A3o-quant%C3%ADlica-1" id="toc-função-quantílica-1" class="nav-link" data-scroll-target="#fun%C3%A7%C3%A3o-quant%C3%ADlica-1"><span class="header-section-number">4.8.3</span> Função Quantílica</a></li>
+  <li><a href="#simular-valores-sorteados-da-distribui%C3%A7%C3%A3o" id="toc-simular-valores-sorteados-da-distribuição" class="nav-link" data-scroll-target="#simular-valores-sorteados-da-distribui%C3%A7%C3%A3o"><span class="header-section-number">4.8.4</span> Simular valores sorteados da distribuição</a></li>
+  </ul>
+</li>
+  <li><a href="#exercicios" id="toc-exercicios" class="nav-link" data-scroll-target="#exercicios"><span class="header-section-number">4.9</span> Exercicios</a></li>
+  <li><a href="#refer%C3%AAncias" id="toc-referências" class="nav-link" data-scroll-target="#refer%C3%AAncias">Referências</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -1204,7 +1214,7 @@ Figure&nbsp;4.2: Em cinza, <span class="math inline">\(f(x)=\Pr(X=x)\)</span>; e
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">xsim</span>, probs<span class="op">=</span><span class="va">q</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      50% 
-0.6914558 </code></pre>
+0.6926047 </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="op">-</span><span class="va">beta</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="va">q</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1278,8 +1288,78 @@ Figure&nbsp;4.2: Em cinza, <span class="math inline">\(f(x)=\Pr(X=x)\)</span>; e
 <li>SW15 capítulo 1.</li>
 </ul>
 </div>
-<hr></section><section id="exercicios" class="level2" data-number="4.8"><h2 data-number="4.8" class="anchored" data-anchor-id="exercicios">
-<span class="header-section-number">4.8</span> Exercicios</h2>
+<hr></section><section id="exemplos-usando-a-linguagem-de-programação-r" class="level2" data-number="4.8"><h2 data-number="4.8" class="anchored" data-anchor-id="exemplos-usando-a-linguagem-de-programação-r">
+<span class="header-section-number">4.8</span> Exemplos usando a linguagem de programação R</h2>
+<p>Na linguagem de programação <code>R</code> existem funções específicas que nos retornam os conceitos discutidos acima para distribuições selecionadas. A nomenclatura das funções segue um padrão.</p>
+<p>Vamos tomar a distribuição exponencial como exemplo. Um detalhe é que no <code>R</code> ela é definida usando o parâmetro de taxa (<em>rate</em>) <span class="math inline">\(\lambda=1/\beta\)</span>. Daí sua média é <span class="math inline">\(1/\lambda\)</span>.</p>
+<section id="função-densidademassa-de-probabilidade" class="level3" data-number="4.8.1"><h3 data-number="4.8.1" class="anchored" data-anchor-id="função-densidademassa-de-probabilidade">
+<span class="header-section-number">4.8.1</span> Função densidade/massa de probabilidade</h3>
+<p>Computamos a função densidade de probabilidade da distribuição exponencial com parâmetro <span class="math inline">\(\beta=3\)</span> para <span class="math inline">\(x=0.5\)</span> como</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">beta</span> <span class="op">=</span> <span class="fl">3</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">dexp</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">0.5</span>, rate<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="va">beta</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2821606</code></pre>
+</div>
+</div>
+<p><code><a href="https://rdrr.io/r/stats/Exponential.html">dexp()</a></code> vem de “distribuição” <code>exp</code>.</p>
+<p>Se quisermos computar para vários valores de <span class="math inline">\(x\)</span>, podemos escrever algo como</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">beta</span> <span class="op">=</span> <span class="fl">3</span></span>
+<span><span class="va">x_range</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from<span class="op">=</span><span class="fl">0.1</span>, to<span class="op">=</span><span class="fl">5</span>, by<span class="op">=</span><span class="fl">0.1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">dexp</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">x_range</span>, rate<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="va">beta</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 0.32240537 0.31183566 0.30161247 0.29172444 0.28216057 0.27291025
+ [7] 0.26396319 0.25530945 0.24693941 0.23884377 0.23101354 0.22344002
+[13] 0.21611478 0.20902970 0.20217689 0.19554874 0.18913789 0.18293721
+[19] 0.17693982 0.17113904 0.16552843 0.16010177 0.15485301 0.14977632
+[25] 0.14486607 0.14011679 0.13552322 0.13108024 0.12678292 0.12262648
+[31] 0.11860631 0.11471793 0.11095703 0.10731942 0.10380107 0.10039807
+[37] 0.09710663 0.09392310 0.09084393 0.08786571 0.08498513 0.08219899
+[43] 0.07950418 0.07689773 0.07437672 0.07193836 0.06957994 0.06729884
+[49] 0.06509252 0.06295853</code></pre>
+</div>
+</div>
+<p>Para construir uma figura parecida com Figura 00, poderíamos fazer</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">beta</span><span class="op">=</span><span class="fl">3</span></span>
+<span><span class="va">x_range</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from<span class="op">=</span><span class="fl">0.1</span>, to<span class="op">=</span><span class="va">beta</span><span class="op">*</span><span class="fl">3</span>, by<span class="op">=</span><span class="fl">0.1</span><span class="op">)</span></span>
+<span><span class="va">fdp_x_range</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">dexp</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">x_range</span>, rate<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="va">beta</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">x_range</span>, <span class="co"># valores do eixo x</span></span>
+<span>     y<span class="op">=</span><span class="va">fdp_x_range</span>, <span class="co"># valores do eixo y</span></span>
+<span>     t<span class="op">=</span><span class="st">"l"</span>, <span class="co"># tipo do gráfico é "line"</span></span>
+<span>     xlab<span class="op">=</span><span class="st">"x"</span>, <span class="co"># label do eixo x</span></span>
+<span>     ylab<span class="op">=</span><span class="st">"f(x)"</span>, <span class="co"># label do eixo y</span></span>
+<span>     main<span class="op">=</span><span class="st">"X~Exp.(3)"</span><span class="op">)</span> <span class="co"># título principal da figura</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="04-variaveis-aleatorias_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Se estivessemos lidando com uma distribuição binomial com parâmetros <span class="math inline">\(n=3, p=0.4\)</span>, poderíamos obter <span class="math inline">\(\Pr(X=2)\)</span> como</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n</span> <span class="op">=</span> <span class="fl">3</span></span>
+<span><span class="va">p</span> <span class="op">=</span> <span class="fl">0.4</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">2</span>, size<span class="op">=</span><span class="va">n</span>, prob<span class="op">=</span><span class="va">p</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.288</code></pre>
+</div>
+</div>
+</section><section id="função-de-probabilidade-acumulada-1" class="level3" data-number="4.8.2"><h3 data-number="4.8.2" class="anchored" data-anchor-id="função-de-probabilidade-acumulada-1">
+<span class="header-section-number">4.8.2</span> Função de probabilidade acumulada</h3>
+<p><code><a href="https://rdrr.io/r/stats/Exponential.html">pexp()</a></code> vem de “probabilidade”<code>exp</code>.</p>
+</section><section id="função-quantílica-1" class="level3" data-number="4.8.3"><h3 data-number="4.8.3" class="anchored" data-anchor-id="função-quantílica-1">
+<span class="header-section-number">4.8.3</span> Função Quantílica</h3>
+<p><code><a href="https://rdrr.io/r/stats/Exponential.html">qexp()</a></code> vem de “quantil”<code>exp</code>.</p>
+</section><section id="simular-valores-sorteados-da-distribuição" class="level3" data-number="4.8.4"><h3 data-number="4.8.4" class="anchored" data-anchor-id="simular-valores-sorteados-da-distribuição">
+<span class="header-section-number">4.8.4</span> Simular valores sorteados da distribuição</h3>
+<p><code><a href="https://rdrr.io/r/stats/Exponential.html">rexp()</a></code> vem de “<em>random</em>”<code>exp</code>.</p>
+</section></section><section id="exercicios" class="level2" data-number="4.9"><h2 data-number="4.9" class="anchored" data-anchor-id="exercicios">
+<span class="header-section-number">4.9</span> Exercicios</h2>
+<p>TO;DO</p>
+</section><section id="referências" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="referências">Referências</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
